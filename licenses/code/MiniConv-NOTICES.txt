@@ -1,0 +1,162 @@
+GNU libiconv portions used by the modified PSP MiniConv library
+
+Reference release: GNU libiconv 1.11.1. The original port revision is not
+known; all 25 conversion function bodies match this release after ignoring
+comments/whitespace and removing conversion-context arguments. This is
+source-text comparison, not execution of either implementation.
+
+Archive: https://mirrors.kernel.org/gnu/libiconv/libiconv-1.11.1.tar.gz
+SHA256: e78c347a1a0cb15f2648519e9799151f4b4a934b61ad9ee7424478efe2b8257f
+Original project: https://www.gnu.org/software/libiconv/
+License: GNU Library GPL version 2 or later for these upstream portions.
+Complete text: ../texts/LGPL-2.0.txt
+PPA main.c wrapper retains its GPL-2.0-or-later notice.
+
+Corresponding original files:
+libiconv-1.11.1/lib/utf16le.h
+libiconv-1.11.1/lib/utf16be.h
+libiconv-1.11.1/lib/utf8.h
+libiconv-1.11.1/lib/ascii.h
+libiconv-1.11.1/lib/gb2312.h
+libiconv-1.11.1/lib/cp936ext.h
+libiconv-1.11.1/lib/gbkext1.h
+libiconv-1.11.1/lib/gbkext2.h
+libiconv-1.11.1/lib/gbk.h
+libiconv-1.11.1/lib/ces_gbk.h
+libiconv-1.11.1/lib/big5.h
+libiconv-1.11.1/lib/ces_big5.h
+libiconv-1.11.1/lib/jisx0201.h
+libiconv-1.11.1/lib/jisx0208.h
+libiconv-1.11.1/lib/sjis.h
+libiconv-1.11.1/lib/ksc5601.h
+libiconv-1.11.1/lib/euc_kr.h
+libiconv-1.11.1/lib/cp1250.h
+libiconv-1.11.1/lib/cp1251.h
+libiconv-1.11.1/lib/cp1256.h
+libiconv-1.11.1/lib/iso8859_9.h
+libiconv-1.11.1/lib/iso8859_7.h
+libiconv-1.11.1/lib/iso8859_6.h
+libiconv-1.11.1/lib/iso8859_2.h
+libiconv-1.11.1/lib/iso8859_1.h
+
+Original copyright/license notices (unique blocks, unaltered):
+
+/*
+ * Copyright (C) 1999-2001 Free Software Foundation, Inc.
+ * This file is part of the GNU LIBICONV Library.
+ *
+ * The GNU LIBICONV Library is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * The GNU LIBICONV Library is distributed in the hope that it will be
+ * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the GNU LIBICONV Library; see the file COPYING.LIB.
+ * If not, write to the Free Software Foundation, Inc., 51 Franklin Street,
+ * Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
+/*
+ * Copyright (C) 1999-2001, 2004 Free Software Foundation, Inc.
+ * This file is part of the GNU LIBICONV Library.
+ *
+ * The GNU LIBICONV Library is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * The GNU LIBICONV Library is distributed in the hope that it will be
+ * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the GNU LIBICONV Library; see the file COPYING.LIB.
+ * If not, write to the Free Software Foundation, Inc., 51 Franklin Street,
+ * Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
+/*
+ * Copyright (C) 1999-2000 Free Software Foundation, Inc.
+ * This file is part of the GNU LIBICONV Library.
+ *
+ * The GNU LIBICONV Library is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * The GNU LIBICONV Library is distributed in the hope that it will be
+ * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the GNU LIBICONV Library; see the file COPYING.LIB.
+ * If not, write to the Free Software Foundation, Inc., 51 Franklin Street,
+ * Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
+/*
+ * Copyright (C) 1999-2001, 2005 Free Software Foundation, Inc.
+ * This file is part of the GNU LIBICONV Library.
+ *
+ * The GNU LIBICONV Library is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * The GNU LIBICONV Library is distributed in the hope that it will be
+ * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the GNU LIBICONV Library; see the file COPYING.LIB.
+ * If not, write to the Free Software Foundation, Inc., 51 Franklin Street,
+ * Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
+/*
+ * Copyright (C) 1999-2002 Free Software Foundation, Inc.
+ * This file is part of the GNU LIBICONV Library.
+ *
+ * The GNU LIBICONV Library is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * The GNU LIBICONV Library is distributed in the hope that it will be
+ * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the GNU LIBICONV Library; see the file COPYING.LIB.
+ * If not, write to the Free Software Foundation, Inc., 51 Franklin Street,
+ * Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
+/*
+ * Copyright (C) 1999-2004 Free Software Foundation, Inc.
+ * This file is part of the GNU LIBICONV Library.
+ *
+ * The GNU LIBICONV Library is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * The GNU LIBICONV Library is distributed in the hope that it will be
+ * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with the GNU LIBICONV Library; see the file COPYING.LIB.
+ * If not, write to the Free Software Foundation, Inc., 51 Franklin Street,
+ * Fifth Floor, Boston, MA 02110-1301, USA.
+ */

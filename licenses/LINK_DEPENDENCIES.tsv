@@ -1,0 +1,51 @@
+link_name	component	version_evidence	license_route	source_record
+bfio	libbfio	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+bufferedio	Local PPA bufferedio	Supplied source	GPL-2.0-or-later source notices	Local preferred source included
+bz2	bzip2	Unknown installed PSP version	bzip2 version-specific BSD-style	Exact target archive/source/build record not supplied
+cdata	libcdata	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+cerror	libcerror	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+cfile	libcfile	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+clocale	libclocale	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+cnotify	libcnotify	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+cpath	libcpath	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+csplit	libcsplit	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+cthreads	libcthreads	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+fcache	libfcache	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+fdata	libfdata	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+fdatetime	libfdatetime	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+fguid	libfguid	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+freetype	FreeType	Unknown installed PSP version	FTL selected for GPLv3 distribution; upstream subcomponent terms also apply	Exact target archive/source/build record not supplied
+fribidi	FriBidi	Unknown installed PSP version	LGPL-2.1-or-later upstream	Exact target archive/source/build record not supplied
+fsntfs	libfsntfs	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+fusn	libfusn	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+fwnt	libfwnt	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+harfbuzz	HarfBuzz	Unknown installed PSP version	Old MIT + per-file terms	Exact target archive/source/build record not supplied
+hmac	libhmac	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+m	newlib libm	Unknown installed PSP version	Per-file math/runtime licenses	Exact target archive/source/build record not supplied
+mkvinfo	Local PPA mkvinfo	Supplied source	GPL-2.0-or-later source notices	Local preferred source included
+mp4info	Local PPA mp4info	Supplied source	GPL-2.0-or-later source notices	Local preferred source included
+opus	opus	Unknown installed PSP version	Upstream BSD-3-Clause + applicable patent grants/per-file terms; actual target version unverified	Exact target archive/source/build record not supplied
+png	libpng	Unknown installed PSP version	libpng version-specific	Exact target archive/source/build record not supplied
+pspaudio	PSPSDK pspaudio	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspaudio_driver	PSPSDK pspaudio_driver	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspaudiocodec	PSPSDK pspaudiocodec	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspdisplay_driver	PSPSDK pspdisplay_driver	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspgu	PSPSDK pspgu	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+psphprm	PSPSDK psphprm	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspjpeg	PSPSDK pspjpeg	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspkernel	PSPSDK pspkernel	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspkubridge	External M33/KUBridge import library	Unknown installed PSP version	No applicable supplier grant in supplied SDK records	Exact target archive/source/build record not supplied
+pspmpeg	Local MPEG import archive + firmware API	Supplied source	SDK-derived BSD interfaces; bundled legacy firmware has separate component ownership	Local preferred source included
+psppower	PSPSDK psppower	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+psprtc	PSPSDK psprtc	Unknown installed PSP version	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+stdc++	GCC libstdc++	Unknown installed PSP version	GPL-3.0-or-later WITH GCC-exception-3.1 where applicable	Exact target archive/source/build record not supplied
+una	libuna	Unknown installed PSP version	Upstream libyal generally LGPL-3.0-or-later plus file-specific terms	Exact target archive/source/build record not supplied
+z	zlib	Unknown installed PSP version	Zlib	Exact target archive/source/build record not supplied
+PPU_OPUS_ARCHIVE	libopus	Unknown installed PSP version; 1.6.1 reference only	BSD-3-Clause + applicable patent grants/per-file terms	Exact target archive/source/build record not supplied
+implicit libc/libgcc/startup	newlib or PSPSDK libc, GCC runtime, CRT	Unknown installed PSP versions	Per-file licenses and applicable GCC Runtime Library Exception	Exact target archive/source/build record not supplied
+pspctrl	PSPSDK pspctrl	RC build-config record; final linked binary not inspected	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspdebug	PSPSDK pspdebug	RC build-config record; final linked binary not inspected	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspdisplay	PSPSDK pspdisplay	RC build-config record; final linked binary not inspected	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspge	PSPSDK pspge	RC build-config record; final linked binary not inspected	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspnet	PSPSDK pspnet	RC build-config record; final linked binary not inspected	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied
+pspnet_apctl	PSPSDK pspnet_apctl	RC build-config record; final linked binary not inspected	BSD core / per-file SDK terms; firmware APIs separate	Exact target archive/source/build record not supplied

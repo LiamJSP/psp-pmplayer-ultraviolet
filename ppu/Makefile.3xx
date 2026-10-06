@@ -1,0 +1,268 @@
+PSPSDK := $(shell psp-config --pspsdk-path)
+PSPLIBSDIR := $(PSPSDK)/..
+PSPM33SDKDIR := $(PSPLIBSDIR)/m33-sdk
+
+BUILD_PRX = 1
+PSP_FW_VERSION ?= 660
+PSP_LARGE_MEMORY = 1
+
+TARGET = PPU
+OBJS = main.o \
+	player.o \
+	browser_text_cache.o \
+	config.o \
+	ppu_controls.o \
+	skin.o \
+	ftfont.o \
+	ui_i18n.o \
+	cfgdialog.o \
+	versiondialog.o \
+	msgdialog.o \
+	videomode.o \
+	pspDveManager.o \
+	common/m33sdk.o \
+	common/framebuffer.o \
+	common/graphics.o \
+	common/imagefile.o \
+	common/fat.o \
+	common/directory.o \
+	common/MiniConv.o \
+	common/I18N.o \
+	common/ctrl.o \
+	common/base64.o \
+	common/mem64.o \
+	common/texture_subdivision.o \
+	common/buffered_reader.o \
+	common/fgets_mod.o \
+	common/ppa_module_args.o \
+	common/ppa_io.o \
+	common/ppa_io_pump.o \
+	common/ppa_queue_watermark.o \
+	common/ppa_browser_fs_cache.o \
+	common/ppa_utf8.o \
+	common/ppa_overlay.o \
+	common/ppa_chapter.o \
+	common/ppa_privileged_bridge.o \
+	common/ppa_hardware_profile.o \
+	common/ppa_memory.o \
+	common/ppa_thread_policy.o \
+	common/ppa_scratchpad.o \
+	common/ppa_accel_governor.o \
+	common/ppa_bus_manager.o \
+	common/ppa_cache.o \
+	common/ppa_wait.o \
+	common/ppa_packet_pool.o \
+	common/ppa_media_packet.o \
+	common/ppa_playback_control.o \
+	common/ppa_playback_session.o \
+	common/ppa_frame_sink.o \
+	common/ppa_seek_controller.o \
+	common/ppa_ms_partition.o \
+	common/ppa_ntfs.o \
+	common/ppa_vfs.o \
+	common/libyal_psp_compat.o \
+	mod/me_boot_start.o \
+	mod/audio_format.o \
+	mod/audio_software.o \
+	mod/audio_stream.o \
+	mod/audio_pcm_vfpu.o \
+	mod/audio_src_core.o \
+	mod/audio_src_linear.o \
+	mod/audio_src_sinc.o \
+	mod/audio_src_zoh.o \
+	mod/audio_util.o \
+	mod/audio_vfpu.o \
+	mod/audiodecoder.o \
+	mod/aspect_ratio.o \
+	mod/codec_prx.o \
+	mod/mp4avcdecoder.o \
+	mod/h264x_probe.o \
+	mod/h264x_dpb.o \
+	mod/h264x_rewrite.o \
+	mod/h264x_compat.o \
+	mod/cpu_clock.o \
+	mod/mpegbase.o \
+	media/MediaBackend.o \
+	media/PlaybackUi.o \
+	media/VideoPipeline.o \
+	media/VideoPipelineVfpu.o \
+	mod/mkv_play.o \
+	mod/mkv_decode.o \
+	mod/mkv_read.o \
+	mod/mkv_file.o \
+	mod/mp4_play.o \
+	mod/mp4_file.o \
+	mod/mp4_read.o \
+	mod/mp4_decode.o \
+	mod/movie_stat.o \
+	mod/movie_interface.o \
+	mod/gu_draw.o \
+	mod/gu_font.o \
+	mod/psp1k_frame_buffer.o \
+	mod/subtitle_parse.o \
+	mod/subtitle_text.o \
+	mod/subtitle_microdvd.o \
+	mod/subtitle_subrip.o \
+	mod/subtitle_ass.o \
+	mod/subtitle_font_config.o \
+	mod/subtitle_preferences.o \
+	tinyxml/tinystr.o \
+	tinyxml/tinyxml.o \
+	tinyxml/tinyxmlerror.o \
+	tinyxml/tinyxmlparser.o \
+	../cooleyesBridge/cooleyesBridge.o \
+	mod/ppa_h264x_access_unit.o
+
+INCDIR = ../third_party/libsamplerate-0.2.2/include $(PSPM33SDKDIR)/include ../cooleyesBridge ../libmpeg \
+	../libmp4info.psp ../libmkvinfo.psp ../libbufferedio.psp \
+	$(PSPLIBSDIR)/include $(PSPLIBSDIR)/include/freetype2
+
+SEEK_JUMP_MULTIPLIER ?= 100
+PPA_MP4_H264X_PREFLIGHT_ENABLE ?= 0
+PPA_ENABLE_THUMBNAILS ?= 0
+PPA_ENABLE_CPU_FULL_FRAME_FILTERS ?= 1
+PPA_ENABLE_VFPU_ACCEL ?= 1
+PPA_ENABLE_SCRATCHPAD_ACCEL ?= 1
+PPA_ENABLE_VFPU_VIDEO ?= 1
+PPA_ENABLE_VFPU_AUDIO ?= 1
+PPA_AUDIO_ACCEL_DEFAULT_MODE ?= 0
+PPA_AUDIO_ACCEL_SCALAR_WARMUP_BLOCKS ?= 8
+PPA_AUDIO_ACCEL_VFPU_PROBE_BLOCKS ?= 8
+PPA_AUDIO_ACCEL_VFPU_MAX_COST_Q8 ?= 224
+PPA_AUDIO_ACCEL_VERIFY_MAX_DELTA ?= 1
+PPA_AUDIO_ACCEL_VERIFY_INTERVAL ?= 128
+PPA_AUDIO_ACCEL_WORKER_TIMEOUT_US ?= 250000
+PPA_H264X_AU_VERIFY_FIRST ?= 8
+PPA_H264X_AU_VERIFY_INTERVAL ?= 128
+PPA_ENABLE_GE_FONT_ATLAS ?= 1
+PPA_FONT_ATLAS_LINE_CACHE_COUNT ?= 4
+PPA_FONT_ATLAS_MAX_GLYPHS_PER_LINE ?= 384
+PPA_FONT_ATLAS_BATCH_GLYPHS ?= 96
+PPA_FONT_ATLAS_USE_SCRATCHPAD ?= 1
+PPA_ENABLE_ACCEL_GOVERNOR ?= 1
+PPA_ACCEL_DEFAULT_MODE ?= 0
+PPA_ACCEL_VERIFY ?= 0
+PPA_ACCEL_VERIFY_MAX_DELTA ?= 3
+PPA_ACCEL_PROFILE_BUILD_ID ?= 0x00030002
+PPA_CPU_GOVERNOR_FAST_DESCENT ?= 1
+PPA_H264X_LEGACY_REF_MGMT_REWRITE ?= 1
+PPA_H264X_DEEP_PRESERVE_RPLM ?= 1
+PPA_H264X_DEEP_B_POC_DELTA_THRESHOLD ?= 8
+PPA_H264X_PRESERVE_WEIGHTS ?= 0
+
+# PSPDEV installs the `opus` package under this PSP-target prefix. Prefer a
+# fixed-point library build; integer PCM output alone does not prove its DSP
+# configuration. Never resolve a workstation libopus through generic -lopus.
+PPU_ENABLE_OPUS ?= 1
+PPU_OPUS_PREFIX ?= $(abspath $(PSPLIBSDIR))
+PPU_OPUS_ARCHIVE := $(PPU_OPUS_PREFIX)/lib/libopus.a
+# 0: conservative linear SRC; 1: unmeasured sinc-fastest opt-in, saver still linear.
+PPU_AUDIO_SINC_DEFAULT ?= 0
+# PSP constant-rate stereo linear kernel; 0 retains upstream arithmetic.
+PPU_AUDIO_FAST_LINEAR ?= 1
+# Packed PCM conversions on the existing producer; 0 keeps scalar conversion
+# and its original producer attributes. Also honors both PPA VFPU audio gates.
+PPU_AUDIO_VFPU_PCM ?= 1
+
+PPA_HEAP_SIZE_KB ?= 18432
+
+PPA_COMMON_DEFS = \
+	-DPPU_ENABLE_OPUS=$(PPU_ENABLE_OPUS) \
+	-DPPU_AUDIO_SINC_DEFAULT=$(PPU_AUDIO_SINC_DEFAULT) \
+	-DPPU_AUDIO_FAST_LINEAR=$(PPU_AUDIO_FAST_LINEAR) \
+	-DPPU_AUDIO_VFPU_PCM=$(PPU_AUDIO_VFPU_PCM) \
+	-DPPA_HEAP_SIZE_KB=$(PPA_HEAP_SIZE_KB) \
+	-DPPA_ENABLE_NTFS=1 \
+	-DLIBFSNTFS_HAVE_BFIO=1 \
+	-DPPA_USE_HARFBUZZ=1 \
+	-DPPA_USE_FRIBIDI=1 \
+	-DSEEK_JUMP_MULTIPLIER=$(SEEK_JUMP_MULTIPLIER) \
+	-DPPA_MP4_H264X_PREFLIGHT_ENABLE=$(PPA_MP4_H264X_PREFLIGHT_ENABLE) \
+	-DPPA_ENABLE_THUMBNAILS=$(PPA_ENABLE_THUMBNAILS) \
+	-DPPA_ENABLE_CPU_FULL_FRAME_FILTERS=$(PPA_ENABLE_CPU_FULL_FRAME_FILTERS) \
+	-DPPA_ENABLE_VFPU_ACCEL=$(PPA_ENABLE_VFPU_ACCEL) \
+	-DPPA_ENABLE_SCRATCHPAD_ACCEL=$(PPA_ENABLE_SCRATCHPAD_ACCEL) \
+	-DPPA_ENABLE_VFPU_VIDEO=$(PPA_ENABLE_VFPU_VIDEO) \
+	-DPPA_ENABLE_VFPU_AUDIO=$(PPA_ENABLE_VFPU_AUDIO) \
+	-DPPA_AUDIO_ACCEL_DEFAULT_MODE=$(PPA_AUDIO_ACCEL_DEFAULT_MODE) \
+	-DPPA_AUDIO_ACCEL_SCALAR_WARMUP_BLOCKS=$(PPA_AUDIO_ACCEL_SCALAR_WARMUP_BLOCKS) \
+	-DPPA_AUDIO_ACCEL_VFPU_PROBE_BLOCKS=$(PPA_AUDIO_ACCEL_VFPU_PROBE_BLOCKS) \
+	-DPPA_AUDIO_ACCEL_VFPU_MAX_COST_Q8=$(PPA_AUDIO_ACCEL_VFPU_MAX_COST_Q8) \
+	-DPPA_AUDIO_ACCEL_VERIFY_MAX_DELTA=$(PPA_AUDIO_ACCEL_VERIFY_MAX_DELTA) \
+	-DPPA_AUDIO_ACCEL_VERIFY_INTERVAL=$(PPA_AUDIO_ACCEL_VERIFY_INTERVAL) \
+	-DPPA_AUDIO_ACCEL_WORKER_TIMEOUT_US=$(PPA_AUDIO_ACCEL_WORKER_TIMEOUT_US) \
+	-DPPA_H264X_AU_VERIFY_FIRST=$(PPA_H264X_AU_VERIFY_FIRST) \
+	-DPPA_H264X_AU_VERIFY_INTERVAL=$(PPA_H264X_AU_VERIFY_INTERVAL) \
+	-DPPA_ENABLE_GE_FONT_ATLAS=$(PPA_ENABLE_GE_FONT_ATLAS) \
+	-DPPA_FONT_ATLAS_LINE_CACHE_COUNT=$(PPA_FONT_ATLAS_LINE_CACHE_COUNT) \
+	-DPPA_FONT_ATLAS_MAX_GLYPHS_PER_LINE=$(PPA_FONT_ATLAS_MAX_GLYPHS_PER_LINE) \
+	-DPPA_FONT_ATLAS_BATCH_GLYPHS=$(PPA_FONT_ATLAS_BATCH_GLYPHS) \
+	-DPPA_FONT_ATLAS_USE_SCRATCHPAD=$(PPA_FONT_ATLAS_USE_SCRATCHPAD) \
+	-DPPA_ENABLE_ACCEL_GOVERNOR=$(PPA_ENABLE_ACCEL_GOVERNOR) \
+	-DPPA_ACCEL_DEFAULT_MODE=$(PPA_ACCEL_DEFAULT_MODE) \
+	-DPPA_ACCEL_VERIFY=$(PPA_ACCEL_VERIFY) \
+	-DPPA_ACCEL_VERIFY_MAX_DELTA=$(PPA_ACCEL_VERIFY_MAX_DELTA) \
+	-DPPA_ACCEL_PROFILE_BUILD_ID=$(PPA_ACCEL_PROFILE_BUILD_ID) \
+	-DPPA_CPU_GOVERNOR_FAST_DESCENT=$(PPA_CPU_GOVERNOR_FAST_DESCENT) \
+	-DPPA_H264X_REWRITE_RETRY=1 \
+	-DPPA_H264X_PRE_REWRITE=1 \
+	-DPPA_H264X_REWRITE_FLUSH=1 \
+	-DPPA_H264X_REWRITE_I_MMCO=1 \
+	-DPPA_H264X_PRESERVE_WEIGHTS=$(PPA_H264X_PRESERVE_WEIGHTS) \
+	-DPPA_H264X_LEGACY_REF_MGMT_REWRITE=$(PPA_H264X_LEGACY_REF_MGMT_REWRITE) \
+	-DPPA_H264X_DEEP_PRESERVE_RPLM=$(PPA_H264X_DEEP_PRESERVE_RPLM) \
+	-DPPA_H264X_DEEP_B_POC_DELTA_THRESHOLD=$(PPA_H264X_DEEP_B_POC_DELTA_THRESHOLD) 
+
+CFLAGS = -MMD -MP -O2 -G0 -Wall -Wextra -Wno-unused-parameter -DNDEBUG -DPPA_RELEASE_BUILD=1 $(PPA_COMMON_DEFS)
+# Only the application C++ units see Boost. Never add host /usr/include or
+# host Boost libraries to a PSP build. -I (not -isystem) keeps these headers
+# in the existing -MMD dependency files when the header installation changes.
+BOOST_INCLUDEDIR ?= $(abspath ../third_party/boost_1_85_0)
+CXXFLAGS = $(CFLAGS) -std=gnu++11 -fno-exceptions -fno-rtti -I"$(BOOST_INCLUDEDIR)" -DBOOST_ALL_NO_LIB=1 -DBOOST_NO_EXCEPTIONS=1
+ASFLAGS = -G0
+USE_PSPSDK_LIBC =
+
+LIBDIR = $(PSPM33SDKDIR)/lib .. $(PSPLIBSDIR)/lib
+LDFLAGS =
+LIBS = -lpspkubridge
+LIBS += -lharfbuzz -lstdc++ -lfribidi -lfreetype -lbz2 -lpng -lz -lm \
+	-lpsppower -lpspaudiocodec -lpspaudio -lpspaudio_driver \
+	-lpspgu -lpspmpeg -lpspjpeg \
+	-lpsphprm -lpsprtc -lmp4info -lmkvinfo -lbufferedio \
+	-lfsntfs -lbfio -lfdata -lfcache -lcdata -lcfile -lcpath -lcsplit \
+	-lclocale -lcnotify -lcthreads -lfdatetime -lfguid -lfusn \
+	-lfwnt -lhmac -luna -lcerror
+
+ifeq ($(PPU_ENABLE_OPUS),1)
+# Match headers and archive from one target installation. Custom target builds
+# can override PPU_OPUS_PREFIX without consulting host pkg-config.
+INCDIR := $(PPU_OPUS_PREFIX)/include $(INCDIR)
+LIBS += $(PPU_OPUS_ARCHIVE) -lm
+.PHONY: ppu-opus-dependency-check
+ppu-opus-dependency-check:
+	@test -r "$(PPU_OPUS_PREFIX)/include/opus/opus.h" -a -r "$(PPU_OPUS_ARCHIVE)" || { printf '%s\n' 'Missing PSP-target opus headers/archive. Install with: psp-pacman -Sy opus' 'Or set PPU_OPUS_PREFIX to your PSP-target prefix; PPU_ENABLE_OPUS=0 disables Opus.' >&2; exit 1; }
+main.o mod/audio_format.o mod/audio_software.o: | ppu-opus-dependency-check
+# A newer archive must trigger relinking after a package upgrade even
+# when the Makefile/configuration did not change. Missing files are diagnosed
+# by the order-only check instead of preventing a clean/dependency-free build.
+$(TARGET).elf: $(wildcard $(PPU_OPUS_ARCHIVE)) | ppu-opus-dependency-check
+endif
+
+EXTRA_TARGETS = EBOOT.PBP
+PSP_EBOOT_TITLE = PMPlayer Ultraviolet
+PSP_EBOOT_ICON = icon/icon.png
+PSP_EBOOT_PIC1 = icon/bg3.png
+
+# Rebuild objects when configuration changes; keep source identity explicit.
+PPA_CONFIG_STAMP := .ppa-build-config
+.DEFAULT_GOAL := all
+.PHONY: ppa-config-force
+ppa-config-force:
+$(PPA_CONFIG_STAMP): ppa-config-force
+	@printf '%s\n' '$(CFLAGS)|$(CXXFLAGS)|$(INCDIR)|$(LIBDIR)|$(LIBS)' > $@.tmp
+	@cmp -s $@.tmp $@ || cp $@.tmp $@
+	@rm -f $@.tmp
+$(OBJS): $(PPA_CONFIG_STAMP)
+versiondialog.o: version.h
+-include $(OBJS:.o=.d)
+include $(PSPSDK)/lib/build.mak

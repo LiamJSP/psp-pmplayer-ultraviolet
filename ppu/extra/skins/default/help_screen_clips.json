@@ -1,0 +1,658 @@
+{
+  "schema_version": 1,
+  "map_name": "help_screen_removed_text_clips",
+  "coordinate_convention": "Top-left origin. Rectangles use x, y, width, height in pixels; right and bottom are exclusive boundaries.",
+  "source_reference": {
+    "file": "pad(1).png",
+    "width": 480,
+    "height": 272
+  },
+  "target_skin": {
+    "file": "futuristic_psp_control_interface_diagram.png",
+    "width": 1672,
+    "height": 941
+  },
+  "reference_canvas_480x272": {
+    "width": 480,
+    "height": 272,
+    "note": "target_rect_480x272 is a rounded scale-down of target_rect for PSP-native skin use."
+  },
+  "excluded_retained_text": [
+    "pmplayer ULTRAVIOLET titlebar text",
+    "L white-box label",
+    "R white-box label",
+    "Text physically printed on the PSP device body"
+  ],
+  "clips": [
+    {
+      "index": 1,
+      "id": "control_instruction",
+      "source_text": "Control instruction",
+      "source_rect": {
+        "x": 8,
+        "y": 32,
+        "width": 122,
+        "height": 14,
+        "right": 130,
+        "bottom": 46,
+        "normalized": {
+          "x": 0.016667,
+          "y": 0.117647,
+          "width": 0.254167,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 50,
+        "y": 116,
+        "width": 470,
+        "height": 40,
+        "right": 520,
+        "bottom": 156,
+        "normalized": {
+          "x": 0.029904,
+          "y": 0.123273,
+          "width": 0.2811,
+          "height": 0.042508
+        }
+      },
+      "target_rect_480x272": {
+        "x": 14,
+        "y": 34,
+        "width": 135,
+        "height": 12,
+        "right": 149,
+        "bottom": 45
+      },
+      "note": "Header text area inside the top inner panel."
+    },
+    {
+      "index": 2,
+      "id": "luminosity",
+      "source_text": "luminosity +",
+      "source_rect": {
+        "x": 198,
+        "y": 56,
+        "width": 83,
+        "height": 15,
+        "right": 281,
+        "bottom": 71,
+        "normalized": {
+          "x": 0.4125,
+          "y": 0.205882,
+          "width": 0.172917,
+          "height": 0.055147
+        }
+      },
+      "target_rect": {
+        "x": 710,
+        "y": 182,
+        "width": 270,
+        "height": 44,
+        "right": 980,
+        "bottom": 226,
+        "normalized": {
+          "x": 0.424641,
+          "y": 0.193411,
+          "width": 0.161483,
+          "height": 0.046759
+        }
+      },
+      "target_rect_480x272": {
+        "x": 204,
+        "y": 53,
+        "width": 78,
+        "height": 13,
+        "right": 281,
+        "bottom": 65
+      },
+      "note": "Centered text between the two upper callout brackets."
+    },
+    {
+      "index": 3,
+      "id": "forward_backward",
+      "source_text": "forward / backward",
+      "source_rect": {
+        "x": 41,
+        "y": 73,
+        "width": 58,
+        "height": 25,
+        "right": 99,
+        "bottom": 98,
+        "normalized": {
+          "x": 0.085417,
+          "y": 0.268382,
+          "width": 0.120833,
+          "height": 0.091912
+        }
+      },
+      "target_rect": {
+        "x": 115,
+        "y": 246,
+        "width": 215,
+        "height": 78,
+        "right": 330,
+        "bottom": 324,
+        "normalized": {
+          "x": 0.06878,
+          "y": 0.261424,
+          "width": 0.128589,
+          "height": 0.082891
+        }
+      },
+      "target_rect_480x272": {
+        "x": 33,
+        "y": 71,
+        "width": 62,
+        "height": 23,
+        "right": 95,
+        "bottom": 94
+      },
+      "note": "Two-line label at the left end of the directional callout."
+    },
+    {
+      "index": 4,
+      "id": "pause",
+      "source_text": "pause",
+      "source_rect": {
+        "x": 380,
+        "y": 79,
+        "width": 35,
+        "height": 14,
+        "right": 415,
+        "bottom": 93,
+        "normalized": {
+          "x": 0.791667,
+          "y": 0.290441,
+          "width": 0.072917,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 1345,
+        "y": 274,
+        "width": 210,
+        "height": 38,
+        "right": 1555,
+        "bottom": 312,
+        "normalized": {
+          "x": 0.804426,
+          "y": 0.29118,
+          "width": 0.125598,
+          "height": 0.040383
+        }
+      },
+      "target_rect_480x272": {
+        "x": 386,
+        "y": 79,
+        "width": 60,
+        "height": 11,
+        "right": 446,
+        "bottom": 90
+      },
+      "note": "Top-right callout label."
+    },
+    {
+      "index": 5,
+      "id": "exit",
+      "source_text": "exit",
+      "source_rect": {
+        "x": 381,
+        "y": 98,
+        "width": 27,
+        "height": 14,
+        "right": 408,
+        "bottom": 112,
+        "normalized": {
+          "x": 0.79375,
+          "y": 0.360294,
+          "width": 0.05625,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 1345,
+        "y": 349,
+        "width": 190,
+        "height": 38,
+        "right": 1535,
+        "bottom": 387,
+        "normalized": {
+          "x": 0.804426,
+          "y": 0.370882,
+          "width": 0.113636,
+          "height": 0.040383
+        }
+      },
+      "target_rect_480x272": {
+        "x": 386,
+        "y": 101,
+        "width": 55,
+        "height": 11,
+        "right": 441,
+        "bottom": 112
+      },
+      "note": "Middle-right callout label."
+    },
+    {
+      "index": 6,
+      "id": "show_info",
+      "source_text": "show info",
+      "source_rect": {
+        "x": 381,
+        "y": 117,
+        "width": 54,
+        "height": 14,
+        "right": 435,
+        "bottom": 131,
+        "normalized": {
+          "x": 0.79375,
+          "y": 0.430147,
+          "width": 0.1125,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 1345,
+        "y": 408,
+        "width": 230,
+        "height": 40,
+        "right": 1575,
+        "bottom": 448,
+        "normalized": {
+          "x": 0.804426,
+          "y": 0.433581,
+          "width": 0.13756,
+          "height": 0.042508
+        }
+      },
+      "target_rect_480x272": {
+        "x": 386,
+        "y": 118,
+        "width": 66,
+        "height": 12,
+        "right": 452,
+        "bottom": 129
+      },
+      "note": "Lower face-button callout label."
+    },
+    {
+      "index": 7,
+      "id": "volume",
+      "source_text": "volume",
+      "source_rect": {
+        "x": 58,
+        "y": 171,
+        "width": 42,
+        "height": 14,
+        "right": 100,
+        "bottom": 185,
+        "normalized": {
+          "x": 0.120833,
+          "y": 0.628676,
+          "width": 0.0875,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 120,
+        "y": 576,
+        "width": 220,
+        "height": 40,
+        "right": 340,
+        "bottom": 616,
+        "normalized": {
+          "x": 0.07177,
+          "y": 0.612115,
+          "width": 0.131579,
+          "height": 0.042508
+        }
+      },
+      "target_rect_480x272": {
+        "x": 34,
+        "y": 166,
+        "width": 63,
+        "height": 12,
+        "right": 98,
+        "bottom": 178
+      },
+      "note": "Left-side callout label near the lower-left of the PSP."
+    },
+    {
+      "index": 8,
+      "id": "aspect_ratio",
+      "source_text": "aspect_ratio",
+      "source_rect": {
+        "x": 380,
+        "y": 171,
+        "width": 70,
+        "height": 14,
+        "right": 450,
+        "bottom": 185,
+        "normalized": {
+          "x": 0.791667,
+          "y": 0.628676,
+          "width": 0.145833,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 1325,
+        "y": 576,
+        "width": 270,
+        "height": 38,
+        "right": 1595,
+        "bottom": 614,
+        "normalized": {
+          "x": 0.792464,
+          "y": 0.612115,
+          "width": 0.161483,
+          "height": 0.040383
+        }
+      },
+      "target_rect_480x272": {
+        "x": 380,
+        "y": 166,
+        "width": 78,
+        "height": 11,
+        "right": 458,
+        "bottom": 177
+      },
+      "note": "Upper line of the right-lower aspect-ratio label."
+    },
+    {
+      "index": 9,
+      "id": "aspect_ratio_values",
+      "source_text": "4:3/16:9/2.35:1",
+      "source_rect": {
+        "x": 389,
+        "y": 187,
+        "width": 83,
+        "height": 14,
+        "right": 472,
+        "bottom": 201,
+        "normalized": {
+          "x": 0.810417,
+          "y": 0.6875,
+          "width": 0.172917,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 1260,
+        "y": 618,
+        "width": 335,
+        "height": 42,
+        "right": 1595,
+        "bottom": 660,
+        "normalized": {
+          "x": 0.753589,
+          "y": 0.656748,
+          "width": 0.200359,
+          "height": 0.044633
+        }
+      },
+      "target_rect_480x272": {
+        "x": 362,
+        "y": 179,
+        "width": 96,
+        "height": 12,
+        "right": 458,
+        "bottom": 191
+      },
+      "note": "Aspect-ratio values below the aspect-ratio label."
+    },
+    {
+      "index": 10,
+      "id": "audio_stream_switch",
+      "source_text": "audio stream switch",
+      "source_rect": {
+        "x": 339,
+        "y": 202,
+        "width": 116,
+        "height": 14,
+        "right": 455,
+        "bottom": 216,
+        "normalized": {
+          "x": 0.70625,
+          "y": 0.742647,
+          "width": 0.241667,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 1185,
+        "y": 682,
+        "width": 410,
+        "height": 42,
+        "right": 1595,
+        "bottom": 724,
+        "normalized": {
+          "x": 0.708732,
+          "y": 0.724761,
+          "width": 0.245215,
+          "height": 0.044633
+        }
+      },
+      "target_rect_480x272": {
+        "x": 340,
+        "y": 197,
+        "width": 118,
+        "height": 12,
+        "right": 458,
+        "bottom": 209
+      },
+      "note": "Right-lower callout label connected to the PSP bottom controls."
+    },
+    {
+      "index": 11,
+      "id": "subtitles_switch",
+      "source_text": "subtitles switch/off",
+      "source_rect": {
+        "x": 144,
+        "y": 194,
+        "width": 124,
+        "height": 14,
+        "right": 268,
+        "bottom": 208,
+        "normalized": {
+          "x": 0.3,
+          "y": 0.713235,
+          "width": 0.258333,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 520,
+        "y": 656,
+        "width": 465,
+        "height": 42,
+        "right": 985,
+        "bottom": 698,
+        "normalized": {
+          "x": 0.311005,
+          "y": 0.697131,
+          "width": 0.27811,
+          "height": 0.044633
+        }
+      },
+      "target_rect_480x272": {
+        "x": 149,
+        "y": 190,
+        "width": 133,
+        "height": 12,
+        "right": 283,
+        "bottom": 202
+      },
+      "note": "First lower-left legend description, after its callout line."
+    },
+    {
+      "index": 12,
+      "id": "loop_toggle",
+      "source_text": "loop on/off",
+      "source_rect": {
+        "x": 144,
+        "y": 213,
+        "width": 70,
+        "height": 14,
+        "right": 214,
+        "bottom": 227,
+        "normalized": {
+          "x": 0.3,
+          "y": 0.783088,
+          "width": 0.145833,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 520,
+        "y": 716,
+        "width": 360,
+        "height": 42,
+        "right": 880,
+        "bottom": 758,
+        "normalized": {
+          "x": 0.311005,
+          "y": 0.760893,
+          "width": 0.215311,
+          "height": 0.044633
+        }
+      },
+      "target_rect_480x272": {
+        "x": 149,
+        "y": 207,
+        "width": 103,
+        "height": 12,
+        "right": 253,
+        "bottom": 219
+      },
+      "note": "Second lower-left legend description."
+    },
+    {
+      "index": 13,
+      "id": "fast_forward_rewind",
+      "source_text": "fast forward/rewind",
+      "source_rect": {
+        "x": 144,
+        "y": 231,
+        "width": 117,
+        "height": 14,
+        "right": 261,
+        "bottom": 245,
+        "normalized": {
+          "x": 0.3,
+          "y": 0.849265,
+          "width": 0.24375,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 520,
+        "y": 776,
+        "width": 470,
+        "height": 42,
+        "right": 990,
+        "bottom": 818,
+        "normalized": {
+          "x": 0.311005,
+          "y": 0.824655,
+          "width": 0.2811,
+          "height": 0.044633
+        }
+      },
+      "target_rect_480x272": {
+        "x": 149,
+        "y": 224,
+        "width": 135,
+        "height": 12,
+        "right": 284,
+        "bottom": 236
+      },
+      "note": "Third lower-left legend description."
+    },
+    {
+      "index": 14,
+      "id": "zoom_in_out",
+      "source_text": "zoom in/out",
+      "source_rect": {
+        "x": 144,
+        "y": 248,
+        "width": 72,
+        "height": 14,
+        "right": 216,
+        "bottom": 262,
+        "normalized": {
+          "x": 0.3,
+          "y": 0.911765,
+          "width": 0.15,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 520,
+        "y": 836,
+        "width": 360,
+        "height": 40,
+        "right": 880,
+        "bottom": 876,
+        "normalized": {
+          "x": 0.311005,
+          "y": 0.888417,
+          "width": 0.215311,
+          "height": 0.042508
+        }
+      },
+      "target_rect_480x272": {
+        "x": 149,
+        "y": 242,
+        "width": 103,
+        "height": 12,
+        "right": 253,
+        "bottom": 253
+      },
+      "note": "Fourth lower-left legend description."
+    },
+    {
+      "index": 15,
+      "id": "close_prompt_text",
+      "source_text": "press / to close",
+      "source_rect": {
+        "x": 349,
+        "y": 244,
+        "width": 112,
+        "height": 18,
+        "right": 461,
+        "bottom": 262,
+        "normalized": {
+          "x": 0.727083,
+          "y": 0.897059,
+          "width": 0.233333,
+          "height": 0.066176
+        }
+      },
+      "target_rect": {
+        "x": 1240,
+        "y": 817,
+        "width": 335,
+        "height": 50,
+        "right": 1575,
+        "bottom": 867,
+        "normalized": {
+          "x": 0.741627,
+          "y": 0.868225,
+          "width": 0.200359,
+          "height": 0.053135
+        }
+      },
+      "target_rect_480x272": {
+        "x": 356,
+        "y": 236,
+        "width": 96,
+        "height": 14,
+        "right": 452,
+        "bottom": 251
+      },
+      "note": "Text area to the right of the relocated left-aligned triangle icon."
+    }
+  ]
+}

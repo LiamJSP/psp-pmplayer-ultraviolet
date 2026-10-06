@@ -1,0 +1,656 @@
+{
+  "schema_version": 1,
+  "map_name": "main_menu_removed_text_clips",
+  "coordinate_convention": "Top-left origin. Rectangles use x, y, width, height in pixels; right and bottom are exclusive boundaries.",
+  "source_reference": {
+    "file": "skin(3).png",
+    "width": 480,
+    "height": 272
+  },
+  "target_skin": {
+    "file": "futuristic_media_player_interface_design.png",
+    "width": 1672,
+    "height": 941
+  },
+  "reference_canvas_480x272": {
+    "width": 480,
+    "height": 272,
+    "note": "target_rect_480x272 is a rounded scale-down of target_rect for PSP-native skin use."
+  },
+  "excluded_retained_text": [
+    "pmplayer ULTRAVIOLET titlebar text",
+    "SEL hardware-button label"
+  ],
+  "clips": [
+    {
+      "index": 1,
+      "id": "file_list_header",
+      "source_text": "FILE LIST",
+      "source_rect": {
+        "x": 252,
+        "y": 33,
+        "width": 58,
+        "height": 11,
+        "right": 310,
+        "bottom": 44,
+        "normalized": {
+          "x": 0.525,
+          "y": 0.121324,
+          "width": 0.120833,
+          "height": 0.040441
+        }
+      },
+      "target_rect": {
+        "x": 780,
+        "y": 112,
+        "width": 280,
+        "height": 36,
+        "right": 1060,
+        "bottom": 148,
+        "normalized": {
+          "x": 0.466507,
+          "y": 0.119022,
+          "width": 0.167464,
+          "height": 0.038257
+        }
+      },
+      "target_rect_480x272": {
+        "x": 224,
+        "y": 32,
+        "width": 80,
+        "height": 10,
+        "right": 304,
+        "bottom": 43
+      },
+      "note": "Top-right header area of the large file-list pane."
+    },
+    {
+      "index": 2,
+      "id": "information_header",
+      "source_text": "INFORMATION",
+      "source_rect": {
+        "x": 393,
+        "y": 33,
+        "width": 77,
+        "height": 11,
+        "right": 470,
+        "bottom": 44,
+        "normalized": {
+          "x": 0.81875,
+          "y": 0.121324,
+          "width": 0.160417,
+          "height": 0.040441
+        }
+      },
+      "target_rect": {
+        "x": 1280,
+        "y": 112,
+        "width": 315,
+        "height": 36,
+        "right": 1595,
+        "bottom": 148,
+        "normalized": {
+          "x": 0.76555,
+          "y": 0.119022,
+          "width": 0.188397,
+          "height": 0.038257
+        }
+      },
+      "target_rect_480x272": {
+        "x": 367,
+        "y": 32,
+        "width": 90,
+        "height": 10,
+        "right": 458,
+        "bottom": 43
+      },
+      "note": "Header area of the right information column."
+    },
+    {
+      "index": 3,
+      "id": "thumbnail_label",
+      "source_text": "THUMBNAIL",
+      "source_rect": {
+        "x": 328,
+        "y": 55,
+        "width": 58,
+        "height": 11,
+        "right": 386,
+        "bottom": 66,
+        "normalized": {
+          "x": 0.683333,
+          "y": 0.202206,
+          "width": 0.120833,
+          "height": 0.040441
+        }
+      },
+      "target_rect": {
+        "x": 1130,
+        "y": 170,
+        "width": 230,
+        "height": 34,
+        "right": 1360,
+        "bottom": 204,
+        "normalized": {
+          "x": 0.675837,
+          "y": 0.180659,
+          "width": 0.13756,
+          "height": 0.036132
+        }
+      },
+      "target_rect_480x272": {
+        "x": 324,
+        "y": 49,
+        "width": 66,
+        "height": 10,
+        "right": 390,
+        "bottom": 59
+      },
+      "note": "Label above the thumbnail/preview frame."
+    },
+    {
+      "index": 4,
+      "id": "thumbnail_unavailable",
+      "source_text": "UNAVAILABLE",
+      "source_rect": {
+        "x": 359,
+        "y": 107,
+        "width": 78,
+        "height": 12,
+        "right": 437,
+        "bottom": 119,
+        "normalized": {
+          "x": 0.747917,
+          "y": 0.393382,
+          "width": 0.1625,
+          "height": 0.044118
+        }
+      },
+      "target_rect": {
+        "x": 1260,
+        "y": 337,
+        "width": 230,
+        "height": 42,
+        "right": 1490,
+        "bottom": 379,
+        "normalized": {
+          "x": 0.753589,
+          "y": 0.35813,
+          "width": 0.13756,
+          "height": 0.044633
+        }
+      },
+      "target_rect_480x272": {
+        "x": 362,
+        "y": 97,
+        "width": 66,
+        "height": 12,
+        "right": 428,
+        "bottom": 110
+      },
+      "note": "Centered status text within the thumbnail frame."
+    },
+    {
+      "index": 5,
+      "id": "total_time",
+      "source_text": "TOTAL TIME",
+      "source_rect": {
+        "x": 328,
+        "y": 174,
+        "width": 67,
+        "height": 12,
+        "right": 395,
+        "bottom": 186,
+        "normalized": {
+          "x": 0.683333,
+          "y": 0.639706,
+          "width": 0.139583,
+          "height": 0.044118
+        }
+      },
+      "target_rect": {
+        "x": 1130,
+        "y": 548,
+        "width": 460,
+        "height": 34,
+        "right": 1590,
+        "bottom": 582,
+        "normalized": {
+          "x": 0.675837,
+          "y": 0.582359,
+          "width": 0.27512,
+          "height": 0.036132
+        }
+      },
+      "target_rect_480x272": {
+        "x": 324,
+        "y": 158,
+        "width": 132,
+        "height": 10,
+        "right": 456,
+        "bottom": 168
+      },
+      "note": "First metadata row in the lower-right pane."
+    },
+    {
+      "index": 6,
+      "id": "aspect_ratio",
+      "source_text": "ASPECT RATIO",
+      "source_rect": {
+        "x": 328,
+        "y": 193,
+        "width": 74,
+        "height": 12,
+        "right": 402,
+        "bottom": 205,
+        "normalized": {
+          "x": 0.683333,
+          "y": 0.709559,
+          "width": 0.154167,
+          "height": 0.044118
+        }
+      },
+      "target_rect": {
+        "x": 1130,
+        "y": 592,
+        "width": 460,
+        "height": 34,
+        "right": 1590,
+        "bottom": 626,
+        "normalized": {
+          "x": 0.675837,
+          "y": 0.629118,
+          "width": 0.27512,
+          "height": 0.036132
+        }
+      },
+      "target_rect_480x272": {
+        "x": 324,
+        "y": 171,
+        "width": 132,
+        "height": 10,
+        "right": 456,
+        "bottom": 181
+      },
+      "note": "Second metadata row in the lower-right pane."
+    },
+    {
+      "index": 7,
+      "id": "frames_per_second",
+      "source_text": "FRAMES/S",
+      "source_rect": {
+        "x": 328,
+        "y": 212,
+        "width": 57,
+        "height": 12,
+        "right": 385,
+        "bottom": 224,
+        "normalized": {
+          "x": 0.683333,
+          "y": 0.779412,
+          "width": 0.11875,
+          "height": 0.044118
+        }
+      },
+      "target_rect": {
+        "x": 1130,
+        "y": 636,
+        "width": 460,
+        "height": 34,
+        "right": 1590,
+        "bottom": 670,
+        "normalized": {
+          "x": 0.675837,
+          "y": 0.675877,
+          "width": 0.27512,
+          "height": 0.036132
+        }
+      },
+      "target_rect_480x272": {
+        "x": 324,
+        "y": 184,
+        "width": 132,
+        "height": 10,
+        "right": 456,
+        "bottom": 194
+      },
+      "note": "Third metadata row in the lower-right pane."
+    },
+    {
+      "index": 8,
+      "id": "streams",
+      "source_text": "STREAMS",
+      "source_rect": {
+        "x": 328,
+        "y": 231,
+        "width": 51,
+        "height": 12,
+        "right": 379,
+        "bottom": 243,
+        "normalized": {
+          "x": 0.683333,
+          "y": 0.849265,
+          "width": 0.10625,
+          "height": 0.044118
+        }
+      },
+      "target_rect": {
+        "x": 1130,
+        "y": 680,
+        "width": 460,
+        "height": 34,
+        "right": 1590,
+        "bottom": 714,
+        "normalized": {
+          "x": 0.675837,
+          "y": 0.722635,
+          "width": 0.27512,
+          "height": 0.036132
+        }
+      },
+      "target_rect_480x272": {
+        "x": 324,
+        "y": 197,
+        "width": 132,
+        "height": 10,
+        "right": 456,
+        "bottom": 206
+      },
+      "note": "Fourth metadata row in the lower-right pane."
+    },
+    {
+      "index": 9,
+      "id": "subtitles",
+      "source_text": "SUBTITLES",
+      "source_rect": {
+        "x": 328,
+        "y": 250,
+        "width": 58,
+        "height": 12,
+        "right": 386,
+        "bottom": 262,
+        "normalized": {
+          "x": 0.683333,
+          "y": 0.919118,
+          "width": 0.120833,
+          "height": 0.044118
+        }
+      },
+      "target_rect": {
+        "x": 1130,
+        "y": 724,
+        "width": 460,
+        "height": 34,
+        "right": 1590,
+        "bottom": 758,
+        "normalized": {
+          "x": 0.675837,
+          "y": 0.769394,
+          "width": 0.27512,
+          "height": 0.036132
+        }
+      },
+      "target_rect_480x272": {
+        "x": 324,
+        "y": 209,
+        "width": 132,
+        "height": 10,
+        "right": 456,
+        "bottom": 219
+      },
+      "note": "Fifth metadata row in the lower-right pane."
+    },
+    {
+      "index": 10,
+      "id": "cancel_label",
+      "source_text": "CANCEL",
+      "source_rect": {
+        "x": 27,
+        "y": 248,
+        "width": 42,
+        "height": 14,
+        "right": 69,
+        "bottom": 262,
+        "normalized": {
+          "x": 0.05625,
+          "y": 0.911765,
+          "width": 0.0875,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 150,
+        "y": 607,
+        "width": 365,
+        "height": 44,
+        "right": 515,
+        "bottom": 651,
+        "normalized": {
+          "x": 0.089713,
+          "y": 0.645058,
+          "width": 0.218301,
+          "height": 0.046759
+        }
+      },
+      "target_rect_480x272": {
+        "x": 43,
+        "y": 175,
+        "width": 105,
+        "height": 13,
+        "right": 148,
+        "bottom": 188
+      },
+      "note": "Text area to the right of the square hardware-button icon."
+    },
+    {
+      "index": 11,
+      "id": "help_label",
+      "source_text": "HELP",
+      "source_rect": {
+        "x": 83,
+        "y": 248,
+        "width": 29,
+        "height": 14,
+        "right": 112,
+        "bottom": 262,
+        "normalized": {
+          "x": 0.172917,
+          "y": 0.911765,
+          "width": 0.060417,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 650,
+        "y": 607,
+        "width": 380,
+        "height": 44,
+        "right": 1030,
+        "bottom": 651,
+        "normalized": {
+          "x": 0.388756,
+          "y": 0.645058,
+          "width": 0.227273,
+          "height": 0.046759
+        }
+      },
+      "target_rect_480x272": {
+        "x": 187,
+        "y": 175,
+        "width": 109,
+        "height": 13,
+        "right": 296,
+        "bottom": 188
+      },
+      "note": "Text area to the right of the triangle hardware-button icon."
+    },
+    {
+      "index": 12,
+      "id": "start_label",
+      "source_text": "START",
+      "source_rect": {
+        "x": 137,
+        "y": 248,
+        "width": 36,
+        "height": 14,
+        "right": 173,
+        "bottom": 262,
+        "normalized": {
+          "x": 0.285417,
+          "y": 0.911765,
+          "width": 0.075,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 150,
+        "y": 708,
+        "width": 365,
+        "height": 44,
+        "right": 515,
+        "bottom": 752,
+        "normalized": {
+          "x": 0.089713,
+          "y": 0.752391,
+          "width": 0.218301,
+          "height": 0.046759
+        }
+      },
+      "target_rect_480x272": {
+        "x": 43,
+        "y": 205,
+        "width": 105,
+        "height": 13,
+        "right": 148,
+        "bottom": 217
+      },
+      "note": "Text area to the right of the circle hardware-button icon."
+    },
+    {
+      "index": 13,
+      "id": "resume_label",
+      "source_text": "RESUME",
+      "source_rect": {
+        "x": 194,
+        "y": 248,
+        "width": 44,
+        "height": 14,
+        "right": 238,
+        "bottom": 262,
+        "normalized": {
+          "x": 0.404167,
+          "y": 0.911765,
+          "width": 0.091667,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 650,
+        "y": 708,
+        "width": 380,
+        "height": 44,
+        "right": 1030,
+        "bottom": 752,
+        "normalized": {
+          "x": 0.388756,
+          "y": 0.752391,
+          "width": 0.227273,
+          "height": 0.046759
+        }
+      },
+      "target_rect_480x272": {
+        "x": 187,
+        "y": 205,
+        "width": 109,
+        "height": 13,
+        "right": 296,
+        "bottom": 217
+      },
+      "note": "Text area to the right of the X hardware-button icon."
+    },
+    {
+      "index": 14,
+      "id": "delete_label",
+      "source_text": "DELETE",
+      "source_rect": {
+        "x": 259,
+        "y": 248,
+        "width": 44,
+        "height": 14,
+        "right": 303,
+        "bottom": 262,
+        "normalized": {
+          "x": 0.539583,
+          "y": 0.911765,
+          "width": 0.091667,
+          "height": 0.051471
+        }
+      },
+      "target_rect": {
+        "x": 410,
+        "y": 815,
+        "width": 380,
+        "height": 44,
+        "right": 790,
+        "bottom": 859,
+        "normalized": {
+          "x": 0.245215,
+          "y": 0.8661,
+          "width": 0.227273,
+          "height": 0.046759
+        }
+      },
+      "target_rect_480x272": {
+        "x": 118,
+        "y": 236,
+        "width": 109,
+        "height": 13,
+        "right": 227,
+        "bottom": 248
+      },
+      "note": "Text area after the retained SEL hardware-button label."
+    },
+    {
+      "index": 15,
+      "id": "main_directory_list_area",
+      "source_text": "Main directory/file list content area",
+      "source_rect": {
+        "x": 8,
+        "y": 46,
+        "width": 304,
+        "height": 198,
+        "right": 312,
+        "bottom": 244,
+        "normalized": {
+          "x": 0.016667,
+          "y": 0.169118,
+          "width": 0.633333,
+          "height": 0.727941
+        }
+      },
+      "target_rect": {
+        "x": 40,
+        "y": 153,
+        "width": 1028,
+        "height": 397,
+        "right": 1068,
+        "bottom": 550,
+        "normalized": {
+          "x": 0.023923,
+          "y": 0.162593,
+          "width": 0.614833,
+          "height": 0.421892
+        }
+      },
+      "target_rect_480x272": {
+        "x": 11,
+        "y": 44,
+        "width": 296,
+        "height": 115,
+        "right": 307,
+        "bottom": 159
+      },
+      "note": "Large directory/file-list content pane above the three-row button container. Its target top edge begins five pixels below the file_list_header clip."
+    }
+  ]
+}

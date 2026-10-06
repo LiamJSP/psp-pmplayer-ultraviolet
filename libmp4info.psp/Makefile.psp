@@ -1,0 +1,14 @@
+PSPSDK=$(shell psp-config --pspsdk-path)
+PSPDIR=$(shell psp-config --psp-prefix)
+.DEFAULT_GOAL := all
+TARGET_LIB = ../libmp4info.a
+OBJS = 	atom.o mp4info.o
+INCDIR = ../libbufferedio.psp
+CFLAGS = -MMD -MP -O2 -G0 -fomit-frame-pointer
+CXXFLAGS = $(CFLAGS) -fno-rtti
+ASFLAGS = $(CFLAGS)
+
+-include $(OBJS:.o=.d)
+include $(PSPSDK)/lib/build.mak
+
+

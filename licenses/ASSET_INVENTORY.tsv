@@ -1,0 +1,42 @@
+path	sha256	bytes	license_evidence
+ppu/extra/config-en.xml	94c5e7781d978be6607c4f06e4824597425ee188c384a1855bd8a9b07ca39f97	1396	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/config.xml	861a59d2de052a8c082be63c8d26fed648f10cceabc0d9db2628c2a1ee3d648b	1408	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/credit.png	2841b5f0b570118e0db66d448f1d2f897f899121058aeb9ec14ceff191838c0c	61762	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/dvemgr.prx	888a620dad2e79fd6edbb7f10b3c62fd3ef64c127168a415657dcc8fdb9faf06	2842	Binary ownership separate from player GPL; no separate grant in supplied records.
+ppu/extra/fonts/DejaVuSans.ttf	08ca98e69d9d8fa1065584b4f9ab7d49b6205abea6572b90e171b254845bb990	741536	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoNastaliqUrdu-Regular.ttf	f248eaac5fa05ba846e49a17d662b9560efefe5ea32969bf2944623427481188	1060612	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoSansArabic-Regular.ttf	15c6851bcd3aac9adf5256c407dd874fbd344cd529ef9ecf610f855fac9f484b	187000	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoSansBengali-Regular.ttf	6300c5370cd688b0641343de4c786de6d412bb6c578d129dae75e93a0322dcab	200048	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoSansDevanagari-Regular.ttf	b1dffa1fccb30dc45287111834a9db15c652b05d4d67201abe73e67717017590	144816	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoSansHebrew-Regular.ttf	f9ced0325880ab81fdaca60595c96dbd99cf9ef6fad67540ce14d68993c7493c	20516	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoSansJP-Regular.otf	dcc75e20d91d09c793fa5a97c9c7678e8b580d0fc255314cbc45c08b075f46f1	4538888	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoSansKR-Regular.otf	b4f0a9efd7075e28bd3f5bbe00422e32a301edab29d77afddb6155c8f520e8b1	1982208	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoSansSC-Regular.otf	8c37936063c7c8ab747a939e13833894f9edc80dd41b98874ca8f3938a33c32f	8368828	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoSansTelugu-Regular.ttf	ce0d5b0e76f59ce25cd39624d39563ef9353eebfd156f36eeb6de7fd15a5b89d	168584	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/NotoSansThai-Regular.ttf	62bf2314dbbfc0fb82f1bda7ebde475ce953927511f152c89e86ba505e123588	22644	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/fonts/mainfont.ttf	84c75b69a976f5eb255c4ccefda519fa31f030312e02c830e2b985ac56953d6e	19012	04b25 / Yuji Oshimoto; no separate grant in supplied metadata.
+ppu/extra/fonts/wqy-microhei.ttc	e4bca8df123ce01b104780f576ea1a58b9a5ff1662a91124b6d3180cb6c88212	5177387	Embedded font terms recorded in fonts/FONT-NOTICES.txt.
+ppu/extra/mpeg_vsh330.prx	0e0d9d5d69e2fd7760cf161dd05728da01b94084d590f1aa4307a1bbbd17b109	51172	Binary ownership separate from player GPL; no separate grant in supplied records.
+ppu/extra/mpeg_vsh350.prx	9b4acd79c27d4994b8929b238d4dd2817af3e83d18caca610a37f73e85e88b1b	49816	Binary ownership separate from player GPL; no separate grant in supplied records.
+ppu/extra/mpeg_vsh370.prx	73af923eeb26581b4e2ebc6edbc583a0b1a252fcb28f5ac55788ca2be72e60d9	45386	Binary ownership separate from player GPL; no separate grant in supplied records.
+ppu/extra/skins/default/10.png	0297a9f069b7eba07592ad7cf26584017a5d6ab0ed1607bb5e99a0919cef6fb5	368	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/100.png	9281dca5c34157d9af48fa15728b7d17f75307d8beefcc64e717d4334acb5da9	258	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/33.png	da05f08af0f120c8850929b9e71db78f076da923da02651c2f899f1d28759ae2	264	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/66.png	6c00ce5a63c06658cc148ebc8fa560a59e9ff3acd607deb356f295bc107795e5	261	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/charging.png	9bfd496255f71ef3e32c7fb69ecc9bb8d3158ef839b8837df430bd0b96e4d49c	587	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/help_screen_clips.json	245a06ca09323250c5f9d02c2e05d428e0a16c43e150c3e2abf9fe828f736fce	14562	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/loading.png	820bd2f0f8985d98cf5e152fe40a951499c1e1604baa9c40b4fe71b4f1c694e8	1490	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/main_menu_clips.json	4188efe21efa76bd93d0a48a8c3dc636f1603c7de7984ed9540d684f7ea831a4	14634	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/pad.png	0ef2dc3db0aac94214dd38b6b24777d65ddcb11f80d5043298eb5bdf081aa18c	137010	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/preview.png	07c87bf7efe35d2da65e250ae9d1bbfd19dd8ba66362c670ea276f39e428bf4d	5955	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/skin.png	0764786e6b446ebce84a332c8d6b8964cca97065e54821f5e624261548868877	117763	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/skins/default/skin.xml	8513204b506bec46321703c7dfbddb3a988c394c1d6b84fe55d39bde85de85f8	2200	Asset from supplied project; individual creator/license record not supplied.
+ppu/extra/ui/ui_strings.xml	c3127e5f7f7346d822474b48cca3177bbf9cbb813907bec5c213e13354f2c269	143844	Asset from supplied project; individual creator/license record not supplied.
+ppu/icon/bg.png	bee287570a6214c6010f962d6e124410fa35433037fce1bf1c93d09d00a916ab	125786	Asset from supplied project; individual creator/license record not supplied.
+ppu/icon/bg3.png	bee287570a6214c6010f962d6e124410fa35433037fce1bf1c93d09d00a916ab	125786	Asset from supplied project; individual creator/license record not supplied.
+ppu/icon/icon.png	c1c9c5604be9363a003436917c6af22c6498bd21db5836badecc83b396eb0cf0	11679	Asset from supplied project; individual creator/license record not supplied.
+ppu/interface/04B_25__.TTF	84c75b69a976f5eb255c4ccefda519fa31f030312e02c830e2b985ac56953d6e	19012	04b25 / Yuji Oshimoto; no separate grant in supplied metadata.
+ppu/interface/aspect_ratio.tga	8d0692386c5e82a825c13fc9e86e4507f7c8cc02de47f3c3ab75551587edab63	5597	Asset from supplied project; individual creator/license record not supplied.
+ppu/interface/background.tga	5efc3ff0488672709a4080691e77a1f64f87bbf72e8a2e202bd796e790c7f83f	49196	Asset from supplied project; individual creator/license record not supplied.
+ppu/interface/loop.tga	2f8279106d1650f8e76959d0598ae77ab8e8149ab0ccaae5c50baea62ecd0898	800	Asset from supplied project; individual creator/license record not supplied.
+ppu/interface/numbers.tga	e7b5bb430086f1d84b3496585ea55f4c2e00fb92e7f50a1e5c5829a846f4ca17	1304	Asset from supplied project; individual creator/license record not supplied.

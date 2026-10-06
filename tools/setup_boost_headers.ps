@@ -1,0 +1,90 @@
+# Fetch/extract headers only. Never invokes a compiler, b2, make or tests.
+# Optional argument: an already downloaded official boost_1_85_0.tar.bz2.
+
+$ErrorActionPreference = 'Stop'
+Set-StrictMode -Version Latest
+
+if ($args.Count -gt 1) {
+    [Console]::Error.WriteLine("Usage: .\setup_boost_headers.ps1 [boost_1_85_0.tar.bz2]")
+    exit 1
+}
+
+$currentDir = if ($PSScriptRoot) { $PSScriptRoot } else {$PWD.Path }
+$ppu_root = (Get-Item -Path "$currentDir\..").FullName
+$ppu_boost_name = "boost_1_85_0"
+$ppu_boost_dest = Join-Path$ppu_root "third_party\$ppu_boost_name"
+$ppu_boost_sha = "7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617"
+
+# Never merge into, delete or replace somebody else's header installation.
+if (Test-Path -Path $ppu_boost_dest) {
+    [Console]::Error.WriteLine("Destination already exists: $ppu_boost_dest`nUse it as-is, or move it aside manually before rerunning setup.")
+    exit 1
+}
+
+# Windows 10/11 includes tar.exe which handles tar.bz2 extraction.
+# PowerShell native cmdlets replace curl, sha256sum, and mktemp.
+if (-not (Get-Command "tar.exe" -ErrorAction SilentlyContinue)) {
+    [Console]::Error.WriteLine("Required host utility is missing: tar.exe")
+    exit 1
+}
+
+$third_party = Join-Path $ppu_root "third_party"
+if (-not (Test-Path -Path $third_party)) {
+    New-Item -ItemType Directory -Path $third_party | Out-Null
+}
+
+$temp_suffix = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 6 | ForEach-Object { [char]$_ })
+$ppu_boost_work = Join-Path $third_party ".ppu-boost-setup.$temp_suffix"
+New-Item -ItemType Directory -Path $ppu_boost_work | Out-Null
+
+# Cleanup trap equivalent
+try {
+    if ($args.Count -eq 1) {
+        $ppu_boost_archive = $args[0]
+        if (-not (Test-Path -Path $ppu_boost_archive)) {
+            [Console]::Error.WriteLine("Provided archive path does not exist.")
+            exit 1
+        }
+        $ppu_boost_archive = (Resolve-Path $ppu_boost_archive).Path
+    } else {
+        $ppu_boost_archive = Join-Path $ppu_boost_work "$ppu_boost_name.tar.bz2"
+        Invoke-WebRequest -Uri "https://archives.boost.io/release/1.85.0/source/$ppu_boost_name.tar.bz2" -OutFile $ppu_boost_archive -UseBasicParsing
+    }
+
+    $hash = (Get-FileHash -Path $ppu_boost_archive -Algorithm SHA256).Hash
+    # PowerShell comparison (-ne) is case-insensitive, seamlessly handling the lowercase SHA
+    if ($hash -ne $ppu_boost_sha) {
+        [Console]::Error.WriteLine("Boost archive checksum mismatch or unreadable archive; nothing installed.")
+        exit 1
+    }
+
+    # Keep the complete transitive header tree and original license. No Boost
+    # library source, documentation, build system or host binaries are installed.
+    $tarArgs = @("--extract", "--bzip2", "--file", $ppu_boost_archive, "--directory", $ppu_boost_work, "$ppu_boost_name/boost", "$ppu_boost_name/LICENSE_1_0.txt")
+
+    & tar.exe $tarArgs
+    if ($LASTEXITCODE -ne 0) {
+        [Console]::Error.WriteLine("tar extraction failed.")
+        exit 1
+    }
+
+    if (Test-Path -Path $ppu_boost_dest) {
+        [Console]::Error.WriteLine("Destination appeared during setup; refusing to replace it.")
+        exit 1
+    }
+
+    $extracted_dir = Join-Path $ppu_boost_work $ppu_boost_name
+    Move-Item -Path $extracted_dir -Destination $ppu_boost_dest
+
+    if (Test-Path -Path $extracted_dir) {
+        [Console]::Error.WriteLine("Destination appeared during installation; no existing files were replaced.")
+        exit 1
+    }
+
+    Write-Host "Installed Boost 1.85.0 headers at $ppu_boost_dest`nNo compilation or tests were performed."
+}
+finally {
+    if (Test-Path -Path $ppu_boost_work) {
+        Remove-Item -Path $ppu_boost_work -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}

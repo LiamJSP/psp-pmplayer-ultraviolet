@@ -1,0 +1,2217 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ui_translations version="1" default_language="en">
+  <language id="en" name="English" rtl="false" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="FILE LIST" />
+    <text id="main.information_header" value="INFORMATION" />
+    <text id="main.thumbnail_label" value="THUMBNAIL" />
+    <text id="main.thumbnail_unavailable" value="UNAVAILABLE" />
+    <text id="main.total_time" value="TOTAL TIME" />
+    <text id="main.aspect_ratio" value="ASPECT RATIO" />
+    <text id="main.frames_per_second" value="FRAMES/S" />
+    <text id="main.streams" value="STREAMS" />
+    <text id="main.subtitles" value="SUBTITLES" />
+    <text id="main.cancel_label" value="CONFIG" />
+    <text id="main.help_label" value="HELP" />
+    <text id="main.start_label" value="START" />
+    <text id="main.resume_label" value="RESUME" />
+    <text id="main.delete_label" value="DELETE" />
+    <text id="help.control_instruction" value="Control instruction" />
+    <text id="help.luminosity" value="luminosity +" />
+    <text id="help.forward_backward" value="forward /\nbackward" />
+    <text id="help.pause" value="pause" />
+    <text id="help.exit" value="exit" />
+    <text id="help.show_info" value="show info" />
+    <text id="help.volume" value="volume" />
+    <text id="help.aspect_ratio" value="aspect_ratio" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="audio stream switch" />
+    <text id="help.subtitles_switch" value="subtitles switch/off" />
+    <text id="help.loop_toggle" value="loop on/off" />
+    <text id="help.fast_forward_rewind" value="fast forward/rewind" />
+    <text id="help.zoom_in_out" value="zoom in/out" />
+    <text id="help.close_prompt_text" value="press to close" />
+    <text id="config.title" value="Configuration" />
+    <text id="config.cpu_speed" value="CPU Speed" />
+    <text id="config.subtitle_charset" value="Subtitle Encoding" />
+    <text id="config.preferred_subtitle_language" value="Subtitle Language" />
+    <text id="config.subtitle_font_size" value="Subtitle Size" />
+    <text id="config.subtitle_embolden" value="Bold Subtitles" />
+    <text id="config.subtitle_position" value="Subtitle Position" />
+    <text id="config.subtitle_position_top" value="Top" />
+    <text id="config.subtitle_position_bottom" value="Bottom" />
+    <text id="config.subtitle_distance" value="Subtitle Margin" />
+    <text id="config.filesystem_charset" value="File Encoding" />
+    <text id="config.play_mode" value="Play Mode" />
+    <text id="config.play_single" value="Single" />
+    <text id="config.play_group" value="Folder" />
+    <text id="config.play_all" value="All" />
+    <text id="config.tv_aspect_ratio" value="TV Aspect Ratio" />
+    <text id="config.tv_overscan" value="TV Overscan (L.T.R.B)" />
+    <text id="config.video_mode" value="Video Output" />
+    <text id="config.video_psp_lcd" value="PSP LCD" />
+    <text id="config.video_composite" value="Composite" />
+    <text id="config.video_component_interlace" value="Component Interlaced" />
+    <text id="config.video_component_progressive" value="Component Progressive" />
+    <text id="config.auto_cpu_clock" value="Auto CPU Clock" />
+    <text id="config.extreme_battery_saver" value="Battery Saver" />
+    <text id="config.optimize_psp_screen" value="Fit PSP Screen" />
+    <text id="config.interface_language" value="Interface Language" />
+    <text id="config.on" value="On" />
+    <text id="config.off" value="Off" />
+    <text id="config.yes" value="Yes" />
+    <text id="config.no" value="No" />
+    <text id="config.not_used" value="&lt;Not used&gt;" />
+    <text id="language.auto" value="Auto (PSP system)" />
+    <text id="language.en" value="English" />
+    <text id="language.zh-CN" value="Mandarin Chinese" />
+    <text id="language.hi" value="Hindi" />
+    <text id="language.es" value="Spanish" />
+    <text id="language.ar" value="Modern Standard Arabic" />
+    <text id="language.fr" value="French" />
+    <text id="language.bn" value="Bengali" />
+    <text id="language.pt" value="Portuguese" />
+    <text id="language.id" value="Indonesian" />
+    <text id="language.ur" value="Urdu" />
+    <text id="language.ru" value="Russian" />
+    <text id="language.de" value="Standard German" />
+    <text id="language.ja" value="Japanese" />
+    <text id="language.pcm" value="Nigerian Pidgin" />
+    <text id="language.arz" value="Egyptian Arabic" />
+    <text id="language.mr" value="Marathi" />
+    <text id="language.vi" value="Vietnamese" />
+    <text id="language.te" value="Telugu" />
+    <text id="language.it" value="Italian" />
+    <text id="language.pl" value="Polish" />
+    <text id="language.tr" value="Turkish" />
+    <text id="language.sv" value="Swedish" />
+    <text id="language.da" value="Danish" />
+    <text id="language.fi" value="Finnish" />
+    <text id="language.nl" value="Dutch" />
+    <text id="language.no" value="Norwegian" />
+    <text id="language.el" value="Greek" />
+    <text id="language.he" value="Hebrew" />
+    <text id="language.ro" value="Romanian" />
+    <text id="language.th" value="Thai" />
+    <text id="language.ko" value="Korean" />
+    <text id="config.sleep_timer" value="Sleep Timer" />
+    <text id="config.playback_health" value="Playback Health" />
+    <text id="config.audio_only" value="Audio Only Mode" />
+    <text id="config.minutes" value="min" />
+    <text id="playback.audio_only" value="Audio Only Mode is Enabled\nin Config Menu" />
+    <text id="health.title" value="Playback health" />
+    <text id="health.metrics" value="CPU %d MHz | Last decode %u/%u ms" />
+    <text id="health.sync" value="A/V %d ms | Skipped %u" />
+    <text id="health.paused" value="Paused; resume with Square" />
+    <text id="health.audio_only" value="Audio only; video decoder is off" />
+    <text id="health.waiting" value="Waiting for audio output" />
+    <text id="health.decode_pressure" value="Decode exceeds the frame budget" />
+    <text id="health.sync_pressure" value="Audio and video are drifting apart" />
+    <text id="health.compatibility" value="H264X conversion may reduce fidelity" />
+    <text id="health.healthy" value="Playback is within current budgets" />
+    <text id="config.controls_type" value="Controls Type" />
+    <text id="config.controls_international" value="International" />
+    <text id="config.controls_asia" value="Asia" />
+    <text id="chapter.none" value="No chapters" />
+    <text id="chapter.no_cues" value="Chapter seek unavailable: no cue index" />
+    <text id="chapter.first" value="Already at first chapter" />
+    <text id="chapter.last" value="Already at last chapter" />
+    <text id="chapter.back" value="Skip back to Chapter %d of %u\n%s" />
+    <text id="chapter.forward" value="Skip forward to Chapter %d of %u\n%s" />
+    <text id="chapter.untitled" value="Untitled chapter" />
+    <text id="seek.forward" value="Seek forward" />
+    <text id="seek.back" value="Seek back" />
+    <text id="seek.no_cues" value="Seek unavailable: MKV has no cue index" />
+    <text id="playback.no_subtitle" value="No subtitle" />
+  </language>
+  <language id="zh-CN" name="Mandarin Chinese" rtl="false" font="wqy-microhei.ttc">
+    <text id="main.file_list_header" value="文件列表" />
+    <text id="main.information_header" value="信息" />
+    <text id="main.thumbnail_label" value="缩略图" />
+    <text id="main.thumbnail_unavailable" value="不可用" />
+    <text id="main.total_time" value="总时长" />
+    <text id="main.aspect_ratio" value="宽高比" />
+    <text id="main.frames_per_second" value="帧/秒" />
+    <text id="main.streams" value="音轨" />
+    <text id="main.subtitles" value="字幕" />
+    <text id="main.cancel_label" value="设置" />
+    <text id="main.help_label" value="帮助" />
+    <text id="main.start_label" value="播放" />
+    <text id="main.resume_label" value="继续" />
+    <text id="main.delete_label" value="删除" />
+    <text id="help.control_instruction" value="操作说明" />
+    <text id="help.luminosity" value="亮度 +" />
+    <text id="help.forward_backward" value="快进/\n快退" />
+    <text id="help.pause" value="暂停" />
+    <text id="help.exit" value="退出" />
+    <text id="help.show_info" value="显示信息" />
+    <text id="help.volume" value="音量" />
+    <text id="help.aspect_ratio" value="宽高比" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="切换音轨" />
+    <text id="help.subtitles_switch" value="字幕开/关" />
+    <text id="help.loop_toggle" value="循环开/关" />
+    <text id="help.fast_forward_rewind" value="快进/快退" />
+    <text id="help.zoom_in_out" value="放大/缩小" />
+    <text id="help.close_prompt_text" value="按下关闭" />
+    <text id="config.title" value="设置" />
+    <text id="config.cpu_speed" value="CPU 速度" />
+    <text id="config.subtitle_charset" value="字幕编码" />
+    <text id="config.preferred_subtitle_language" value="字幕语言" />
+    <text id="config.subtitle_font_size" value="字幕大小" />
+    <text id="config.subtitle_embolden" value="字幕粗体" />
+    <text id="config.subtitle_position" value="字幕位置" />
+    <text id="config.subtitle_position_top" value="顶部" />
+    <text id="config.subtitle_position_bottom" value="底部" />
+    <text id="config.subtitle_distance" value="字幕边距" />
+    <text id="config.filesystem_charset" value="文件编码" />
+    <text id="config.play_mode" value="播放模式" />
+    <text id="config.play_single" value="单个" />
+    <text id="config.play_group" value="文件夹" />
+    <text id="config.play_all" value="全部" />
+    <text id="config.tv_aspect_ratio" value="电视宽高比" />
+    <text id="config.tv_overscan" value="电视过扫描 (左上右下)" />
+    <text id="config.video_mode" value="视频输出" />
+    <text id="config.video_psp_lcd" value="PSP 屏幕" />
+    <text id="config.video_composite" value="复合" />
+    <text id="config.video_component_interlace" value="分量隔行" />
+    <text id="config.video_component_progressive" value="分量逐行" />
+    <text id="config.auto_cpu_clock" value="CPU 自动调速" />
+    <text id="config.extreme_battery_saver" value="省电模式" />
+    <text id="config.optimize_psp_screen" value="适配 PSP 屏幕" />
+    <text id="config.interface_language" value="界面语言" />
+    <text id="config.on" value="开" />
+    <text id="config.off" value="关" />
+    <text id="config.yes" value="是" />
+    <text id="config.no" value="否" />
+    <text id="config.not_used" value="&lt;未使用&gt;" />
+    <text id="language.auto" value="自动（PSP系统）" />
+    <text id="language.en" value="英语" />
+    <text id="language.zh-CN" value="普通话" />
+    <text id="language.hi" value="印地语" />
+    <text id="language.es" value="西班牙语" />
+    <text id="language.ar" value="现代标准阿拉伯语" />
+    <text id="language.fr" value="法语" />
+    <text id="language.bn" value="孟加拉语" />
+    <text id="language.pt" value="葡萄牙语" />
+    <text id="language.id" value="印度尼西亚语" />
+    <text id="language.ur" value="乌尔都语" />
+    <text id="language.ru" value="俄语" />
+    <text id="language.de" value="德语" />
+    <text id="language.ja" value="日语" />
+    <text id="language.pcm" value="尼日利亚皮钦语" />
+    <text id="language.arz" value="埃及阿拉伯语" />
+    <text id="language.mr" value="马拉地语" />
+    <text id="language.vi" value="越南语" />
+    <text id="language.te" value="泰卢固语" />
+    <text id="language.it" value="意大利语" />
+    <text id="language.pl" value="波兰语" />
+    <text id="language.tr" value="土耳其语" />
+    <text id="language.sv" value="瑞典语" />
+    <text id="language.da" value="丹麦语" />
+    <text id="language.fi" value="芬兰语" />
+    <text id="language.nl" value="荷兰语" />
+    <text id="language.no" value="挪威语" />
+    <text id="language.el" value="希腊语" />
+    <text id="language.he" value="希伯来语" />
+    <text id="language.ro" value="罗马尼亚语" />
+    <text id="language.th" value="泰语" />
+    <text id="language.ko" value="韩语" />
+    <text id="config.sleep_timer" value="睡眠定时器" />
+    <text id="config.playback_health" value="播放状态" />
+    <text id="config.audio_only" value="纯音频模式" />
+    <text id="config.minutes" value="分钟" />
+    <text id="playback.audio_only" value="配置菜单中已启用纯音频模式" />
+    <text id="health.title" value="播放状态" />
+    <text id="health.metrics" value="CPU %d MHz | 最近解码 %u/%u 毫秒" />
+    <text id="health.sync" value="音视频差 %d 毫秒 | 跳帧 %u" />
+    <text id="health.paused" value="已暂停；按方块键继续" />
+    <text id="health.audio_only" value="纯音频；视频解码已关闭" />
+    <text id="health.waiting" value="正在等待音频输出" />
+    <text id="health.decode_pressure" value="解码耗时超过帧预算" />
+    <text id="health.sync_pressure" value="音频与视频正在失去同步" />
+    <text id="health.compatibility" value="H264X 转换可能降低画面保真度" />
+    <text id="health.healthy" value="播放处于当前性能预算内" />
+    <text id="config.controls_type" value="按键类型" />
+    <text id="config.controls_international" value="国际" />
+    <text id="config.controls_asia" value="亚洲" />
+    <text id="chapter.none" value="没有章节" />
+    <text id="chapter.no_cues" value="无法跳转章节：没有提示索引" />
+    <text id="chapter.first" value="已到第一章" />
+    <text id="chapter.last" value="已到最后一章" />
+    <text id="chapter.back" value="向后跳至第 %d 章，共 %u 章\n%s" />
+    <text id="chapter.forward" value="向前跳至第 %d 章，共 %u 章\n%s" />
+    <text id="chapter.untitled" value="未命名章节" />
+    <text id="seek.forward" value="向前跳转" />
+    <text id="seek.back" value="向后跳转" />
+    <text id="seek.no_cues" value="无法跳转：MKV 没有提示索引" />
+    <text id="playback.no_subtitle" value="无字幕" />
+  </language>
+  <language id="hi" name="Hindi" rtl="false" font="NotoSansDevanagari-Regular.ttf">
+    <text id="main.file_list_header" value="फ़ाइल सूची" />
+    <text id="main.information_header" value="जानकारी" />
+    <text id="main.thumbnail_label" value="थंबनेल" />
+    <text id="main.thumbnail_unavailable" value="अनुपलब्ध" />
+    <text id="main.total_time" value="कुल समय" />
+    <text id="main.aspect_ratio" value="चित्र अनुपात" />
+    <text id="main.frames_per_second" value="फ़्रेम/से" />
+    <text id="main.streams" value="स्ट्रीम" />
+    <text id="main.subtitles" value="उपशीर्षक" />
+    <text id="main.cancel_label" value="सेटिंग" />
+    <text id="main.help_label" value="सहायता" />
+    <text id="main.start_label" value="शुरू" />
+    <text id="main.resume_label" value="जारी" />
+    <text id="main.delete_label" value="हटाएँ" />
+    <text id="help.control_instruction" value="नियंत्रण" />
+    <text id="help.luminosity" value="चमक +" />
+    <text id="help.forward_backward" value="आगे/\nपीछे" />
+    <text id="help.pause" value="रोकें" />
+    <text id="help.exit" value="बाहर" />
+    <text id="help.show_info" value="जानकारी" />
+    <text id="help.volume" value="आवाज़" />
+    <text id="help.aspect_ratio" value="चित्र अनुपात" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="ऑडियो बदलें" />
+    <text id="help.subtitles_switch" value="उपशीर्षक चालू/बंद" />
+    <text id="help.loop_toggle" value="लूप चालू/बंद" />
+    <text id="help.fast_forward_rewind" value="तेज़ आगे/पीछे" />
+    <text id="help.zoom_in_out" value="ज़ूम इन/आउट" />
+    <text id="help.close_prompt_text" value="बंद करने हेतु दबाएँ" />
+    <text id="config.title" value="सेटिंग्स" />
+    <text id="config.cpu_speed" value="CPU गति" />
+    <text id="config.subtitle_charset" value="उपशीर्षक एन्कोडिंग" />
+    <text id="config.preferred_subtitle_language" value="उपशीर्षक भाषा" />
+    <text id="config.subtitle_font_size" value="उपशीर्षक आकार" />
+    <text id="config.subtitle_embolden" value="मोटे उपशीर्षक" />
+    <text id="config.subtitle_position" value="उपशीर्षक स्थान" />
+    <text id="config.subtitle_position_top" value="ऊपर" />
+    <text id="config.subtitle_position_bottom" value="नीचे" />
+    <text id="config.subtitle_distance" value="उपशीर्षक मार्जिन" />
+    <text id="config.filesystem_charset" value="फ़ाइल एन्कोडिंग" />
+    <text id="config.play_mode" value="प्ले मोड" />
+    <text id="config.play_single" value="एकल" />
+    <text id="config.play_group" value="फ़ोल्डर" />
+    <text id="config.play_all" value="सभी" />
+    <text id="config.tv_aspect_ratio" value="TV चित्र अनुपात" />
+    <text id="config.tv_overscan" value="TV ओवरस्कैन" />
+    <text id="config.video_mode" value="वीडियो आउटपुट" />
+    <text id="config.video_psp_lcd" value="PSP LCD" />
+    <text id="config.video_composite" value="कम्पोज़िट" />
+    <text id="config.video_component_interlace" value="कम्पोनेंट इंटरलेस्ड" />
+    <text id="config.video_component_progressive" value="कम्पोनेंट प्रोग्रेसिव" />
+    <text id="config.auto_cpu_clock" value="ऑटो CPU क्लॉक" />
+    <text id="config.extreme_battery_saver" value="बैटरी बचत" />
+    <text id="config.optimize_psp_screen" value="PSP स्क्रीन फिट" />
+    <text id="config.interface_language" value="इंटरफ़ेस भाषा" />
+    <text id="config.on" value="चालू" />
+    <text id="config.off" value="बंद" />
+    <text id="config.yes" value="हाँ" />
+    <text id="config.no" value="नहीं" />
+    <text id="config.not_used" value="&lt;उपयोग नहीं&gt;" />
+    <text id="language.auto" value="स्वचालित (PSP)" />
+    <text id="language.en" value="अंग्रेज़ी" />
+    <text id="language.zh-CN" value="मंदारिन चीनी" />
+    <text id="language.hi" value="हिन्दी" />
+    <text id="language.es" value="स्पेनिश" />
+    <text id="language.ar" value="मानक अरबी" />
+    <text id="language.fr" value="फ़्रेंच" />
+    <text id="language.bn" value="बांग्ला" />
+    <text id="language.pt" value="पुर्तगाली" />
+    <text id="language.id" value="इंडोनेशियाई" />
+    <text id="language.ur" value="उर्दू" />
+    <text id="language.ru" value="रूसी" />
+    <text id="language.de" value="जर्मन" />
+    <text id="language.ja" value="जापानी" />
+    <text id="language.pcm" value="नाइजीरियाई पिजिन" />
+    <text id="language.arz" value="मिस्री अरबी" />
+    <text id="language.mr" value="मराठी" />
+    <text id="language.vi" value="वियतनामी" />
+    <text id="language.te" value="तेलुगु" />
+    <text id="language.it" value="इतालवी" />
+    <text id="language.pl" value="पोलिश" />
+    <text id="language.tr" value="तुर्की" />
+    <text id="language.sv" value="स्वीडिश" />
+    <text id="language.da" value="डेनिश" />
+    <text id="language.fi" value="फ़िनिश" />
+    <text id="language.nl" value="डच" />
+    <text id="language.no" value="नॉर्वेजियन" />
+    <text id="language.el" value="यूनानी" />
+    <text id="language.he" value="हिब्रू" />
+    <text id="language.ro" value="रोमानियाई" />
+    <text id="language.th" value="थाई" />
+    <text id="language.ko" value="कोरियाई" />
+    <text id="config.sleep_timer" value="स्लीप टाइमर" />
+    <text id="config.playback_health" value="प्लेबैक स्थिति" />
+    <text id="config.audio_only" value="केवल ऑडियो मोड" />
+    <text id="config.minutes" value="मिनट" />
+    <text id="playback.audio_only" value="कॉन्फ़िग मेनू में केवल ऑडियो मोड चालू है" />
+    <text id="health.title" value="प्लेबैक स्थिति" />
+    <text id="health.metrics" value="CPU %d MHz | पिछला डिकोड %u/%u ms" />
+    <text id="health.sync" value="ऑडियो/वीडियो %d ms | छोड़े %u" />
+    <text id="health.paused" value="रुका है; स्क्वायर से फिर चलाएँ" />
+    <text id="health.audio_only" value="केवल ऑडियो; वीडियो डिकोडर बंद है" />
+    <text id="health.waiting" value="ऑडियो आउटपुट की प्रतीक्षा" />
+    <text id="health.decode_pressure" value="डिकोड में फ़्रेम सीमा से अधिक समय" />
+    <text id="health.sync_pressure" value="ऑडियो और वीडियो का तालमेल बिगड़ रहा है" />
+    <text id="health.compatibility" value="H264X रूपांतरण से गुणवत्ता घट सकती है" />
+    <text id="health.healthy" value="प्लेबैक वर्तमान समय सीमा के भीतर है" />
+    <text id="config.controls_type" value="नियंत्रण प्रकार" />
+    <text id="config.controls_international" value="अंतरराष्ट्रीय" />
+    <text id="config.controls_asia" value="एशिया" />
+    <text id="chapter.none" value="कोई अध्याय नहीं" />
+    <text id="chapter.no_cues" value="अध्याय पर जाना उपलब्ध नहीं: क्यू अनुक्रमणिका नहीं है" />
+    <text id="chapter.first" value="पहले अध्याय पर हैं" />
+    <text id="chapter.last" value="अंतिम अध्याय पर हैं" />
+    <text id="chapter.back" value="पीछे अध्याय %d / %u पर जाएँ\n%s" />
+    <text id="chapter.forward" value="आगे अध्याय %d / %u पर जाएँ\n%s" />
+    <text id="chapter.untitled" value="बिना शीर्षक का अध्याय" />
+    <text id="seek.forward" value="आगे जाएँ" />
+    <text id="seek.back" value="पीछे जाएँ" />
+    <text id="seek.no_cues" value="जाना उपलब्ध नहीं: MKV में क्यू अनुक्रमणिका नहीं है" />
+    <text id="playback.no_subtitle" value="कोई उपशीर्षक नहीं" />
+  </language>
+  <language id="es" name="Spanish" rtl="false" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="LISTA ARCH." />
+    <text id="main.information_header" value="INFORMACIÓN" />
+    <text id="main.thumbnail_label" value="MINIATURA" />
+    <text id="main.thumbnail_unavailable" value="NO DISPON." />
+    <text id="main.total_time" value="TIEMPO TOTAL" />
+    <text id="main.aspect_ratio" value="RELACIÓN" />
+    <text id="main.frames_per_second" value="FOTOG./S" />
+    <text id="main.streams" value="PISTAS" />
+    <text id="main.subtitles" value="SUBTÍTULOS" />
+    <text id="main.cancel_label" value="CONFIG." />
+    <text id="main.help_label" value="AYUDA" />
+    <text id="main.start_label" value="INICIAR" />
+    <text id="main.resume_label" value="REANUDAR" />
+    <text id="main.delete_label" value="BORRAR" />
+    <text id="help.control_instruction" value="Controles" />
+    <text id="help.luminosity" value="brillo +" />
+    <text id="help.forward_backward" value="avance/\nretroceso" />
+    <text id="help.pause" value="pausa" />
+    <text id="help.exit" value="salir" />
+    <text id="help.show_info" value="ver info" />
+    <text id="help.volume" value="volumen" />
+    <text id="help.aspect_ratio" value="relación" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="cambiar audio" />
+    <text id="help.subtitles_switch" value="subtítulos sí/no" />
+    <text id="help.loop_toggle" value="bucle sí/no" />
+    <text id="help.fast_forward_rewind" value="avance/retroceso" />
+    <text id="help.zoom_in_out" value="acercar/alejar" />
+    <text id="help.close_prompt_text" value="pulsa para cerrar" />
+    <text id="config.title" value="Configuración" />
+    <text id="config.cpu_speed" value="Velocidad CPU" />
+    <text id="config.subtitle_charset" value="Codificación de subtítulos" />
+    <text id="config.preferred_subtitle_language" value="Idioma de subtítulos" />
+    <text id="config.subtitle_font_size" value="Tamaño de subtítulos" />
+    <text id="config.subtitle_embolden" value="Subtítulos en negrita" />
+    <text id="config.subtitle_position" value="Posición de subtítulos" />
+    <text id="config.subtitle_position_top" value="Arriba" />
+    <text id="config.subtitle_position_bottom" value="Abajo" />
+    <text id="config.subtitle_distance" value="Margen de subtítulos" />
+    <text id="config.filesystem_charset" value="Codificación de archivos" />
+    <text id="config.play_mode" value="Modo de reproducción" />
+    <text id="config.play_single" value="Uno" />
+    <text id="config.play_group" value="Carpeta" />
+    <text id="config.play_all" value="Todo" />
+    <text id="config.tv_aspect_ratio" value="Relación TV" />
+    <text id="config.tv_overscan" value="Sobreexploración TV" />
+    <text id="config.video_mode" value="Salida de vídeo" />
+    <text id="config.video_psp_lcd" value="LCD de PSP" />
+    <text id="config.video_composite" value="Compuesto" />
+    <text id="config.video_component_interlace" value="Componentes entrelazado" />
+    <text id="config.video_component_progressive" value="Componentes progresivo" />
+    <text id="config.auto_cpu_clock" value="Reloj CPU automático" />
+    <text id="config.extreme_battery_saver" value="Ahorro de batería" />
+    <text id="config.optimize_psp_screen" value="Ajustar a PSP" />
+    <text id="config.interface_language" value="Idioma de interfaz" />
+    <text id="config.on" value="Activado" />
+    <text id="config.off" value="Desactivado" />
+    <text id="config.yes" value="Sí" />
+    <text id="config.no" value="No" />
+    <text id="config.not_used" value="&lt;Sin usar&gt;" />
+    <text id="language.auto" value="Automático (PSP)" />
+    <text id="language.en" value="Inglés" />
+    <text id="language.zh-CN" value="Chino mandarín" />
+    <text id="language.hi" value="Hindi" />
+    <text id="language.es" value="Español" />
+    <text id="language.ar" value="Árabe estándar" />
+    <text id="language.fr" value="Francés" />
+    <text id="language.bn" value="Bengalí" />
+    <text id="language.pt" value="Portugués" />
+    <text id="language.id" value="Indonesio" />
+    <text id="language.ur" value="Urdu" />
+    <text id="language.ru" value="Ruso" />
+    <text id="language.de" value="Alemán" />
+    <text id="language.ja" value="Japonés" />
+    <text id="language.pcm" value="Pidgin nigeriano" />
+    <text id="language.arz" value="Árabe egipcio" />
+    <text id="language.mr" value="Maratí" />
+    <text id="language.vi" value="Vietnamita" />
+    <text id="language.te" value="Telugu" />
+    <text id="language.it" value="Italiano" />
+    <text id="language.pl" value="Polaco" />
+    <text id="language.tr" value="Turco" />
+    <text id="language.sv" value="Sueco" />
+    <text id="language.da" value="Danés" />
+    <text id="language.fi" value="Finés" />
+    <text id="language.nl" value="Neerlandés" />
+    <text id="language.no" value="Noruego" />
+    <text id="language.el" value="Griego" />
+    <text id="language.he" value="Hebreo" />
+    <text id="language.ro" value="Rumano" />
+    <text id="language.th" value="Tailandés" />
+    <text id="language.ko" value="Coreano" />
+    <text id="config.sleep_timer" value="Temporizador de sueño" />
+    <text id="config.playback_health" value="Estado de reproducción" />
+    <text id="config.audio_only" value="Modo solo audio" />
+    <text id="config.minutes" value="min" />
+    <text id="playback.audio_only" value="Modo solo audio activado\nen el menú de configuración" />
+    <text id="health.title" value="Estado de reproducción" />
+    <text id="health.metrics" value="CPU %d MHz | Última decodificación %u/%u ms" />
+    <text id="health.sync" value="A/V %d ms | Omitidos %u" />
+    <text id="health.paused" value="En pausa; reanuda con Cuadrado" />
+    <text id="health.audio_only" value="Solo audio; decodificador de vídeo apagado" />
+    <text id="health.waiting" value="Esperando la salida de audio" />
+    <text id="health.decode_pressure" value="La decodificación supera el tiempo por fotograma" />
+    <text id="health.sync_pressure" value="El audio y el vídeo pierden sincronía" />
+    <text id="health.compatibility" value="La conversión H264X puede reducir la fidelidad" />
+    <text id="health.healthy" value="Reproducción dentro de los límites actuales" />
+    <text id="config.controls_type" value="Tipo de controles" />
+    <text id="config.controls_international" value="Internacional" />
+    <text id="config.controls_asia" value="Asia" />
+    <text id="chapter.none" value="Sin capítulos" />
+    <text id="chapter.no_cues" value="Salto de capítulo no disponible: sin índice de puntos" />
+    <text id="chapter.first" value="Ya está en el primer capítulo" />
+    <text id="chapter.last" value="Ya está en el último capítulo" />
+    <text id="chapter.back" value="Retroceder al capítulo %d de %u\n%s" />
+    <text id="chapter.forward" value="Avanzar al capítulo %d de %u\n%s" />
+    <text id="chapter.untitled" value="Capítulo sin título" />
+    <text id="seek.forward" value="Avanzar" />
+    <text id="seek.back" value="Retroceder" />
+    <text id="seek.no_cues" value="Salto no disponible: MKV sin índice de puntos" />
+    <text id="playback.no_subtitle" value="Sin subtítulos" />
+  </language>
+  <language id="ar" name="Modern Standard Arabic" rtl="true" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="قائمة الملفات" />
+    <text id="main.information_header" value="معلومات" />
+    <text id="main.thumbnail_label" value="مصغّرة" />
+    <text id="main.thumbnail_unavailable" value="غير متاح" />
+    <text id="main.total_time" value="المدة" />
+    <text id="main.aspect_ratio" value="نسبة العرض" />
+    <text id="main.frames_per_second" value="إطار/ث" />
+    <text id="main.streams" value="المسارات" />
+    <text id="main.subtitles" value="الترجمة" />
+    <text id="main.cancel_label" value="إعداد" />
+    <text id="main.help_label" value="مساعدة" />
+    <text id="main.start_label" value="تشغيل" />
+    <text id="main.resume_label" value="استئناف" />
+    <text id="main.delete_label" value="حذف" />
+    <text id="help.control_instruction" value="تعليمات التحكم" />
+    <text id="help.luminosity" value="السطوع +" />
+    <text id="help.forward_backward" value="تقديم/\nترجيع" />
+    <text id="help.pause" value="إيقاف مؤقت" />
+    <text id="help.exit" value="خروج" />
+    <text id="help.show_info" value="عرض المعلومات" />
+    <text id="help.volume" value="الصوت" />
+    <text id="help.aspect_ratio" value="نسبة العرض" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="تبديل الصوت" />
+    <text id="help.subtitles_switch" value="الترجمة نعم/لا" />
+    <text id="help.loop_toggle" value="التكرار نعم/لا" />
+    <text id="help.fast_forward_rewind" value="تقديم/ترجيع" />
+    <text id="help.zoom_in_out" value="تكبير/تصغير" />
+    <text id="help.close_prompt_text" value="اضغط للإغلاق" />
+    <text id="config.title" value="الإعدادات" />
+    <text id="config.cpu_speed" value="سرعة المعالج" />
+    <text id="config.subtitle_charset" value="ترميز الترجمة" />
+    <text id="config.preferred_subtitle_language" value="لغة الترجمة" />
+    <text id="config.subtitle_font_size" value="حجم الترجمة" />
+    <text id="config.subtitle_embolden" value="ترجمة عريضة" />
+    <text id="config.subtitle_position" value="موضع الترجمة" />
+    <text id="config.subtitle_position_top" value="أعلى" />
+    <text id="config.subtitle_position_bottom" value="أسفل" />
+    <text id="config.subtitle_distance" value="هامش الترجمة" />
+    <text id="config.filesystem_charset" value="ترميز الملفات" />
+    <text id="config.play_mode" value="نمط التشغيل" />
+    <text id="config.play_single" value="ملف واحد" />
+    <text id="config.play_group" value="مجلد" />
+    <text id="config.play_all" value="الكل" />
+    <text id="config.tv_aspect_ratio" value="نسبة شاشة التلفاز" />
+    <text id="config.tv_overscan" value="مسح زائد للتلفاز" />
+    <text id="config.video_mode" value="خرج الفيديو" />
+    <text id="config.video_psp_lcd" value="شاشة PSP" />
+    <text id="config.video_composite" value="مركب" />
+    <text id="config.video_component_interlace" value="مكوّن متداخل" />
+    <text id="config.video_component_progressive" value="مكوّن تقدمي" />
+    <text id="config.auto_cpu_clock" value="ضبط CPU تلقائي" />
+    <text id="config.extreme_battery_saver" value="توفير البطارية" />
+    <text id="config.optimize_psp_screen" value="ملاءمة شاشة PSP" />
+    <text id="config.interface_language" value="لغة الواجهة" />
+    <text id="config.on" value="تشغيل" />
+    <text id="config.off" value="إيقاف" />
+    <text id="config.yes" value="نعم" />
+    <text id="config.no" value="لا" />
+    <text id="config.not_used" value="&lt;غير مستخدم&gt;" />
+    <text id="language.auto" value="تلقائي (PSP)" />
+    <text id="language.en" value="الإنجليزية" />
+    <text id="language.zh-CN" value="الصينية المندرينية" />
+    <text id="language.hi" value="الهندية" />
+    <text id="language.es" value="الإسبانية" />
+    <text id="language.ar" value="العربية الفصحى" />
+    <text id="language.fr" value="الفرنسية" />
+    <text id="language.bn" value="البنغالية" />
+    <text id="language.pt" value="البرتغالية" />
+    <text id="language.id" value="الإندونيسية" />
+    <text id="language.ur" value="الأردية" />
+    <text id="language.ru" value="الروسية" />
+    <text id="language.de" value="الألمانية" />
+    <text id="language.ja" value="اليابانية" />
+    <text id="language.pcm" value="البيجين النيجيرية" />
+    <text id="language.arz" value="العربية المصرية" />
+    <text id="language.mr" value="الماراثية" />
+    <text id="language.vi" value="الفيتنامية" />
+    <text id="language.te" value="التيلوغوية" />
+    <text id="language.it" value="الإيطالية" />
+    <text id="language.pl" value="البولندية" />
+    <text id="language.tr" value="التركية" />
+    <text id="language.sv" value="السويدية" />
+    <text id="language.da" value="الدنماركية" />
+    <text id="language.fi" value="الفنلندية" />
+    <text id="language.nl" value="الهولندية" />
+    <text id="language.no" value="النرويجية" />
+    <text id="language.el" value="اليونانية" />
+    <text id="language.he" value="العبرية" />
+    <text id="language.ro" value="الرومانية" />
+    <text id="language.th" value="التايلاندية" />
+    <text id="language.ko" value="الكورية" />
+    <text id="config.sleep_timer" value="مؤقت النوم" />
+    <text id="config.playback_health" value="حالة التشغيل" />
+    <text id="config.audio_only" value="وضع الصوت فقط" />
+    <text id="config.minutes" value="دقيقة" />
+    <text id="playback.audio_only" value="وضع الصوت فقط مفعّل\nفي قائمة الإعدادات" />
+    <text id="health.title" value="حالة التشغيل" />
+    <text id="health.metrics" value="CPU %d MHz | آخر فك ترميز %u/%u ms" />
+    <text id="health.sync" value="صوت/فيديو %d ms | متخطّى %u" />
+    <text id="health.paused" value="متوقف مؤقتًا؛ تابع بزر المربع" />
+    <text id="health.audio_only" value="صوت فقط؛ فك ترميز الفيديو معطّل" />
+    <text id="health.waiting" value="بانتظار إخراج الصوت" />
+    <text id="health.decode_pressure" value="فك الترميز يتجاوز الزمن المخصص للإطار" />
+    <text id="health.sync_pressure" value="الصوت والفيديو يفقدان التزامن" />
+    <text id="health.compatibility" value="تحويل H264X قد يقلل دقة الصورة" />
+    <text id="health.healthy" value="التشغيل ضمن الحدود الحالية" />
+    <text id="config.controls_type" value="نوع التحكم" />
+    <text id="config.controls_international" value="دولي" />
+    <text id="config.controls_asia" value="آسيا" />
+    <text id="chapter.none" value="لا توجد فصول" />
+    <text id="chapter.no_cues" value="تعذر الانتقال إلى الفصل: لا يوجد فهرس نقاط" />
+    <text id="chapter.first" value="أنت في الفصل الأول" />
+    <text id="chapter.last" value="أنت في الفصل الأخير" />
+    <text id="chapter.back" value="الرجوع إلى الفصل %d من %u\n%s" />
+    <text id="chapter.forward" value="التقدم إلى الفصل %d من %u\n%s" />
+    <text id="chapter.untitled" value="فصل بلا عنوان" />
+    <text id="seek.forward" value="تقدم" />
+    <text id="seek.back" value="رجوع" />
+    <text id="seek.no_cues" value="تعذر الانتقال: ملف MKV بلا فهرس نقاط" />
+    <text id="playback.no_subtitle" value="بلا ترجمة" />
+  </language>
+  <language id="fr" name="French" rtl="false" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="LISTE FICHIERS" />
+    <text id="main.information_header" value="INFORMATIONS" />
+    <text id="main.thumbnail_label" value="VIGNETTE" />
+    <text id="main.thumbnail_unavailable" value="INDISPONIBLE" />
+    <text id="main.total_time" value="DURÉE TOTALE" />
+    <text id="main.aspect_ratio" value="FORMAT" />
+    <text id="main.frames_per_second" value="IMAGES/S" />
+    <text id="main.streams" value="PISTES" />
+    <text id="main.subtitles" value="SOUS-TITRES" />
+    <text id="main.cancel_label" value="CONFIG." />
+    <text id="main.help_label" value="AIDE" />
+    <text id="main.start_label" value="LANCER" />
+    <text id="main.resume_label" value="REPRENDRE" />
+    <text id="main.delete_label" value="SUPPRIMER" />
+    <text id="help.control_instruction" value="Commandes" />
+    <text id="help.luminosity" value="luminosité +" />
+    <text id="help.forward_backward" value="avance/\nretour" />
+    <text id="help.pause" value="pause" />
+    <text id="help.exit" value="quitter" />
+    <text id="help.show_info" value="voir infos" />
+    <text id="help.volume" value="volume" />
+    <text id="help.aspect_ratio" value="format" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="changer audio" />
+    <text id="help.subtitles_switch" value="sous-titres oui/non" />
+    <text id="help.loop_toggle" value="boucle oui/non" />
+    <text id="help.fast_forward_rewind" value="avance/retour" />
+    <text id="help.zoom_in_out" value="zoom +/-" />
+    <text id="help.close_prompt_text" value="appuyer pour fermer" />
+    <text id="config.title" value="Configuration" />
+    <text id="config.cpu_speed" value="Vitesse CPU" />
+    <text id="config.subtitle_charset" value="Encodage des sous-titres" />
+    <text id="config.preferred_subtitle_language" value="Langue des sous-titres" />
+    <text id="config.subtitle_font_size" value="Taille des sous-titres" />
+    <text id="config.subtitle_embolden" value="Sous-titres en gras" />
+    <text id="config.subtitle_position" value="Position des sous-titres" />
+    <text id="config.subtitle_position_top" value="Haut" />
+    <text id="config.subtitle_position_bottom" value="Bas" />
+    <text id="config.subtitle_distance" value="Marge des sous-titres" />
+    <text id="config.filesystem_charset" value="Encodage des fichiers" />
+    <text id="config.play_mode" value="Mode de lecture" />
+    <text id="config.play_single" value="Unique" />
+    <text id="config.play_group" value="Dossier" />
+    <text id="config.play_all" value="Tout" />
+    <text id="config.tv_aspect_ratio" value="Format TV" />
+    <text id="config.tv_overscan" value="Surbalayage TV" />
+    <text id="config.video_mode" value="Sortie vidéo" />
+    <text id="config.video_psp_lcd" value="Écran PSP" />
+    <text id="config.video_composite" value="Composite" />
+    <text id="config.video_component_interlace" value="Composante entrelacée" />
+    <text id="config.video_component_progressive" value="Composante progressive" />
+    <text id="config.auto_cpu_clock" value="Horloge CPU auto" />
+    <text id="config.extreme_battery_saver" value="Économie de batterie" />
+    <text id="config.optimize_psp_screen" value="Adapter à la PSP" />
+    <text id="config.interface_language" value="Langue de l’interface" />
+    <text id="config.on" value="Activé" />
+    <text id="config.off" value="Désactivé" />
+    <text id="config.yes" value="Oui" />
+    <text id="config.no" value="Non" />
+    <text id="config.not_used" value="&lt;Non utilisé&gt;" />
+    <text id="language.auto" value="Auto (PSP)" />
+    <text id="language.en" value="Anglais" />
+    <text id="language.zh-CN" value="Chinois mandarin" />
+    <text id="language.hi" value="Hindi" />
+    <text id="language.es" value="Espagnol" />
+    <text id="language.ar" value="Arabe standard" />
+    <text id="language.fr" value="Français" />
+    <text id="language.bn" value="Bengali" />
+    <text id="language.pt" value="Portugais" />
+    <text id="language.id" value="Indonésien" />
+    <text id="language.ur" value="Ourdou" />
+    <text id="language.ru" value="Russe" />
+    <text id="language.de" value="Allemand" />
+    <text id="language.ja" value="Japonais" />
+    <text id="language.pcm" value="Pidgin nigérian" />
+    <text id="language.arz" value="Arabe égyptien" />
+    <text id="language.mr" value="Marathi" />
+    <text id="language.vi" value="Vietnamien" />
+    <text id="language.te" value="Télougou" />
+    <text id="language.it" value="Italien" />
+    <text id="language.pl" value="Polonais" />
+    <text id="language.tr" value="Turc" />
+    <text id="language.sv" value="Suédois" />
+    <text id="language.da" value="Danois" />
+    <text id="language.fi" value="Finnois" />
+    <text id="language.nl" value="Néerlandais" />
+    <text id="language.no" value="Norvégien" />
+    <text id="language.el" value="Grec" />
+    <text id="language.he" value="Hébreu" />
+    <text id="language.ro" value="Roumain" />
+    <text id="language.th" value="Thaï" />
+    <text id="language.ko" value="Coréen" />
+    <text id="config.sleep_timer" value="Minuterie de veille" />
+    <text id="config.playback_health" value="État de lecture" />
+    <text id="config.audio_only" value="Mode audio seul" />
+    <text id="config.minutes" value="min" />
+    <text id="playback.audio_only" value="Mode audio seul activé\ndans le menu de configuration" />
+    <text id="health.title" value="État de lecture" />
+    <text id="health.metrics" value="CPU %d MHz | Dernier décodage %u/%u ms" />
+    <text id="health.sync" value="A/V %d ms | Images sautées %u" />
+    <text id="health.paused" value="En pause ; reprendre avec Carré" />
+    <text id="health.audio_only" value="Audio seul ; décodeur vidéo désactivé" />
+    <text id="health.waiting" value="En attente de sortie audio" />
+    <text id="health.decode_pressure" value="Le décodage dépasse le temps par image" />
+    <text id="health.sync_pressure" value="Le son et la vidéo se désynchronisent" />
+    <text id="health.compatibility" value="La conversion H264X peut réduire la fidélité" />
+    <text id="health.healthy" value="Lecture dans les limites actuelles" />
+    <text id="config.controls_type" value="Type de commandes" />
+    <text id="config.controls_international" value="International" />
+    <text id="config.controls_asia" value="Asie" />
+    <text id="chapter.none" value="Aucun chapitre" />
+    <text id="chapter.no_cues" value="Saut de chapitre indisponible : aucun index" />
+    <text id="chapter.first" value="Déjà au premier chapitre" />
+    <text id="chapter.last" value="Déjà au dernier chapitre" />
+    <text id="chapter.back" value="Reculer au chapitre %d sur %u\n%s" />
+    <text id="chapter.forward" value="Avancer au chapitre %d sur %u\n%s" />
+    <text id="chapter.untitled" value="Chapitre sans titre" />
+    <text id="seek.forward" value="Avancer" />
+    <text id="seek.back" value="Reculer" />
+    <text id="seek.no_cues" value="Recherche indisponible : MKV sans index" />
+    <text id="playback.no_subtitle" value="Aucun sous-titre" />
+  </language>
+  <language id="bn" name="Bengali" rtl="false" font="NotoSansBengali-Regular.ttf">
+    <text id="main.file_list_header" value="ফাইল তালিকা" />
+    <text id="main.information_header" value="তথ্য" />
+    <text id="main.thumbnail_label" value="ছোট ছবি" />
+    <text id="main.thumbnail_unavailable" value="অনুপলব্ধ" />
+    <text id="main.total_time" value="মোট সময়" />
+    <text id="main.aspect_ratio" value="অনুপাত" />
+    <text id="main.frames_per_second" value="ফ্রেম/সে" />
+    <text id="main.streams" value="স্ট্রিম" />
+    <text id="main.subtitles" value="সাবটাইটেল" />
+    <text id="main.cancel_label" value="সেটিং" />
+    <text id="main.help_label" value="সহায়তা" />
+    <text id="main.start_label" value="শুরু" />
+    <text id="main.resume_label" value="চালু" />
+    <text id="main.delete_label" value="মুছুন" />
+    <text id="help.control_instruction" value="নিয়ন্ত্রণ" />
+    <text id="help.luminosity" value="উজ্জ্বলতা +" />
+    <text id="help.forward_backward" value="সামনে/\nপেছনে" />
+    <text id="help.pause" value="বিরতি" />
+    <text id="help.exit" value="প্রস্থান" />
+    <text id="help.show_info" value="তথ্য দেখুন" />
+    <text id="help.volume" value="ভলিউম" />
+    <text id="help.aspect_ratio" value="অনুপাত" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="অডিও বদল" />
+    <text id="help.subtitles_switch" value="সাব চালু/বন্ধ" />
+    <text id="help.loop_toggle" value="লুপ চালু/বন্ধ" />
+    <text id="help.fast_forward_rewind" value="দ্রুত সামনে/পেছনে" />
+    <text id="help.zoom_in_out" value="জুম ইন/আউট" />
+    <text id="help.close_prompt_text" value="বন্ধ করতে চাপুন" />
+    <text id="config.title" value="সেটিংস" />
+    <text id="config.cpu_speed" value="CPU গতি" />
+    <text id="config.subtitle_charset" value="সাবটাইটেল এনকোডিং" />
+    <text id="config.preferred_subtitle_language" value="সাবটাইটেল ভাষা" />
+    <text id="config.subtitle_font_size" value="সাবটাইটেল আকার" />
+    <text id="config.subtitle_embolden" value="গাঢ় সাবটাইটেল" />
+    <text id="config.subtitle_position" value="সাবটাইটেল অবস্থান" />
+    <text id="config.subtitle_position_top" value="উপরে" />
+    <text id="config.subtitle_position_bottom" value="নিচে" />
+    <text id="config.subtitle_distance" value="সাবটাইটেল মার্জিন" />
+    <text id="config.filesystem_charset" value="ফাইল এনকোডিং" />
+    <text id="config.play_mode" value="প্লে মোড" />
+    <text id="config.play_single" value="একটি" />
+    <text id="config.play_group" value="ফোল্ডার" />
+    <text id="config.play_all" value="সব" />
+    <text id="config.tv_aspect_ratio" value="TV অনুপাত" />
+    <text id="config.tv_overscan" value="TV ওভারস্ক্যান" />
+    <text id="config.video_mode" value="ভিডিও আউটপুট" />
+    <text id="config.video_psp_lcd" value="PSP LCD" />
+    <text id="config.video_composite" value="কম্পোজিট" />
+    <text id="config.video_component_interlace" value="কম্পোনেন্ট ইন্টারলেসড" />
+    <text id="config.video_component_progressive" value="কম্পোনেন্ট প্রগ্রেসিভ" />
+    <text id="config.auto_cpu_clock" value="অটো CPU ক্লক" />
+    <text id="config.extreme_battery_saver" value="ব্যাটারি সাশ্রয়" />
+    <text id="config.optimize_psp_screen" value="PSP স্ক্রিনে মানান" />
+    <text id="config.interface_language" value="ইন্টারফেস ভাষা" />
+    <text id="config.on" value="চালু" />
+    <text id="config.off" value="বন্ধ" />
+    <text id="config.yes" value="হ্যাঁ" />
+    <text id="config.no" value="না" />
+    <text id="config.not_used" value="&lt;ব্যবহৃত নয়&gt;" />
+    <text id="language.auto" value="স্বয়ংক্রিয় (PSP)" />
+    <text id="language.en" value="ইংরেজি" />
+    <text id="language.zh-CN" value="ম্যান্ডারিন চীনা" />
+    <text id="language.hi" value="হিন্দি" />
+    <text id="language.es" value="স্প্যানিশ" />
+    <text id="language.ar" value="প্রমিত আরবি" />
+    <text id="language.fr" value="ফরাসি" />
+    <text id="language.bn" value="বাংলা" />
+    <text id="language.pt" value="পর্তুগিজ" />
+    <text id="language.id" value="ইন্দোনেশীয়" />
+    <text id="language.ur" value="উর্দু" />
+    <text id="language.ru" value="রুশ" />
+    <text id="language.de" value="জার্মান" />
+    <text id="language.ja" value="জাপানি" />
+    <text id="language.pcm" value="নাইজেরীয় পিজিন" />
+    <text id="language.arz" value="মিশরীয় আরবি" />
+    <text id="language.mr" value="মারাঠি" />
+    <text id="language.vi" value="ভিয়েতনামি" />
+    <text id="language.te" value="তেলুগু" />
+    <text id="language.it" value="ইতালীয়" />
+    <text id="language.pl" value="পোলিশ" />
+    <text id="language.tr" value="তুর্কি" />
+    <text id="language.sv" value="সুইডিশ" />
+    <text id="language.da" value="ড্যানিশ" />
+    <text id="language.fi" value="ফিনিশ" />
+    <text id="language.nl" value="ডাচ" />
+    <text id="language.no" value="নরওয়েজীয়" />
+    <text id="language.el" value="গ্রিক" />
+    <text id="language.he" value="হিব্রু" />
+    <text id="language.ro" value="রোমানীয়" />
+    <text id="language.th" value="থাই" />
+    <text id="language.ko" value="কোরীয়" />
+    <text id="config.sleep_timer" value="স্লিপ টাইমার" />
+    <text id="config.playback_health" value="প্লেব্যাকের অবস্থা" />
+    <text id="config.audio_only" value="শুধু অডিও মোড" />
+    <text id="config.minutes" value="মিনিট" />
+    <text id="playback.audio_only" value="কনফিগ মেনুতে শুধু অডিও মোড চালু আছে" />
+    <text id="health.title" value="প্লেব্যাকের অবস্থা" />
+    <text id="health.metrics" value="CPU %d MHz | শেষ ডিকোড %u/%u ms" />
+    <text id="health.sync" value="অডিও/ভিডিও %d ms | বাদ %u" />
+    <text id="health.paused" value="বিরতি; স্কোয়ার দিয়ে আবার চালান" />
+    <text id="health.audio_only" value="শুধু অডিও; ভিডিও ডিকোডার বন্ধ" />
+    <text id="health.waiting" value="অডিও আউটপুটের অপেক্ষায়" />
+    <text id="health.decode_pressure" value="ডিকোডে ফ্রেমের সময়সীমা ছাড়িয়ে গেছে" />
+    <text id="health.sync_pressure" value="অডিও ও ভিডিওর সমন্বয় হারাচ্ছে" />
+    <text id="health.compatibility" value="H264X রূপান্তরে মান কমতে পারে" />
+    <text id="health.healthy" value="প্লেব্যাক বর্তমান সময়সীমার মধ্যে আছে" />
+    <text id="config.controls_type" value="নিয়ন্ত্রণের ধরন" />
+    <text id="config.controls_international" value="আন্তর্জাতিক" />
+    <text id="config.controls_asia" value="এশিয়া" />
+    <text id="chapter.none" value="কোনো অধ্যায় নেই" />
+    <text id="chapter.no_cues" value="অধ্যায়ে যাওয়া অনুপলব্ধ: কিউ সূচি নেই" />
+    <text id="chapter.first" value="প্রথম অধ্যায়ে আছেন" />
+    <text id="chapter.last" value="শেষ অধ্যায়ে আছেন" />
+    <text id="chapter.back" value="পেছনে অধ্যায় %d / %u-এ যান\n%s" />
+    <text id="chapter.forward" value="সামনে অধ্যায় %d / %u-এ যান\n%s" />
+    <text id="chapter.untitled" value="শিরোনামহীন অধ্যায়" />
+    <text id="seek.forward" value="সামনে যান" />
+    <text id="seek.back" value="পেছনে যান" />
+    <text id="seek.no_cues" value="যাওয়া অনুপলব্ধ: MKV-তে কিউ সূচি নেই" />
+    <text id="playback.no_subtitle" value="কোনো সাবটাইটেল নেই" />
+  </language>
+  <language id="pt" name="Portuguese" rtl="false" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="LISTA ARQ." />
+    <text id="main.information_header" value="INFORMAÇÃO" />
+    <text id="main.thumbnail_label" value="MINIATURA" />
+    <text id="main.thumbnail_unavailable" value="INDISPONÍVEL" />
+    <text id="main.total_time" value="TEMPO TOTAL" />
+    <text id="main.aspect_ratio" value="PROPORÇÃO" />
+    <text id="main.frames_per_second" value="QUADROS/S" />
+    <text id="main.streams" value="FAIXAS" />
+    <text id="main.subtitles" value="LEGENDAS" />
+    <text id="main.cancel_label" value="CONFIG." />
+    <text id="main.help_label" value="AJUDA" />
+    <text id="main.start_label" value="INICIAR" />
+    <text id="main.resume_label" value="RETOMAR" />
+    <text id="main.delete_label" value="APAGAR" />
+    <text id="help.control_instruction" value="Controles" />
+    <text id="help.luminosity" value="luminosidade +" />
+    <text id="help.forward_backward" value="avançar/\nrecuar" />
+    <text id="help.pause" value="pausa" />
+    <text id="help.exit" value="sair" />
+    <text id="help.show_info" value="ver info" />
+    <text id="help.volume" value="volume" />
+    <text id="help.aspect_ratio" value="proporção" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="trocar áudio" />
+    <text id="help.subtitles_switch" value="legendas sim/não" />
+    <text id="help.loop_toggle" value="repetir sim/não" />
+    <text id="help.fast_forward_rewind" value="avançar/recuar" />
+    <text id="help.zoom_in_out" value="zoom +/-" />
+    <text id="help.close_prompt_text" value="pressione para fechar" />
+    <text id="config.title" value="Configuração" />
+    <text id="config.cpu_speed" value="Velocidade da CPU" />
+    <text id="config.subtitle_charset" value="Codificação de legendas" />
+    <text id="config.preferred_subtitle_language" value="Idioma das legendas" />
+    <text id="config.subtitle_font_size" value="Tamanho das legendas" />
+    <text id="config.subtitle_embolden" value="Legendas em negrito" />
+    <text id="config.subtitle_position" value="Posição das legendas" />
+    <text id="config.subtitle_position_top" value="Topo" />
+    <text id="config.subtitle_position_bottom" value="Fundo" />
+    <text id="config.subtitle_distance" value="Margem das legendas" />
+    <text id="config.filesystem_charset" value="Codificação de arquivos" />
+    <text id="config.play_mode" value="Modo de reprodução" />
+    <text id="config.play_single" value="Único" />
+    <text id="config.play_group" value="Pasta" />
+    <text id="config.play_all" value="Tudo" />
+    <text id="config.tv_aspect_ratio" value="Proporção da TV" />
+    <text id="config.tv_overscan" value="Overscan da TV" />
+    <text id="config.video_mode" value="Saída de vídeo" />
+    <text id="config.video_psp_lcd" value="LCD do PSP" />
+    <text id="config.video_composite" value="Composto" />
+    <text id="config.video_component_interlace" value="Componente entrelaçado" />
+    <text id="config.video_component_progressive" value="Componente progressivo" />
+    <text id="config.auto_cpu_clock" value="Clock automático da CPU" />
+    <text id="config.extreme_battery_saver" value="Economia de bateria" />
+    <text id="config.optimize_psp_screen" value="Ajustar à tela do PSP" />
+    <text id="config.interface_language" value="Idioma da interface" />
+    <text id="config.on" value="Ligado" />
+    <text id="config.off" value="Desligado" />
+    <text id="config.yes" value="Sim" />
+    <text id="config.no" value="Não" />
+    <text id="config.not_used" value="&lt;Não usado&gt;" />
+    <text id="language.auto" value="Automático (PSP)" />
+    <text id="language.en" value="Inglês" />
+    <text id="language.zh-CN" value="Chinês mandarim" />
+    <text id="language.hi" value="Hindi" />
+    <text id="language.es" value="Espanhol" />
+    <text id="language.ar" value="Árabe padrão" />
+    <text id="language.fr" value="Francês" />
+    <text id="language.bn" value="Bengali" />
+    <text id="language.pt" value="Português" />
+    <text id="language.id" value="Indonésio" />
+    <text id="language.ur" value="Urdu" />
+    <text id="language.ru" value="Russo" />
+    <text id="language.de" value="Alemão" />
+    <text id="language.ja" value="Japonês" />
+    <text id="language.pcm" value="Pidgin nigeriano" />
+    <text id="language.arz" value="Árabe egípcio" />
+    <text id="language.mr" value="Marata" />
+    <text id="language.vi" value="Vietnamita" />
+    <text id="language.te" value="Telugu" />
+    <text id="language.it" value="Italiano" />
+    <text id="language.pl" value="Polonês" />
+    <text id="language.tr" value="Turco" />
+    <text id="language.sv" value="Sueco" />
+    <text id="language.da" value="Dinamarquês" />
+    <text id="language.fi" value="Finlandês" />
+    <text id="language.nl" value="Neerlandês" />
+    <text id="language.no" value="Norueguês" />
+    <text id="language.el" value="Grego" />
+    <text id="language.he" value="Hebraico" />
+    <text id="language.ro" value="Romeno" />
+    <text id="language.th" value="Tailandês" />
+    <text id="language.ko" value="Coreano" />
+    <text id="config.sleep_timer" value="Temporizador de suspensão" />
+    <text id="config.playback_health" value="Estado da reprodução" />
+    <text id="config.audio_only" value="Modo só áudio" />
+    <text id="config.minutes" value="min" />
+    <text id="playback.audio_only" value="Modo só áudio ativado\nno menu de configuração" />
+    <text id="health.title" value="Estado da reprodução" />
+    <text id="health.metrics" value="CPU %d MHz | Última descodificação %u/%u ms" />
+    <text id="health.sync" value="A/V %d ms | Saltados %u" />
+    <text id="health.paused" value="Em pausa; retomar com Quadrado" />
+    <text id="health.audio_only" value="Só áudio; descodificador de vídeo desligado" />
+    <text id="health.waiting" value="A aguardar saída de áudio" />
+    <text id="health.decode_pressure" value="A descodificação excede o tempo por imagem" />
+    <text id="health.sync_pressure" value="O áudio e o vídeo perdem sincronização" />
+    <text id="health.compatibility" value="A conversão H264X pode reduzir a fidelidade" />
+    <text id="health.healthy" value="Reprodução dentro dos limites atuais" />
+    <text id="config.controls_type" value="Tipo de controles" />
+    <text id="config.controls_international" value="Internacional" />
+    <text id="config.controls_asia" value="Ásia" />
+    <text id="chapter.none" value="Sem capítulos" />
+    <text id="chapter.no_cues" value="Salto de capítulo indisponível: sem índice" />
+    <text id="chapter.first" value="Já está no primeiro capítulo" />
+    <text id="chapter.last" value="Já está no último capítulo" />
+    <text id="chapter.back" value="Voltar ao capítulo %d de %u\n%s" />
+    <text id="chapter.forward" value="Avançar ao capítulo %d de %u\n%s" />
+    <text id="chapter.untitled" value="Capítulo sem título" />
+    <text id="seek.forward" value="Avançar" />
+    <text id="seek.back" value="Voltar" />
+    <text id="seek.no_cues" value="Busca indisponível: MKV sem índice" />
+    <text id="playback.no_subtitle" value="Sem legendas" />
+  </language>
+  <language id="id" name="Indonesian" rtl="false" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="DAFTAR FILE" />
+    <text id="main.information_header" value="INFORMASI" />
+    <text id="main.thumbnail_label" value="GAMBAR MINI" />
+    <text id="main.thumbnail_unavailable" value="TAK TERSEDIA" />
+    <text id="main.total_time" value="DURASI" />
+    <text id="main.aspect_ratio" value="RASIO" />
+    <text id="main.frames_per_second" value="FRAME/D" />
+    <text id="main.streams" value="TREK" />
+    <text id="main.subtitles" value="SUBTITLE" />
+    <text id="main.cancel_label" value="ATUR" />
+    <text id="main.help_label" value="BANTUAN" />
+    <text id="main.start_label" value="MULAI" />
+    <text id="main.resume_label" value="LANJUTKAN" />
+    <text id="main.delete_label" value="HAPUS" />
+    <text id="help.control_instruction" value="Kontrol" />
+    <text id="help.luminosity" value="kecerahan +" />
+    <text id="help.forward_backward" value="maju/\nmundur" />
+    <text id="help.pause" value="jeda" />
+    <text id="help.exit" value="keluar" />
+    <text id="help.show_info" value="lihat info" />
+    <text id="help.volume" value="volume" />
+    <text id="help.aspect_ratio" value="rasio" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="ganti audio" />
+    <text id="help.subtitles_switch" value="subtitle hidup/mati" />
+    <text id="help.loop_toggle" value="ulang hidup/mati" />
+    <text id="help.fast_forward_rewind" value="maju cepat/mundur" />
+    <text id="help.zoom_in_out" value="zoom masuk/keluar" />
+    <text id="help.close_prompt_text" value="tekan untuk tutup" />
+    <text id="config.title" value="Pengaturan" />
+    <text id="config.cpu_speed" value="Kecepatan CPU" />
+    <text id="config.subtitle_charset" value="Enkode subtitel" />
+    <text id="config.preferred_subtitle_language" value="Bahasa subtitel" />
+    <text id="config.subtitle_font_size" value="Ukuran subtitel" />
+    <text id="config.subtitle_embolden" value="Subtitel tebal" />
+    <text id="config.subtitle_position" value="Posisi subtitel" />
+    <text id="config.subtitle_position_top" value="Atas" />
+    <text id="config.subtitle_position_bottom" value="Bawah" />
+    <text id="config.subtitle_distance" value="Margin subtitel" />
+    <text id="config.filesystem_charset" value="Enkode berkas" />
+    <text id="config.play_mode" value="Mode putar" />
+    <text id="config.play_single" value="Tunggal" />
+    <text id="config.play_group" value="Folder" />
+    <text id="config.play_all" value="Semua" />
+    <text id="config.tv_aspect_ratio" value="Rasio TV" />
+    <text id="config.tv_overscan" value="Overscan TV" />
+    <text id="config.video_mode" value="Keluaran video" />
+    <text id="config.video_psp_lcd" value="LCD PSP" />
+    <text id="config.video_composite" value="Komposit" />
+    <text id="config.video_component_interlace" value="Komponen interlaced" />
+    <text id="config.video_component_progressive" value="Komponen progresif" />
+    <text id="config.auto_cpu_clock" value="Clock CPU otomatis" />
+    <text id="config.extreme_battery_saver" value="Hemat baterai" />
+    <text id="config.optimize_psp_screen" value="Pas ke layar PSP" />
+    <text id="config.interface_language" value="Bahasa antarmuka" />
+    <text id="config.on" value="Nyala" />
+    <text id="config.off" value="Mati" />
+    <text id="config.yes" value="Ya" />
+    <text id="config.no" value="Tidak" />
+    <text id="config.not_used" value="&lt;Tidak dipakai&gt;" />
+    <text id="language.auto" value="Otomatis (PSP)" />
+    <text id="language.en" value="Inggris" />
+    <text id="language.zh-CN" value="Mandarin" />
+    <text id="language.hi" value="Hindi" />
+    <text id="language.es" value="Spanyol" />
+    <text id="language.ar" value="Arab Baku" />
+    <text id="language.fr" value="Prancis" />
+    <text id="language.bn" value="Bengali" />
+    <text id="language.pt" value="Portugis" />
+    <text id="language.id" value="Indonesia" />
+    <text id="language.ur" value="Urdu" />
+    <text id="language.ru" value="Rusia" />
+    <text id="language.de" value="Jerman" />
+    <text id="language.ja" value="Jepang" />
+    <text id="language.pcm" value="Pidgin Nigeria" />
+    <text id="language.arz" value="Arab Mesir" />
+    <text id="language.mr" value="Marathi" />
+    <text id="language.vi" value="Vietnam" />
+    <text id="language.te" value="Telugu" />
+    <text id="language.it" value="Italia" />
+    <text id="language.pl" value="Polandia" />
+    <text id="language.tr" value="Turki" />
+    <text id="language.sv" value="Swedia" />
+    <text id="language.da" value="Denmark" />
+    <text id="language.fi" value="Finlandia" />
+    <text id="language.nl" value="Belanda" />
+    <text id="language.no" value="Norwegia" />
+    <text id="language.el" value="Yunani" />
+    <text id="language.he" value="Ibrani" />
+    <text id="language.ro" value="Rumania" />
+    <text id="language.th" value="Thai" />
+    <text id="language.ko" value="Korea" />
+    <text id="config.sleep_timer" value="Pengatur Waktu Tidur" />
+    <text id="config.playback_health" value="Kondisi Pemutaran" />
+    <text id="config.audio_only" value="Mode Hanya Audio" />
+    <text id="config.minutes" value="menit" />
+    <text id="playback.audio_only" value="Mode Hanya Audio Diaktifkan\ndi Menu Konfigurasi" />
+    <text id="health.title" value="Kondisi pemutaran" />
+    <text id="health.metrics" value="CPU %d MHz | Dekode terakhir %u/%u ms" />
+    <text id="health.sync" value="A/V %d ms | Dilewati %u" />
+    <text id="health.paused" value="Dijeda; lanjutkan dengan Kotak" />
+    <text id="health.audio_only" value="Hanya audio; dekoder video mati" />
+    <text id="health.waiting" value="Menunggu keluaran audio" />
+    <text id="health.decode_pressure" value="Dekode melebihi waktu per bingkai" />
+    <text id="health.sync_pressure" value="Audio dan video mulai tidak sinkron" />
+    <text id="health.compatibility" value="Konversi H264X dapat mengurangi fidelitas" />
+    <text id="health.healthy" value="Pemutaran dalam batas waktu saat ini" />
+    <text id="config.controls_type" value="Jenis kontrol" />
+    <text id="config.controls_international" value="Internasional" />
+    <text id="config.controls_asia" value="Asia" />
+    <text id="chapter.none" value="Tidak ada bab" />
+    <text id="chapter.no_cues" value="Lompatan bab tidak tersedia: tanpa indeks cue" />
+    <text id="chapter.first" value="Sudah di bab pertama" />
+    <text id="chapter.last" value="Sudah di bab terakhir" />
+    <text id="chapter.back" value="Mundur ke bab %d dari %u\n%s" />
+    <text id="chapter.forward" value="Maju ke bab %d dari %u\n%s" />
+    <text id="chapter.untitled" value="Bab tanpa judul" />
+    <text id="seek.forward" value="Maju" />
+    <text id="seek.back" value="Mundur" />
+    <text id="seek.no_cues" value="Pencarian tidak tersedia: MKV tanpa indeks cue" />
+    <text id="playback.no_subtitle" value="Tanpa takarir" />
+  </language>
+  <language id="ur" name="Urdu" rtl="true" font="NotoSansArabic-Regular.ttf">
+    <text id="main.file_list_header" value="فائل فہرست" />
+    <text id="main.information_header" value="معلومات" />
+    <text id="main.thumbnail_label" value="چھوٹی تصویر" />
+    <text id="main.thumbnail_unavailable" value="دستیاب نہیں" />
+    <text id="main.total_time" value="کل وقت" />
+    <text id="main.aspect_ratio" value="تناسب" />
+    <text id="main.frames_per_second" value="فریم فی س" />
+    <text id="main.streams" value="ٹریکس" />
+    <text id="main.subtitles" value="ذیلی عنوان" />
+    <text id="main.cancel_label" value="ترتیبات" />
+    <text id="main.help_label" value="مدد" />
+    <text id="main.start_label" value="شروع" />
+    <text id="main.resume_label" value="جاری" />
+    <text id="main.delete_label" value="حذف" />
+    <text id="help.control_instruction" value="کنٹرول" />
+    <text id="help.luminosity" value="روشنی بڑھائیں" />
+    <text id="help.forward_backward" value="آگے\nپیچھے" />
+    <text id="help.pause" value="وقفہ" />
+    <text id="help.exit" value="باہر" />
+    <text id="help.show_info" value="معلومات" />
+    <text id="help.volume" value="آواز" />
+    <text id="help.aspect_ratio" value="تناسب" />
+    <text id="help.aspect_ratio_values" value="4:3 16:9 2.35:1" />
+    <text id="help.audio_stream_switch" value="آڈیو بدلیں" />
+    <text id="help.subtitles_switch" value="ذیلی عنوان آن یا آف" />
+    <text id="help.loop_toggle" value="لوپ آن یا آف" />
+    <text id="help.fast_forward_rewind" value="تیز آگے یا پیچھے" />
+    <text id="help.zoom_in_out" value="زوم ان یا آؤٹ" />
+    <text id="help.close_prompt_text" value="بند کرنے کو دبائیں" />
+    <text id="config.title" value="ترتیبات" />
+    <text id="config.cpu_speed" value="CPU رفتار" />
+    <text id="config.subtitle_charset" value="ذیلی عنوان انکوڈنگ" />
+    <text id="config.preferred_subtitle_language" value="ذیلی عنوان زبان" />
+    <text id="config.subtitle_font_size" value="ذیلی عنوان سائز" />
+    <text id="config.subtitle_embolden" value="موٹے ذیلی عنوان" />
+    <text id="config.subtitle_position" value="ذیلی عنوان جگہ" />
+    <text id="config.subtitle_position_top" value="اوپر" />
+    <text id="config.subtitle_position_bottom" value="نیچے" />
+    <text id="config.subtitle_distance" value="ذیلی عنوان حاشیہ" />
+    <text id="config.filesystem_charset" value="فائل انکوڈنگ" />
+    <text id="config.play_mode" value="چلانے کا انداز" />
+    <text id="config.play_single" value="ایک" />
+    <text id="config.play_group" value="فولڈر" />
+    <text id="config.play_all" value="سب" />
+    <text id="config.tv_aspect_ratio" value="TV تناسب" />
+    <text id="config.tv_overscan" value="TV اوور اسکین" />
+    <text id="config.video_mode" value="ویڈیو آؤٹ پٹ" />
+    <text id="config.video_psp_lcd" value="PSP LCD" />
+    <text id="config.video_composite" value="کمپوزٹ" />
+    <text id="config.video_component_interlace" value="کمپوننٹ انٹرلیسڈ" />
+    <text id="config.video_component_progressive" value="کمپوننٹ پروگریسو" />
+    <text id="config.auto_cpu_clock" value="خودکار CPU کلاک" />
+    <text id="config.extreme_battery_saver" value="بیٹری بچت" />
+    <text id="config.optimize_psp_screen" value="PSP اسکرین فٹ" />
+    <text id="config.interface_language" value="انٹرفیس زبان" />
+    <text id="config.on" value="چالو" />
+    <text id="config.off" value="بند" />
+    <text id="config.yes" value="ہاں" />
+    <text id="config.no" value="نہیں" />
+    <text id="config.not_used" value="&lt;استعمال نہیں&gt;" />
+    <text id="language.auto" value="خودکار (PSP)" />
+    <text id="language.en" value="انگریزی" />
+    <text id="language.zh-CN" value="مینڈرن چینی" />
+    <text id="language.hi" value="ہندی" />
+    <text id="language.es" value="ہسپانوی" />
+    <text id="language.ar" value="معیاری عربی" />
+    <text id="language.fr" value="فرانسیسی" />
+    <text id="language.bn" value="بنگالی" />
+    <text id="language.pt" value="پرتگالی" />
+    <text id="language.id" value="انڈونیشیائی" />
+    <text id="language.ur" value="اردو" />
+    <text id="language.ru" value="روسی" />
+    <text id="language.de" value="جرمن" />
+    <text id="language.ja" value="جاپانی" />
+    <text id="language.pcm" value="نائجیریائی پجن" />
+    <text id="language.arz" value="مصری عربی" />
+    <text id="language.mr" value="مراٹھی" />
+    <text id="language.vi" value="ویتنامی" />
+    <text id="language.te" value="تیلگو" />
+    <text id="language.it" value="اطالوی" />
+    <text id="language.pl" value="پولش" />
+    <text id="language.tr" value="ترکی" />
+    <text id="language.sv" value="سویڈش" />
+    <text id="language.da" value="ڈینش" />
+    <text id="language.fi" value="فِنّش" />
+    <text id="language.nl" value="ڈچ" />
+    <text id="language.no" value="نارویجین" />
+    <text id="language.el" value="یونانی" />
+    <text id="language.he" value="عبرانی" />
+    <text id="language.ro" value="رومانیائی" />
+    <text id="language.th" value="تھائی" />
+    <text id="language.ko" value="کوریائی" />
+    <text id="config.sleep_timer" value="سلیپ ٹائمر" />
+    <text id="config.playback_health" value="پلے بیک کی حالت" />
+    <text id="config.audio_only" value="صرف آڈیو موڈ" />
+    <text id="config.minutes" value="منٹ" />
+    <text id="playback.audio_only" value="کنفیگ مینو میں صرف آڈیو موڈ فعال ہے" />
+    <text id="health.title" value="پلے بیک کی حالت" />
+    <text id="health.metrics" value="CPU %d MHz | آخری ڈی کوڈ %u/%u ms" />
+    <text id="health.sync" value="آڈیو/ویڈیو %d ms | چھوڑے گئے %u" />
+    <text id="health.paused" value="رکا ہوا؛ اسکوائر سے دوبارہ چلائیں" />
+    <text id="health.audio_only" value="صرف آڈیو؛ ویڈیو ڈی کوڈر بند ہے" />
+    <text id="health.waiting" value="آڈیو آؤٹ پٹ کا انتظار" />
+    <text id="health.decode_pressure" value="ڈی کوڈ میں فریم کی حد سے زیادہ وقت" />
+    <text id="health.sync_pressure" value="آڈیو اور ویڈیو کی ہم آہنگی بگڑ رہی ہے" />
+    <text id="health.compatibility" value="H264X تبدیلی سے معیار کم ہو سکتا ہے" />
+    <text id="health.healthy" value="پلے بیک موجودہ وقت کی حدود میں ہے" />
+    <text id="config.controls_type" value="کنٹرول کی قسم" />
+    <text id="config.controls_international" value="بین الاقوامی" />
+    <text id="config.controls_asia" value="ایشیا" />
+    <text id="chapter.none" value="کوئی باب نہیں" />
+    <text id="chapter.no_cues" value="باب پر جانا دستیاب نہیں: کیو اشاریہ نہیں" />
+    <text id="chapter.first" value="پہلے باب پر ہیں" />
+    <text id="chapter.last" value="آخری باب پر ہیں" />
+    <text id="chapter.back" value="پیچھے باب %d از %u پر جائیں\n%s" />
+    <text id="chapter.forward" value="آگے باب %d از %u پر جائیں\n%s" />
+    <text id="chapter.untitled" value="بے عنوان باب" />
+    <text id="seek.forward" value="آگے جائیں" />
+    <text id="seek.back" value="پیچھے جائیں" />
+    <text id="seek.no_cues" value="جانا دستیاب نہیں: MKV میں کیو اشاریہ نہیں" />
+    <text id="playback.no_subtitle" value="کوئی ذیلی عنوان نہیں" />
+  </language>
+  <language id="ru" name="Russian" rtl="false" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="СПИСОК" />
+    <text id="main.information_header" value="ИНФОРМАЦИЯ" />
+    <text id="main.thumbnail_label" value="ЭСКИЗ" />
+    <text id="main.thumbnail_unavailable" value="НЕДОСТУПНО" />
+    <text id="main.total_time" value="ВРЕМЯ" />
+    <text id="main.aspect_ratio" value="ФОРМАТ" />
+    <text id="main.frames_per_second" value="КАДР/С" />
+    <text id="main.streams" value="ДОРОЖКИ" />
+    <text id="main.subtitles" value="СУБТИТРЫ" />
+    <text id="main.cancel_label" value="НАСТР." />
+    <text id="main.help_label" value="СПРАВ." />
+    <text id="main.start_label" value="ПУСК" />
+    <text id="main.resume_label" value="ПРОДОЛЖ." />
+    <text id="main.delete_label" value="УДАЛИТЬ" />
+    <text id="help.control_instruction" value="Управление" />
+    <text id="help.luminosity" value="яркость +" />
+    <text id="help.forward_backward" value="вперёд/\nназад" />
+    <text id="help.pause" value="пауза" />
+    <text id="help.exit" value="выход" />
+    <text id="help.show_info" value="информация" />
+    <text id="help.volume" value="громкость" />
+    <text id="help.aspect_ratio" value="формат" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="смена аудио" />
+    <text id="help.subtitles_switch" value="субтитры вкл/выкл" />
+    <text id="help.loop_toggle" value="повтор вкл/выкл" />
+    <text id="help.fast_forward_rewind" value="перемотка" />
+    <text id="help.zoom_in_out" value="масштаб +/-" />
+    <text id="help.close_prompt_text" value="нажмите для выхода" />
+    <text id="config.title" value="Настройки" />
+    <text id="config.cpu_speed" value="Частота CPU" />
+    <text id="config.subtitle_charset" value="Кодировка субтитров" />
+    <text id="config.preferred_subtitle_language" value="Язык субтитров" />
+    <text id="config.subtitle_font_size" value="Размер субтитров" />
+    <text id="config.subtitle_embolden" value="Жирные субтитры" />
+    <text id="config.subtitle_position" value="Положение субтитров" />
+    <text id="config.subtitle_position_top" value="Сверху" />
+    <text id="config.subtitle_position_bottom" value="Снизу" />
+    <text id="config.subtitle_distance" value="Отступ субтитров" />
+    <text id="config.filesystem_charset" value="Кодировка файлов" />
+    <text id="config.play_mode" value="Режим воспроизведения" />
+    <text id="config.play_single" value="Один" />
+    <text id="config.play_group" value="Папка" />
+    <text id="config.play_all" value="Все" />
+    <text id="config.tv_aspect_ratio" value="Формат ТВ" />
+    <text id="config.tv_overscan" value="Развёртка ТВ" />
+    <text id="config.video_mode" value="Видеовыход" />
+    <text id="config.video_psp_lcd" value="Экран PSP" />
+    <text id="config.video_composite" value="Композитный" />
+    <text id="config.video_component_interlace" value="Компонентный чересстрочный" />
+    <text id="config.video_component_progressive" value="Компонентный прогрессивный" />
+    <text id="config.auto_cpu_clock" value="Авточастота CPU" />
+    <text id="config.extreme_battery_saver" value="Экономия батареи" />
+    <text id="config.optimize_psp_screen" value="Подогнать под PSP" />
+    <text id="config.interface_language" value="Язык интерфейса" />
+    <text id="config.on" value="Вкл." />
+    <text id="config.off" value="Выкл." />
+    <text id="config.yes" value="Да" />
+    <text id="config.no" value="Нет" />
+    <text id="config.not_used" value="&lt;Не используется&gt;" />
+    <text id="language.auto" value="Авто (PSP)" />
+    <text id="language.en" value="Английский" />
+    <text id="language.zh-CN" value="Китайский (мандарин)" />
+    <text id="language.hi" value="Хинди" />
+    <text id="language.es" value="Испанский" />
+    <text id="language.ar" value="Литературный арабский" />
+    <text id="language.fr" value="Французский" />
+    <text id="language.bn" value="Бенгальский" />
+    <text id="language.pt" value="Португальский" />
+    <text id="language.id" value="Индонезийский" />
+    <text id="language.ur" value="Урду" />
+    <text id="language.ru" value="Русский" />
+    <text id="language.de" value="Немецкий" />
+    <text id="language.ja" value="Японский" />
+    <text id="language.pcm" value="Нигерийский пиджин" />
+    <text id="language.arz" value="Египетский арабский" />
+    <text id="language.mr" value="Маратхи" />
+    <text id="language.vi" value="Вьетнамский" />
+    <text id="language.te" value="Телугу" />
+    <text id="language.it" value="Итальянский" />
+    <text id="language.pl" value="Польский" />
+    <text id="language.tr" value="Турецкий" />
+    <text id="language.sv" value="Шведский" />
+    <text id="language.da" value="Датский" />
+    <text id="language.fi" value="Финский" />
+    <text id="language.nl" value="Нидерландский" />
+    <text id="language.no" value="Норвежский" />
+    <text id="language.el" value="Греческий" />
+    <text id="language.he" value="Иврит" />
+    <text id="language.ro" value="Румынский" />
+    <text id="language.th" value="Тайский" />
+    <text id="language.ko" value="Корейский" />
+    <text id="config.sleep_timer" value="Таймер сна" />
+    <text id="config.playback_health" value="Состояние воспроизведения" />
+    <text id="config.audio_only" value="Только звук" />
+    <text id="config.minutes" value="мин" />
+    <text id="playback.audio_only" value="Режим «Только звук» включён\nв меню настроек" />
+    <text id="health.title" value="Состояние воспроизведения" />
+    <text id="health.metrics" value="CPU %d MHz | Последнее декодирование %u/%u мс" />
+    <text id="health.sync" value="А/В %d мс | Пропущено %u" />
+    <text id="health.paused" value="Пауза; продолжить кнопкой Квадрат" />
+    <text id="health.audio_only" value="Только звук; видеодекодер выключен" />
+    <text id="health.waiting" value="Ожидание вывода звука" />
+    <text id="health.decode_pressure" value="Декодирование превышает время на кадр" />
+    <text id="health.sync_pressure" value="Звук и видео теряют синхронизацию" />
+    <text id="health.compatibility" value="Преобразование H264X может снизить точность" />
+    <text id="health.healthy" value="Воспроизведение в текущих пределах" />
+    <text id="config.controls_type" value="Тип управления" />
+    <text id="config.controls_international" value="Международный" />
+    <text id="config.controls_asia" value="Азия" />
+    <text id="chapter.none" value="Глав нет" />
+    <text id="chapter.no_cues" value="Переход по главам недоступен: нет индекса" />
+    <text id="chapter.first" value="Уже первая глава" />
+    <text id="chapter.last" value="Уже последняя глава" />
+    <text id="chapter.back" value="Назад к главе %d из %u\n%s" />
+    <text id="chapter.forward" value="Вперёд к главе %d из %u\n%s" />
+    <text id="chapter.untitled" value="Глава без названия" />
+    <text id="seek.forward" value="Вперёд" />
+    <text id="seek.back" value="Назад" />
+    <text id="seek.no_cues" value="Перемотка недоступна: в MKV нет индекса" />
+    <text id="playback.no_subtitle" value="Без субтитров" />
+  </language>
+  <language id="de" name="Standard German" rtl="false" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="DATEIEN" />
+    <text id="main.information_header" value="INFORMATION" />
+    <text id="main.thumbnail_label" value="VORSCHAU" />
+    <text id="main.thumbnail_unavailable" value="NICHT VERF." />
+    <text id="main.total_time" value="GESAMTZEIT" />
+    <text id="main.aspect_ratio" value="BILDFORMAT" />
+    <text id="main.frames_per_second" value="BILDER/S" />
+    <text id="main.streams" value="SPUREN" />
+    <text id="main.subtitles" value="UNTERTITEL" />
+    <text id="main.cancel_label" value="KONFIG." />
+    <text id="main.help_label" value="HILFE" />
+    <text id="main.start_label" value="START" />
+    <text id="main.resume_label" value="FORTSETZEN" />
+    <text id="main.delete_label" value="LÖSCHEN" />
+    <text id="help.control_instruction" value="Steuerung" />
+    <text id="help.luminosity" value="Helligkeit +" />
+    <text id="help.forward_backward" value="vor/\nzurück" />
+    <text id="help.pause" value="Pause" />
+    <text id="help.exit" value="Beenden" />
+    <text id="help.show_info" value="Info zeigen" />
+    <text id="help.volume" value="Lautstärke" />
+    <text id="help.aspect_ratio" value="Bildformat" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="Tonspur wechseln" />
+    <text id="help.subtitles_switch" value="Untertitel an/aus" />
+    <text id="help.loop_toggle" value="Schleife an/aus" />
+    <text id="help.fast_forward_rewind" value="vor-/zurückspulen" />
+    <text id="help.zoom_in_out" value="Zoom +/-" />
+    <text id="help.close_prompt_text" value="drücken zum Schließen" />
+    <text id="config.title" value="Einstellungen" />
+    <text id="config.cpu_speed" value="CPU-Takt" />
+    <text id="config.subtitle_charset" value="Untertitel-Kodierung" />
+    <text id="config.preferred_subtitle_language" value="Untertitelsprache" />
+    <text id="config.subtitle_font_size" value="Untertitelgröße" />
+    <text id="config.subtitle_embolden" value="Fette Untertitel" />
+    <text id="config.subtitle_position" value="Untertitelposition" />
+    <text id="config.subtitle_position_top" value="Oben" />
+    <text id="config.subtitle_position_bottom" value="Unten" />
+    <text id="config.subtitle_distance" value="Untertitelrand" />
+    <text id="config.filesystem_charset" value="Dateikodierung" />
+    <text id="config.play_mode" value="Wiedergabemodus" />
+    <text id="config.play_single" value="Einzeln" />
+    <text id="config.play_group" value="Ordner" />
+    <text id="config.play_all" value="Alle" />
+    <text id="config.tv_aspect_ratio" value="TV-Bildformat" />
+    <text id="config.tv_overscan" value="TV-Overscan" />
+    <text id="config.video_mode" value="Videoausgabe" />
+    <text id="config.video_psp_lcd" value="PSP-LCD" />
+    <text id="config.video_composite" value="Composite" />
+    <text id="config.video_component_interlace" value="Component Interlaced" />
+    <text id="config.video_component_progressive" value="Component Progressive" />
+    <text id="config.auto_cpu_clock" value="Automatischer CPU-Takt" />
+    <text id="config.extreme_battery_saver" value="Akkusparen" />
+    <text id="config.optimize_psp_screen" value="An PSP-Bildschirm anpassen" />
+    <text id="config.interface_language" value="Oberflächensprache" />
+    <text id="config.on" value="Ein" />
+    <text id="config.off" value="Aus" />
+    <text id="config.yes" value="Ja" />
+    <text id="config.no" value="Nein" />
+    <text id="config.not_used" value="&lt;Nicht verwendet&gt;" />
+    <text id="language.auto" value="Automatisch (PSP)" />
+    <text id="language.en" value="Englisch" />
+    <text id="language.zh-CN" value="Mandarin-Chinesisch" />
+    <text id="language.hi" value="Hindi" />
+    <text id="language.es" value="Spanisch" />
+    <text id="language.ar" value="Hocharabisch" />
+    <text id="language.fr" value="Französisch" />
+    <text id="language.bn" value="Bengalisch" />
+    <text id="language.pt" value="Portugiesisch" />
+    <text id="language.id" value="Indonesisch" />
+    <text id="language.ur" value="Urdu" />
+    <text id="language.ru" value="Russisch" />
+    <text id="language.de" value="Deutsch" />
+    <text id="language.ja" value="Japanisch" />
+    <text id="language.pcm" value="Nigerianisches Pidgin" />
+    <text id="language.arz" value="Ägyptisches Arabisch" />
+    <text id="language.mr" value="Marathi" />
+    <text id="language.vi" value="Vietnamesisch" />
+    <text id="language.te" value="Telugu" />
+    <text id="language.it" value="Italienisch" />
+    <text id="language.pl" value="Polnisch" />
+    <text id="language.tr" value="Türkisch" />
+    <text id="language.sv" value="Schwedisch" />
+    <text id="language.da" value="Dänisch" />
+    <text id="language.fi" value="Finnisch" />
+    <text id="language.nl" value="Niederländisch" />
+    <text id="language.no" value="Norwegisch" />
+    <text id="language.el" value="Griechisch" />
+    <text id="language.he" value="Hebräisch" />
+    <text id="language.ro" value="Rumänisch" />
+    <text id="language.th" value="Thailändisch" />
+    <text id="language.ko" value="Koreanisch" />
+    <text id="config.sleep_timer" value="Schlaftimer" />
+    <text id="config.playback_health" value="Wiedergabestatus" />
+    <text id="config.audio_only" value="Nur Audio" />
+    <text id="config.minutes" value="Min." />
+    <text id="playback.audio_only" value="Nur Audio ist im\nKonfigurationsmenü aktiviert" />
+    <text id="health.title" value="Wiedergabestatus" />
+    <text id="health.metrics" value="CPU %d MHz | Letzte Dekodierung %u/%u ms" />
+    <text id="health.sync" value="A/V %d ms | Übersprungen %u" />
+    <text id="health.paused" value="Pausiert; weiter mit Quadrat" />
+    <text id="health.audio_only" value="Nur Audio; Videodekoder ausgeschaltet" />
+    <text id="health.waiting" value="Warte auf Audioausgabe" />
+    <text id="health.decode_pressure" value="Dekodierung überschreitet die Bildzeit" />
+    <text id="health.sync_pressure" value="Audio und Video verlieren die Synchronität" />
+    <text id="health.compatibility" value="H264X kann die Bildtreue verringern" />
+    <text id="health.healthy" value="Wiedergabe innerhalb aktueller Zeitbudgets" />
+    <text id="config.controls_type" value="Steuerungstyp" />
+    <text id="config.controls_international" value="International" />
+    <text id="config.controls_asia" value="Asien" />
+    <text id="chapter.none" value="Keine Kapitel" />
+    <text id="chapter.no_cues" value="Kapitelsprung nicht verfügbar: kein Index" />
+    <text id="chapter.first" value="Bereits beim ersten Kapitel" />
+    <text id="chapter.last" value="Bereits beim letzten Kapitel" />
+    <text id="chapter.back" value="Zurück zu Kapitel %d von %u\n%s" />
+    <text id="chapter.forward" value="Vor zu Kapitel %d von %u\n%s" />
+    <text id="chapter.untitled" value="Kapitel ohne Titel" />
+    <text id="seek.forward" value="Vorwärts" />
+    <text id="seek.back" value="Rückwärts" />
+    <text id="seek.no_cues" value="Suche nicht verfügbar: MKV ohne Index" />
+    <text id="playback.no_subtitle" value="Keine Untertitel" />
+  </language>
+  <language id="ja" name="Japanese" rtl="false" font="NotoSansJP-Regular.otf">
+    <text id="main.file_list_header" value="ファイル一覧" />
+    <text id="main.information_header" value="情報" />
+    <text id="main.thumbnail_label" value="サムネイル" />
+    <text id="main.thumbnail_unavailable" value="利用不可" />
+    <text id="main.total_time" value="合計時間" />
+    <text id="main.aspect_ratio" value="画面比" />
+    <text id="main.frames_per_second" value="フレーム/秒" />
+    <text id="main.streams" value="音声" />
+    <text id="main.subtitles" value="字幕" />
+    <text id="main.cancel_label" value="設定" />
+    <text id="main.help_label" value="ヘルプ" />
+    <text id="main.start_label" value="開始" />
+    <text id="main.resume_label" value="再開" />
+    <text id="main.delete_label" value="削除" />
+    <text id="help.control_instruction" value="操作説明" />
+    <text id="help.luminosity" value="明るさ +" />
+    <text id="help.forward_backward" value="早送り/\n巻戻し" />
+    <text id="help.pause" value="一時停止" />
+    <text id="help.exit" value="終了" />
+    <text id="help.show_info" value="情報表示" />
+    <text id="help.volume" value="音量" />
+    <text id="help.aspect_ratio" value="画面比" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="音声切替" />
+    <text id="help.subtitles_switch" value="字幕 入/切" />
+    <text id="help.loop_toggle" value="リピート 入/切" />
+    <text id="help.fast_forward_rewind" value="早送り/巻戻し" />
+    <text id="help.zoom_in_out" value="拡大/縮小" />
+    <text id="help.close_prompt_text" value="押して閉じる" />
+    <text id="config.title" value="設定" />
+    <text id="config.cpu_speed" value="CPU速度" />
+    <text id="config.subtitle_charset" value="字幕エンコード" />
+    <text id="config.preferred_subtitle_language" value="字幕言語" />
+    <text id="config.subtitle_font_size" value="字幕サイズ" />
+    <text id="config.subtitle_embolden" value="字幕を太字" />
+    <text id="config.subtitle_position" value="字幕位置" />
+    <text id="config.subtitle_position_top" value="上" />
+    <text id="config.subtitle_position_bottom" value="下" />
+    <text id="config.subtitle_distance" value="字幕余白" />
+    <text id="config.filesystem_charset" value="ファイルエンコード" />
+    <text id="config.play_mode" value="再生モード" />
+    <text id="config.play_single" value="単一" />
+    <text id="config.play_group" value="フォルダー" />
+    <text id="config.play_all" value="すべて" />
+    <text id="config.tv_aspect_ratio" value="TV画面比" />
+    <text id="config.tv_overscan" value="TVオーバースキャン" />
+    <text id="config.video_mode" value="映像出力" />
+    <text id="config.video_psp_lcd" value="PSP LCD" />
+    <text id="config.video_composite" value="コンポジット" />
+    <text id="config.video_component_interlace" value="コンポーネント・インターレース" />
+    <text id="config.video_component_progressive" value="コンポーネント・プログレッシブ" />
+    <text id="config.auto_cpu_clock" value="CPU自動クロック" />
+    <text id="config.extreme_battery_saver" value="省電力" />
+    <text id="config.optimize_psp_screen" value="PSP画面に合わせる" />
+    <text id="config.interface_language" value="表示言語" />
+    <text id="config.on" value="オン" />
+    <text id="config.off" value="オフ" />
+    <text id="config.yes" value="はい" />
+    <text id="config.no" value="いいえ" />
+    <text id="config.not_used" value="&lt;未使用&gt;" />
+    <text id="language.auto" value="自動（PSP）" />
+    <text id="language.en" value="英語" />
+    <text id="language.zh-CN" value="中国語（北京語）" />
+    <text id="language.hi" value="ヒンディー語" />
+    <text id="language.es" value="スペイン語" />
+    <text id="language.ar" value="現代標準アラビア語" />
+    <text id="language.fr" value="フランス語" />
+    <text id="language.bn" value="ベンガル語" />
+    <text id="language.pt" value="ポルトガル語" />
+    <text id="language.id" value="インドネシア語" />
+    <text id="language.ur" value="ウルドゥー語" />
+    <text id="language.ru" value="ロシア語" />
+    <text id="language.de" value="ドイツ語" />
+    <text id="language.ja" value="日本語" />
+    <text id="language.pcm" value="ナイジェリア・ピジン" />
+    <text id="language.arz" value="エジプト・アラビア語" />
+    <text id="language.mr" value="マラーティー語" />
+    <text id="language.vi" value="ベトナム語" />
+    <text id="language.te" value="テルグ語" />
+    <text id="language.it" value="イタリア語" />
+    <text id="language.pl" value="ポーランド語" />
+    <text id="language.tr" value="トルコ語" />
+    <text id="language.sv" value="スウェーデン語" />
+    <text id="language.da" value="デンマーク語" />
+    <text id="language.fi" value="フィンランド語" />
+    <text id="language.nl" value="オランダ語" />
+    <text id="language.no" value="ノルウェー語" />
+    <text id="language.el" value="ギリシャ語" />
+    <text id="language.he" value="ヘブライ語" />
+    <text id="language.ro" value="ルーマニア語" />
+    <text id="language.th" value="タイ語" />
+    <text id="language.ko" value="韓国語" />
+    <text id="config.sleep_timer" value="スリープタイマー" />
+    <text id="config.playback_health" value="再生状態" />
+    <text id="config.audio_only" value="音声のみモード" />
+    <text id="config.minutes" value="分" />
+    <text id="playback.audio_only" value="設定メニューで音声のみモードが有効です" />
+    <text id="health.title" value="再生状態" />
+    <text id="health.metrics" value="CPU %d MHz | 直前のデコード %u/%u ms" />
+    <text id="health.sync" value="音声/映像 %d ms | スキップ %u" />
+    <text id="health.paused" value="一時停止中；□ボタンで再開" />
+    <text id="health.audio_only" value="音声のみ；映像デコーダーは停止中" />
+    <text id="health.waiting" value="音声出力を待機中" />
+    <text id="health.decode_pressure" value="デコードがフレームの制限時間を超過" />
+    <text id="health.sync_pressure" value="音声と映像の同期がずれています" />
+    <text id="health.compatibility" value="H264X変換で画質が低下する場合があります" />
+    <text id="health.healthy" value="現在の処理時間の範囲内で再生中" />
+    <text id="config.controls_type" value="操作タイプ" />
+    <text id="config.controls_international" value="国際" />
+    <text id="config.controls_asia" value="アジア" />
+    <text id="chapter.none" value="チャプターなし" />
+    <text id="chapter.no_cues" value="チャプター移動不可：キュー索引なし" />
+    <text id="chapter.first" value="最初のチャプターです" />
+    <text id="chapter.last" value="最後のチャプターです" />
+    <text id="chapter.back" value="前へ：チャプター %d / %u\n%s" />
+    <text id="chapter.forward" value="次へ：チャプター %d / %u\n%s" />
+    <text id="chapter.untitled" value="無題のチャプター" />
+    <text id="seek.forward" value="先へ移動" />
+    <text id="seek.back" value="前へ移動" />
+    <text id="seek.no_cues" value="移動不可：MKV にキュー索引がありません" />
+    <text id="playback.no_subtitle" value="字幕なし" />
+  </language>
+  <language id="pcm" name="Nigerian Pidgin" rtl="false" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="FILE LIST" />
+    <text id="main.information_header" value="INFO" />
+    <text id="main.thumbnail_label" value="THUMBNAIL" />
+    <text id="main.thumbnail_unavailable" value="E NO DEY" />
+    <text id="main.total_time" value="TOTAL TIME" />
+    <text id="main.aspect_ratio" value="SCREEN RATIO" />
+    <text id="main.frames_per_second" value="FRAME/S" />
+    <text id="main.streams" value="TRACKS" />
+    <text id="main.subtitles" value="SUBTITLES" />
+    <text id="main.cancel_label" value="SETTING" />
+    <text id="main.help_label" value="HELP" />
+    <text id="main.start_label" value="START" />
+    <text id="main.resume_label" value="CONTINUE" />
+    <text id="main.delete_label" value="DELETE" />
+    <text id="help.control_instruction" value="Control guide" />
+    <text id="help.luminosity" value="brightness +" />
+    <text id="help.forward_backward" value="go front/\ngo back" />
+    <text id="help.pause" value="pause" />
+    <text id="help.exit" value="comot" />
+    <text id="help.show_info" value="show info" />
+    <text id="help.volume" value="volume" />
+    <text id="help.aspect_ratio" value="screen ratio" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="change audio" />
+    <text id="help.subtitles_switch" value="subtitle on/off" />
+    <text id="help.loop_toggle" value="loop on/off" />
+    <text id="help.fast_forward_rewind" value="fast front/back" />
+    <text id="help.zoom_in_out" value="zoom in/out" />
+    <text id="help.close_prompt_text" value="press make e close" />
+    <text id="config.title" value="Settings" />
+    <text id="config.cpu_speed" value="CPU Speed" />
+    <text id="config.subtitle_charset" value="Subtitle Encoding" />
+    <text id="config.preferred_subtitle_language" value="Subtitle Language" />
+    <text id="config.subtitle_font_size" value="Subtitle Size" />
+    <text id="config.subtitle_embolden" value="Bold Subtitle" />
+    <text id="config.subtitle_position" value="Subtitle Position" />
+    <text id="config.subtitle_position_top" value="Up" />
+    <text id="config.subtitle_position_bottom" value="Down" />
+    <text id="config.subtitle_distance" value="Subtitle Margin" />
+    <text id="config.filesystem_charset" value="File Encoding" />
+    <text id="config.play_mode" value="Play Mode" />
+    <text id="config.play_single" value="One" />
+    <text id="config.play_group" value="Folder" />
+    <text id="config.play_all" value="All" />
+    <text id="config.tv_aspect_ratio" value="TV Screen Ratio" />
+    <text id="config.tv_overscan" value="TV Overscan" />
+    <text id="config.video_mode" value="Video Output" />
+    <text id="config.video_psp_lcd" value="PSP Screen" />
+    <text id="config.video_composite" value="Composite" />
+    <text id="config.video_component_interlace" value="Component Interlace" />
+    <text id="config.video_component_progressive" value="Component Progressive" />
+    <text id="config.auto_cpu_clock" value="Auto CPU Clock" />
+    <text id="config.extreme_battery_saver" value="Save Battery" />
+    <text id="config.optimize_psp_screen" value="Fit PSP Screen" />
+    <text id="config.interface_language" value="Interface Language" />
+    <text id="config.on" value="On" />
+    <text id="config.off" value="Off" />
+    <text id="config.yes" value="Yes" />
+    <text id="config.no" value="No" />
+    <text id="config.not_used" value="&lt;No dey use&gt;" />
+    <text id="language.auto" value="Auto (PSP)" />
+    <text id="language.en" value="English" />
+    <text id="language.zh-CN" value="Mandarin Chinese" />
+    <text id="language.hi" value="Hindi" />
+    <text id="language.es" value="Spanish" />
+    <text id="language.ar" value="Standard Arabic" />
+    <text id="language.fr" value="French" />
+    <text id="language.bn" value="Bengali" />
+    <text id="language.pt" value="Portuguese" />
+    <text id="language.id" value="Indonesian" />
+    <text id="language.ur" value="Urdu" />
+    <text id="language.ru" value="Russian" />
+    <text id="language.de" value="German" />
+    <text id="language.ja" value="Japanese" />
+    <text id="language.pcm" value="Naija Pidgin" />
+    <text id="language.arz" value="Egyptian Arabic" />
+    <text id="language.mr" value="Marathi" />
+    <text id="language.vi" value="Vietnamese" />
+    <text id="language.te" value="Telugu" />
+    <text id="language.it" value="Italian" />
+    <text id="language.pl" value="Polish" />
+    <text id="language.tr" value="Turkish" />
+    <text id="language.sv" value="Swedish" />
+    <text id="language.da" value="Danish" />
+    <text id="language.fi" value="Finnish" />
+    <text id="language.nl" value="Dutch" />
+    <text id="language.no" value="Norwegian" />
+    <text id="language.el" value="Greek" />
+    <text id="language.he" value="Hebrew" />
+    <text id="language.ro" value="Romanian" />
+    <text id="language.th" value="Thai" />
+    <text id="language.ko" value="Korean" />
+    <text id="config.sleep_timer" value="Sleep Timer" />
+    <text id="config.playback_health" value="Playback Health" />
+    <text id="config.audio_only" value="Audio Only Mode" />
+    <text id="config.minutes" value="min" />
+    <text id="playback.audio_only" value="Audio Only Mode dey On\nfor Config Menu" />
+    <text id="health.title" value="Playback health" />
+    <text id="health.metrics" value="CPU %d MHz | Last decode %u/%u ms" />
+    <text id="health.sync" value="A/V %d ms | We skip %u" />
+    <text id="health.paused" value="E pause; press Square make e continue" />
+    <text id="health.audio_only" value="Na only audio; video decoder dey off" />
+    <text id="health.waiting" value="We dey wait for audio output" />
+    <text id="health.decode_pressure" value="Decode dey take pass frame time" />
+    <text id="health.sync_pressure" value="Audio and video no dey follow together" />
+    <text id="health.compatibility" value="H264X conversion fit reduce picture quality" />
+    <text id="health.healthy" value="Playback dey inside current time limits" />
+    <text id="config.controls_type" value="Control type" />
+    <text id="config.controls_international" value="International" />
+    <text id="config.controls_asia" value="Asia" />
+    <text id="chapter.none" value="No chapter dey" />
+    <text id="chapter.no_cues" value="Chapter jump no dey: cue index no dey" />
+    <text id="chapter.first" value="You don reach first chapter" />
+    <text id="chapter.last" value="You don reach last chapter" />
+    <text id="chapter.back" value="Go back to chapter %d of %u\n%s" />
+    <text id="chapter.forward" value="Go front to chapter %d of %u\n%s" />
+    <text id="chapter.untitled" value="Chapter wey no get name" />
+    <text id="seek.forward" value="Go front" />
+    <text id="seek.back" value="Go back" />
+    <text id="seek.no_cues" value="Jump no dey: MKV no get cue index" />
+    <text id="playback.no_subtitle" value="No subtitle" />
+  </language>
+  <language id="arz" name="Egyptian Arabic" rtl="true" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="قائمة الملفات" />
+    <text id="main.information_header" value="معلومات" />
+    <text id="main.thumbnail_label" value="صورة صغيرة" />
+    <text id="main.thumbnail_unavailable" value="مش موجود" />
+    <text id="main.total_time" value="المدة" />
+    <text id="main.aspect_ratio" value="نسبة الشاشة" />
+    <text id="main.frames_per_second" value="فريم/ث" />
+    <text id="main.streams" value="التراكات" />
+    <text id="main.subtitles" value="الترجمة" />
+    <text id="main.cancel_label" value="إعداد" />
+    <text id="main.help_label" value="مساعدة" />
+    <text id="main.start_label" value="تشغيل" />
+    <text id="main.resume_label" value="كمّل" />
+    <text id="main.delete_label" value="امسح" />
+    <text id="help.control_instruction" value="التحكم" />
+    <text id="help.luminosity" value="السطوع +" />
+    <text id="help.forward_backward" value="قدّام/\nورا" />
+    <text id="help.pause" value="وقفة" />
+    <text id="help.exit" value="خروج" />
+    <text id="help.show_info" value="ورّي المعلومات" />
+    <text id="help.volume" value="الصوت" />
+    <text id="help.aspect_ratio" value="نسبة الشاشة" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="غيّر الصوت" />
+    <text id="help.subtitles_switch" value="الترجمة شغّال/قافل" />
+    <text id="help.loop_toggle" value="التكرار شغّال/قافل" />
+    <text id="help.fast_forward_rewind" value="تقديم/ترجيع" />
+    <text id="help.zoom_in_out" value="كبّر/صغّر" />
+    <text id="help.close_prompt_text" value="دوس عشان تقفل" />
+    <text id="config.title" value="الإعدادات" />
+    <text id="config.cpu_speed" value="سرعة الـ CPU" />
+    <text id="config.subtitle_charset" value="ترميز الترجمة" />
+    <text id="config.preferred_subtitle_language" value="لغة الترجمة" />
+    <text id="config.subtitle_font_size" value="حجم الترجمة" />
+    <text id="config.subtitle_embolden" value="ترجمة تخينة" />
+    <text id="config.subtitle_position" value="مكان الترجمة" />
+    <text id="config.subtitle_position_top" value="فوق" />
+    <text id="config.subtitle_position_bottom" value="تحت" />
+    <text id="config.subtitle_distance" value="هامش الترجمة" />
+    <text id="config.filesystem_charset" value="ترميز الملفات" />
+    <text id="config.play_mode" value="وضع التشغيل" />
+    <text id="config.play_single" value="ملف واحد" />
+    <text id="config.play_group" value="مجلد" />
+    <text id="config.play_all" value="الكل" />
+    <text id="config.tv_aspect_ratio" value="نسبة شاشة التلفزيون" />
+    <text id="config.tv_overscan" value="أوفرسكان التلفزيون" />
+    <text id="config.video_mode" value="خرج الفيديو" />
+    <text id="config.video_psp_lcd" value="شاشة PSP" />
+    <text id="config.video_composite" value="كومبوزيت" />
+    <text id="config.video_component_interlace" value="كومبوننت متداخل" />
+    <text id="config.video_component_progressive" value="كومبوننت تقدمي" />
+    <text id="config.auto_cpu_clock" value="ضبط CPU تلقائي" />
+    <text id="config.extreme_battery_saver" value="توفير البطارية" />
+    <text id="config.optimize_psp_screen" value="ظبط على شاشة PSP" />
+    <text id="config.interface_language" value="لغة الواجهة" />
+    <text id="config.on" value="شغال" />
+    <text id="config.off" value="مقفول" />
+    <text id="config.yes" value="أيوه" />
+    <text id="config.no" value="لأ" />
+    <text id="config.not_used" value="&lt;مش مستخدم&gt;" />
+    <text id="language.auto" value="تلقائي (PSP)" />
+    <text id="language.en" value="إنجليزي" />
+    <text id="language.zh-CN" value="صيني ماندارين" />
+    <text id="language.hi" value="هندي" />
+    <text id="language.es" value="إسباني" />
+    <text id="language.ar" value="عربي فصحى" />
+    <text id="language.fr" value="فرنساوي" />
+    <text id="language.bn" value="بنغالي" />
+    <text id="language.pt" value="برتغالي" />
+    <text id="language.id" value="إندونيسي" />
+    <text id="language.ur" value="أُردي" />
+    <text id="language.ru" value="روسي" />
+    <text id="language.de" value="ألماني" />
+    <text id="language.ja" value="ياباني" />
+    <text id="language.pcm" value="بيدجن نيجيري" />
+    <text id="language.arz" value="عربي مصري" />
+    <text id="language.mr" value="ماراثي" />
+    <text id="language.vi" value="فيتنامي" />
+    <text id="language.te" value="تيلوغو" />
+    <text id="language.it" value="إيطالي" />
+    <text id="language.pl" value="بولندي" />
+    <text id="language.tr" value="تركي" />
+    <text id="language.sv" value="سويدي" />
+    <text id="language.da" value="دنماركي" />
+    <text id="language.fi" value="فنلندي" />
+    <text id="language.nl" value="هولندي" />
+    <text id="language.no" value="نرويجي" />
+    <text id="language.el" value="يوناني" />
+    <text id="language.he" value="عبري" />
+    <text id="language.ro" value="روماني" />
+    <text id="language.th" value="تايلاندي" />
+    <text id="language.ko" value="كوري" />
+    <text id="config.sleep_timer" value="مؤقت النوم" />
+    <text id="config.playback_health" value="حالة التشغيل" />
+    <text id="config.audio_only" value="وضع الصوت بس" />
+    <text id="config.minutes" value="دقيقة" />
+    <text id="playback.audio_only" value="وضع الصوت بس شغّال\nمن قايمة الإعدادات" />
+    <text id="health.title" value="حالة التشغيل" />
+    <text id="health.metrics" value="CPU %d MHz | آخر فك ترميز %u/%u ms" />
+    <text id="health.sync" value="صوت/فيديو %d ms | اتخطّى %u" />
+    <text id="health.paused" value="واقف مؤقتًا؛ كمّل بزر المربع" />
+    <text id="health.audio_only" value="صوت بس؛ فك ترميز الفيديو مقفول" />
+    <text id="health.waiting" value="مستني خروج الصوت" />
+    <text id="health.decode_pressure" value="فك الترميز أطول من الوقت المخصص للفريم" />
+    <text id="health.sync_pressure" value="الصوت والفيديو مش متزامنين" />
+    <text id="health.compatibility" value="تحويل H264X ممكن يقلل دقة الصورة" />
+    <text id="health.healthy" value="التشغيل جوّه الحدود الحالية" />
+    <text id="config.controls_type" value="نوع التحكم" />
+    <text id="config.controls_international" value="دولي" />
+    <text id="config.controls_asia" value="آسيا" />
+    <text id="chapter.none" value="مفيش فصول" />
+    <text id="chapter.no_cues" value="الانتقال للفصل مش متاح: مفيش فهرس نقاط" />
+    <text id="chapter.first" value="إنت في أول فصل" />
+    <text id="chapter.last" value="إنت في آخر فصل" />
+    <text id="chapter.back" value="ارجع للفصل %d من %u\n%s" />
+    <text id="chapter.forward" value="اتقدم للفصل %d من %u\n%s" />
+    <text id="chapter.untitled" value="فصل من غير عنوان" />
+    <text id="seek.forward" value="اتقدم" />
+    <text id="seek.back" value="ارجع" />
+    <text id="seek.no_cues" value="الانتقال مش متاح: MKV من غير فهرس نقاط" />
+    <text id="playback.no_subtitle" value="من غير ترجمة" />
+  </language>
+  <language id="mr" name="Marathi" rtl="false" font="NotoSansDevanagari-Regular.ttf">
+    <text id="main.file_list_header" value="फाइल सूची" />
+    <text id="main.information_header" value="माहिती" />
+    <text id="main.thumbnail_label" value="लघुप्रतिमा" />
+    <text id="main.thumbnail_unavailable" value="अनुपलब्ध" />
+    <text id="main.total_time" value="एकूण वेळ" />
+    <text id="main.aspect_ratio" value="चित्र प्रमाण" />
+    <text id="main.frames_per_second" value="फ्रेम/से" />
+    <text id="main.streams" value="ट्रॅक" />
+    <text id="main.subtitles" value="उपशीर्षके" />
+    <text id="main.cancel_label" value="सेटिंग" />
+    <text id="main.help_label" value="मदत" />
+    <text id="main.start_label" value="सुरू" />
+    <text id="main.resume_label" value="पुन्हा सुरू" />
+    <text id="main.delete_label" value="हटवा" />
+    <text id="help.control_instruction" value="नियंत्रणे" />
+    <text id="help.luminosity" value="उजेड +" />
+    <text id="help.forward_backward" value="पुढे/\nमागे" />
+    <text id="help.pause" value="विराम" />
+    <text id="help.exit" value="बाहेर" />
+    <text id="help.show_info" value="माहिती दाखवा" />
+    <text id="help.volume" value="आवाज" />
+    <text id="help.aspect_ratio" value="चित्र प्रमाण" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="ऑडिओ बदला" />
+    <text id="help.subtitles_switch" value="उपशीर्षक चालू/बंद" />
+    <text id="help.loop_toggle" value="लूप चालू/बंद" />
+    <text id="help.fast_forward_rewind" value="जलद पुढे/मागे" />
+    <text id="help.zoom_in_out" value="झूम आत/बाहेर" />
+    <text id="help.close_prompt_text" value="बंद करण्यास दाबा" />
+    <text id="config.title" value="सेटिंग्ज" />
+    <text id="config.cpu_speed" value="CPU वेग" />
+    <text id="config.subtitle_charset" value="उपशीर्षक एन्कोडिंग" />
+    <text id="config.preferred_subtitle_language" value="उपशीर्षक भाषा" />
+    <text id="config.subtitle_font_size" value="उपशीर्षक आकार" />
+    <text id="config.subtitle_embolden" value="ठळक उपशीर्षक" />
+    <text id="config.subtitle_position" value="उपशीर्षक स्थान" />
+    <text id="config.subtitle_position_top" value="वर" />
+    <text id="config.subtitle_position_bottom" value="खाली" />
+    <text id="config.subtitle_distance" value="उपशीर्षक समास" />
+    <text id="config.filesystem_charset" value="फाइल एन्कोडिंग" />
+    <text id="config.play_mode" value="प्ले मोड" />
+    <text id="config.play_single" value="एक" />
+    <text id="config.play_group" value="फोल्डर" />
+    <text id="config.play_all" value="सर्व" />
+    <text id="config.tv_aspect_ratio" value="TV आस्पेक्ट रेशो" />
+    <text id="config.tv_overscan" value="TV ओव्हरस्कॅन" />
+    <text id="config.video_mode" value="व्हिडिओ आउटपुट" />
+    <text id="config.video_psp_lcd" value="PSP LCD" />
+    <text id="config.video_composite" value="कंपोझिट" />
+    <text id="config.video_component_interlace" value="कंपोनंट इंटरलेस्ड" />
+    <text id="config.video_component_progressive" value="कंपोनंट प्रोग्रेसिव्ह" />
+    <text id="config.auto_cpu_clock" value="ऑटो CPU क्लॉक" />
+    <text id="config.extreme_battery_saver" value="बॅटरी बचत" />
+    <text id="config.optimize_psp_screen" value="PSP स्क्रीनला बसवा" />
+    <text id="config.interface_language" value="इंटरफेस भाषा" />
+    <text id="config.on" value="चालू" />
+    <text id="config.off" value="बंद" />
+    <text id="config.yes" value="होय" />
+    <text id="config.no" value="नाही" />
+    <text id="config.not_used" value="&lt;वापरात नाही&gt;" />
+    <text id="language.auto" value="स्वयंचलित (PSP)" />
+    <text id="language.en" value="इंग्रजी" />
+    <text id="language.zh-CN" value="मँडरिन चिनी" />
+    <text id="language.hi" value="हिंदी" />
+    <text id="language.es" value="स्पॅनिश" />
+    <text id="language.ar" value="प्रमाण अरबी" />
+    <text id="language.fr" value="फ्रेंच" />
+    <text id="language.bn" value="बंगाली" />
+    <text id="language.pt" value="पोर्तुगीज" />
+    <text id="language.id" value="इंडोनेशियन" />
+    <text id="language.ur" value="उर्दू" />
+    <text id="language.ru" value="रशियन" />
+    <text id="language.de" value="जर्मन" />
+    <text id="language.ja" value="जपानी" />
+    <text id="language.pcm" value="नायजेरियन पिजिन" />
+    <text id="language.arz" value="इजिप्शियन अरबी" />
+    <text id="language.mr" value="मराठी" />
+    <text id="language.vi" value="व्हिएतनामी" />
+    <text id="language.te" value="तेलुगू" />
+    <text id="language.it" value="इटालियन" />
+    <text id="language.pl" value="पोलिश" />
+    <text id="language.tr" value="तुर्की" />
+    <text id="language.sv" value="स्वीडिश" />
+    <text id="language.da" value="डॅनिश" />
+    <text id="language.fi" value="फिन्निश" />
+    <text id="language.nl" value="डच" />
+    <text id="language.no" value="नॉर्वेजियन" />
+    <text id="language.el" value="ग्रीक" />
+    <text id="language.he" value="हिब्रू" />
+    <text id="language.ro" value="रोमानियन" />
+    <text id="language.th" value="थाई" />
+    <text id="language.ko" value="कोरियन" />
+    <text id="config.sleep_timer" value="स्लीप टाइमर" />
+    <text id="config.playback_health" value="प्लेबॅक स्थिती" />
+    <text id="config.audio_only" value="फक्त ऑडिओ मोड" />
+    <text id="config.minutes" value="मिनिटे" />
+    <text id="playback.audio_only" value="कॉन्फिग मेनूमध्ये फक्त ऑडिओ मोड चालू आहे" />
+    <text id="health.title" value="प्लेबॅक स्थिती" />
+    <text id="health.metrics" value="CPU %d MHz | मागील डिकोड %u/%u ms" />
+    <text id="health.sync" value="ऑडिओ/व्हिडिओ %d ms | वगळले %u" />
+    <text id="health.paused" value="थांबवले आहे; स्क्वेअरने पुन्हा सुरू करा" />
+    <text id="health.audio_only" value="फक्त ऑडिओ; व्हिडिओ डिकोडर बंद आहे" />
+    <text id="health.waiting" value="ऑडिओ आउटपुटची प्रतीक्षा" />
+    <text id="health.decode_pressure" value="डिकोडला फ्रेम मर्यादेपेक्षा जास्त वेळ" />
+    <text id="health.sync_pressure" value="ऑडिओ आणि व्हिडिओचा ताळमेळ बिघडत आहे" />
+    <text id="health.compatibility" value="H264X रूपांतरणाने गुणवत्ता कमी होऊ शकते" />
+    <text id="health.healthy" value="प्लेबॅक सध्याच्या वेळेच्या मर्यादेत आहे" />
+    <text id="config.controls_type" value="नियंत्रण प्रकार" />
+    <text id="config.controls_international" value="आंतरराष्ट्रीय" />
+    <text id="config.controls_asia" value="आशिया" />
+    <text id="chapter.none" value="अध्याय नाहीत" />
+    <text id="chapter.no_cues" value="अध्यायावर जाणे उपलब्ध नाही: क्यू सूची नाही" />
+    <text id="chapter.first" value="पहिल्या अध्यायावर आहात" />
+    <text id="chapter.last" value="शेवटच्या अध्यायावर आहात" />
+    <text id="chapter.back" value="मागे अध्याय %d / %u वर जा\n%s" />
+    <text id="chapter.forward" value="पुढे अध्याय %d / %u वर जा\n%s" />
+    <text id="chapter.untitled" value="शीर्षक नसलेला अध्याय" />
+    <text id="seek.forward" value="पुढे जा" />
+    <text id="seek.back" value="मागे जा" />
+    <text id="seek.no_cues" value="जाणे उपलब्ध नाही: MKV मध्ये क्यू सूची नाही" />
+    <text id="playback.no_subtitle" value="उपशीर्षक नाही" />
+  </language>
+  <language id="vi" name="Vietnamese" rtl="false" font="DejaVuSans.ttf">
+    <text id="main.file_list_header" value="DS TỆP" />
+    <text id="main.information_header" value="THÔNG TIN" />
+    <text id="main.thumbnail_label" value="ẢNH NHỎ" />
+    <text id="main.thumbnail_unavailable" value="KHÔNG CÓ" />
+    <text id="main.total_time" value="TỔNG GIỜ" />
+    <text id="main.aspect_ratio" value="TỈ LỆ" />
+    <text id="main.frames_per_second" value="KHUNG/GIÂY" />
+    <text id="main.streams" value="LUỒNG" />
+    <text id="main.subtitles" value="PHỤ ĐỀ" />
+    <text id="main.cancel_label" value="CÀI ĐẶT" />
+    <text id="main.help_label" value="GIÚP" />
+    <text id="main.start_label" value="BẮT ĐẦU" />
+    <text id="main.resume_label" value="TIẾP TỤC" />
+    <text id="main.delete_label" value="XÓA" />
+    <text id="help.control_instruction" value="Điều khiển" />
+    <text id="help.luminosity" value="độ sáng +" />
+    <text id="help.forward_backward" value="tới/\nlùi" />
+    <text id="help.pause" value="tạm dừng" />
+    <text id="help.exit" value="thoát" />
+    <text id="help.show_info" value="xem tin" />
+    <text id="help.volume" value="âm lượng" />
+    <text id="help.aspect_ratio" value="tỉ lệ" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="đổi âm thanh" />
+    <text id="help.subtitles_switch" value="phụ đề bật/tắt" />
+    <text id="help.loop_toggle" value="lặp bật/tắt" />
+    <text id="help.fast_forward_rewind" value="tua tới/lùi" />
+    <text id="help.zoom_in_out" value="phóng to/thu nhỏ" />
+    <text id="help.close_prompt_text" value="nhấn để đóng" />
+    <text id="config.title" value="Cài đặt" />
+    <text id="config.cpu_speed" value="Tốc độ CPU" />
+    <text id="config.subtitle_charset" value="Mã hóa phụ đề" />
+    <text id="config.preferred_subtitle_language" value="Ngôn ngữ phụ đề" />
+    <text id="config.subtitle_font_size" value="Cỡ phụ đề" />
+    <text id="config.subtitle_embolden" value="Phụ đề đậm" />
+    <text id="config.subtitle_position" value="Vị trí phụ đề" />
+    <text id="config.subtitle_position_top" value="Trên" />
+    <text id="config.subtitle_position_bottom" value="Dưới" />
+    <text id="config.subtitle_distance" value="Lề phụ đề" />
+    <text id="config.filesystem_charset" value="Mã hóa tệp" />
+    <text id="config.play_mode" value="Chế độ phát" />
+    <text id="config.play_single" value="Một" />
+    <text id="config.play_group" value="Thư mục" />
+    <text id="config.play_all" value="Tất cả" />
+    <text id="config.tv_aspect_ratio" value="Tỷ lệ TV" />
+    <text id="config.tv_overscan" value="Quét dư TV" />
+    <text id="config.video_mode" value="Đầu ra video" />
+    <text id="config.video_psp_lcd" value="LCD PSP" />
+    <text id="config.video_composite" value="Composite" />
+    <text id="config.video_component_interlace" value="Component xen kẽ" />
+    <text id="config.video_component_progressive" value="Component lũy tiến" />
+    <text id="config.auto_cpu_clock" value="Xung CPU tự động" />
+    <text id="config.extreme_battery_saver" value="Tiết kiệm pin" />
+    <text id="config.optimize_psp_screen" value="Vừa màn hình PSP" />
+    <text id="config.interface_language" value="Ngôn ngữ giao diện" />
+    <text id="config.on" value="Bật" />
+    <text id="config.off" value="Tắt" />
+    <text id="config.yes" value="Có" />
+    <text id="config.no" value="Không" />
+    <text id="config.not_used" value="&lt;Không dùng&gt;" />
+    <text id="language.auto" value="Tự động (PSP)" />
+    <text id="language.en" value="Tiếng Anh" />
+    <text id="language.zh-CN" value="Tiếng Trung Quan thoại" />
+    <text id="language.hi" value="Tiếng Hindi" />
+    <text id="language.es" value="Tiếng Tây Ban Nha" />
+    <text id="language.ar" value="Tiếng Ả Rập chuẩn" />
+    <text id="language.fr" value="Tiếng Pháp" />
+    <text id="language.bn" value="Tiếng Bengal" />
+    <text id="language.pt" value="Tiếng Bồ Đào Nha" />
+    <text id="language.id" value="Tiếng Indonesia" />
+    <text id="language.ur" value="Tiếng Urdu" />
+    <text id="language.ru" value="Tiếng Nga" />
+    <text id="language.de" value="Tiếng Đức" />
+    <text id="language.ja" value="Tiếng Nhật" />
+    <text id="language.pcm" value="Pidgin Nigeria" />
+    <text id="language.arz" value="Tiếng Ả Rập Ai Cập" />
+    <text id="language.mr" value="Tiếng Marathi" />
+    <text id="language.vi" value="Tiếng Việt" />
+    <text id="language.te" value="Tiếng Telugu" />
+    <text id="language.it" value="Tiếng Ý" />
+    <text id="language.pl" value="Tiếng Ba Lan" />
+    <text id="language.tr" value="Tiếng Thổ Nhĩ Kỳ" />
+    <text id="language.sv" value="Tiếng Thụy Điển" />
+    <text id="language.da" value="Tiếng Đan Mạch" />
+    <text id="language.fi" value="Tiếng Phần Lan" />
+    <text id="language.nl" value="Tiếng Hà Lan" />
+    <text id="language.no" value="Tiếng Na Uy" />
+    <text id="language.el" value="Tiếng Hy Lạp" />
+    <text id="language.he" value="Tiếng Do Thái" />
+    <text id="language.ro" value="Tiếng Romania" />
+    <text id="language.th" value="Tiếng Thái" />
+    <text id="language.ko" value="Tiếng Hàn" />
+    <text id="config.sleep_timer" value="Hẹn giờ ngủ" />
+    <text id="config.playback_health" value="Tình trạng phát" />
+    <text id="config.audio_only" value="Chế độ chỉ âm thanh" />
+    <text id="config.minutes" value="phút" />
+    <text id="playback.audio_only" value="Chế độ chỉ âm thanh đã bật\ntrong menu cấu hình" />
+    <text id="health.title" value="Tình trạng phát" />
+    <text id="health.metrics" value="CPU %d MHz | Giải mã cuối %u/%u ms" />
+    <text id="health.sync" value="Âm/hình %d ms | Bỏ qua %u" />
+    <text id="health.paused" value="Tạm dừng; nhấn Vuông để tiếp tục" />
+    <text id="health.audio_only" value="Chỉ âm thanh; bộ giải mã video đã tắt" />
+    <text id="health.waiting" value="Đang chờ đầu ra âm thanh" />
+    <text id="health.decode_pressure" value="Giải mã vượt thời gian cho mỗi khung hình" />
+    <text id="health.sync_pressure" value="Âm thanh và hình ảnh đang lệch nhau" />
+    <text id="health.compatibility" value="Chuyển đổi H264X có thể giảm độ trung thực" />
+    <text id="health.healthy" value="Phát trong giới hạn thời gian hiện tại" />
+    <text id="config.controls_type" value="Kiểu điều khiển" />
+    <text id="config.controls_international" value="Quốc tế" />
+    <text id="config.controls_asia" value="Châu Á" />
+    <text id="chapter.none" value="Không có chương" />
+    <text id="chapter.no_cues" value="Không thể chuyển chương: không có chỉ mục cue" />
+    <text id="chapter.first" value="Đã ở chương đầu" />
+    <text id="chapter.last" value="Đã ở chương cuối" />
+    <text id="chapter.back" value="Lùi đến chương %d trên %u\n%s" />
+    <text id="chapter.forward" value="Tiến đến chương %d trên %u\n%s" />
+    <text id="chapter.untitled" value="Chương không có tên" />
+    <text id="seek.forward" value="Tiến" />
+    <text id="seek.back" value="Lùi" />
+    <text id="seek.no_cues" value="Không thể tua: MKV không có chỉ mục cue" />
+    <text id="playback.no_subtitle" value="Không có phụ đề" />
+  </language>
+  <language id="te" name="Telugu" rtl="false" font="NotoSansTelugu-Regular.ttf">
+    <text id="main.file_list_header" value="ఫైల్ జాబితా" />
+    <text id="main.information_header" value="సమాచారం" />
+    <text id="main.thumbnail_label" value="చిన్న చిత్రం" />
+    <text id="main.thumbnail_unavailable" value="అందుబాటులో లేదు" />
+    <text id="main.total_time" value="మొత్తం సమయం" />
+    <text id="main.aspect_ratio" value="తెర నిష్పత్తి" />
+    <text id="main.frames_per_second" value="ఫ్రేమ్/సె" />
+    <text id="main.streams" value="ట్రాక్‌లు" />
+    <text id="main.subtitles" value="ఉపశీర్షికలు" />
+    <text id="main.cancel_label" value="సెట్టింగ్" />
+    <text id="main.help_label" value="సహాయం" />
+    <text id="main.start_label" value="ప్రారంభం" />
+    <text id="main.resume_label" value="కొనసాగించు" />
+    <text id="main.delete_label" value="తొలగించు" />
+    <text id="help.control_instruction" value="నియంత్రణ" />
+    <text id="help.luminosity" value="ప్రకాశం +" />
+    <text id="help.forward_backward" value="ముందుకు/\nవెనక్కు" />
+    <text id="help.pause" value="విరామం" />
+    <text id="help.exit" value="నిష్క్రమణ" />
+    <text id="help.show_info" value="సమాచారం" />
+    <text id="help.volume" value="శబ్దం" />
+    <text id="help.aspect_ratio" value="తెర నిష్పత్తి" />
+    <text id="help.aspect_ratio_values" value="4:3/16:9/2.35:1" />
+    <text id="help.audio_stream_switch" value="ఆడియో మార్చు" />
+    <text id="help.subtitles_switch" value="ఉపశీర్షిక ఆన్/ఆఫ్" />
+    <text id="help.loop_toggle" value="లూప్ ఆన్/ఆఫ్" />
+    <text id="help.fast_forward_rewind" value="వేగంగా ముందుకు/వెనక్కు" />
+    <text id="help.zoom_in_out" value="జూమ్ ఇన్/అవుట్" />
+    <text id="help.close_prompt_text" value="మూసేందుకు నొక్కండి" />
+    <text id="config.title" value="సెట్టింగులు" />
+    <text id="config.cpu_speed" value="CPU వేగం" />
+    <text id="config.subtitle_charset" value="ఉపశీర్షిక ఎన్‌కోడింగ్" />
+    <text id="config.preferred_subtitle_language" value="ఉపశీర్షిక భాష" />
+    <text id="config.subtitle_font_size" value="ఉపశీర్షిక పరిమాణం" />
+    <text id="config.subtitle_embolden" value="బోల్డ్ ఉపశీర్షికలు" />
+    <text id="config.subtitle_position" value="ఉపశీర్షిక స్థానం" />
+    <text id="config.subtitle_position_top" value="పై" />
+    <text id="config.subtitle_position_bottom" value="క్రింద" />
+    <text id="config.subtitle_distance" value="ఉపశీర్షిక మార్జిన్" />
+    <text id="config.filesystem_charset" value="ఫైల్ ఎన్‌కోడింగ్" />
+    <text id="config.play_mode" value="ప్లే మోడ్" />
+    <text id="config.play_single" value="ఒక్కటి" />
+    <text id="config.play_group" value="ఫోల్డర్" />
+    <text id="config.play_all" value="అన్నీ" />
+    <text id="config.tv_aspect_ratio" value="TV దృశ్య నిష్పత్తి" />
+    <text id="config.tv_overscan" value="TV ఓవర్‌స్కాన్" />
+    <text id="config.video_mode" value="వీడియో అవుట్‌పుట్" />
+    <text id="config.video_psp_lcd" value="PSP LCD" />
+    <text id="config.video_composite" value="కాంపోజిట్" />
+    <text id="config.video_component_interlace" value="కాంపోనెంట్ ఇంటర్‌లేస్డ్" />
+    <text id="config.video_component_progressive" value="కాంపోనెంట్ ప్రోగ్రెసివ్" />
+    <text id="config.auto_cpu_clock" value="ఆటో CPU క్లాక్" />
+    <text id="config.extreme_battery_saver" value="బ్యాటరీ సేవర్" />
+    <text id="config.optimize_psp_screen" value="PSP తెరకు సరిపెట్టు" />
+    <text id="config.interface_language" value="ఇంటర్‌ఫేస్ భాష" />
+    <text id="config.on" value="ఆన్" />
+    <text id="config.off" value="ఆఫ్" />
+    <text id="config.yes" value="అవును" />
+    <text id="config.no" value="కాదు" />
+    <text id="config.not_used" value="&lt;వాడలేదు&gt;" />
+    <text id="language.auto" value="స్వయం (PSP)" />
+    <text id="language.en" value="ఆంగ్లం" />
+    <text id="language.zh-CN" value="మాండరిన్ చైనీస్" />
+    <text id="language.hi" value="హిందీ" />
+    <text id="language.es" value="స్పానిష్" />
+    <text id="language.ar" value="ప్రామాణిక అరబిక్" />
+    <text id="language.fr" value="ఫ్రెంచ్" />
+    <text id="language.bn" value="బెంగాలీ" />
+    <text id="language.pt" value="పోర్చుగీస్" />
+    <text id="language.id" value="ఇండోనేషియన్" />
+    <text id="language.ur" value="ఉర్దూ" />
+    <text id="language.ru" value="రష్యన్" />
+    <text id="language.de" value="జర్మన్" />
+    <text id="language.ja" value="జపనీస్" />
+    <text id="language.pcm" value="నైజీరియన్ పిడ్జిన్" />
+    <text id="language.arz" value="ఈజిప్షియన్ అరబిక్" />
+    <text id="language.mr" value="మరాఠీ" />
+    <text id="language.vi" value="వియత్నామీస్" />
+    <text id="language.te" value="తెలుగు" />
+    <text id="language.it" value="ఇటాలియన్" />
+    <text id="language.pl" value="పోలిష్" />
+    <text id="language.tr" value="టర్కిష్" />
+    <text id="language.sv" value="స్వీడిష్" />
+    <text id="language.da" value="డానిష్" />
+    <text id="language.fi" value="ఫిన్నిష్" />
+    <text id="language.nl" value="డచ్" />
+    <text id="language.no" value="నార్వేజియన్" />
+    <text id="language.el" value="గ్రీక్" />
+    <text id="language.he" value="హీబ్రూ" />
+    <text id="language.ro" value="రొమేనియన్" />
+    <text id="language.th" value="థాయ్" />
+    <text id="language.ko" value="కొరియన్" />
+    <text id="config.sleep_timer" value="స్లీప్ టైమర్" />
+    <text id="config.playback_health" value="ప్లేబ్యాక్ స్థితి" />
+    <text id="config.audio_only" value="ఆడియో మాత్రమే మోడ్" />
+    <text id="config.minutes" value="నిమిషాలు" />
+    <text id="playback.audio_only" value="కాన్ఫిగ్ మెనూలో ఆడియో మాత్రమే మోడ్ ప్రారంభమైంది" />
+    <text id="health.title" value="ప్లేబ్యాక్ స్థితి" />
+    <text id="health.metrics" value="CPU %d MHz | చివరి డికోడ్ %u/%u ms" />
+    <text id="health.sync" value="ఆడియో/వీడియో %d ms | దాటినవి %u" />
+    <text id="health.paused" value="విరామం; స్క్వేర్‌తో మళ్లీ ప్రారంభించండి" />
+    <text id="health.audio_only" value="ఆడియో మాత్రమే; వీడియో డికోడర్ ఆఫ్‌లో ఉంది" />
+    <text id="health.waiting" value="ఆడియో అవుట్‌పుట్ కోసం వేచి ఉంది" />
+    <text id="health.decode_pressure" value="డికోడ్‌కు ఫ్రేమ్ పరిమితి కంటే ఎక్కువ సమయం" />
+    <text id="health.sync_pressure" value="ఆడియో, వీడియో సమకాలీకరణ కోల్పోతున్నాయి" />
+    <text id="health.compatibility" value="H264X మార్పిడి నాణ్యతను తగ్గించవచ్చు" />
+    <text id="health.healthy" value="ప్లేబ్యాక్ ప్రస్తుత సమయ పరిమితుల్లో ఉంది" />
+    <text id="config.controls_type" value="నియంత్రణ రకం" />
+    <text id="config.controls_international" value="అంతర్జాతీయ" />
+    <text id="config.controls_asia" value="ఆసియా" />
+    <text id="chapter.none" value="అధ్యాయాలు లేవు" />
+    <text id="chapter.no_cues" value="అధ్యాయానికి వెళ్లలేరు: క్యూ సూచిక లేదు" />
+    <text id="chapter.first" value="మొదటి అధ్యాయంలో ఉన్నారు" />
+    <text id="chapter.last" value="చివరి అధ్యాయంలో ఉన్నారు" />
+    <text id="chapter.back" value="వెనుకకు అధ్యాయం %d / %u కి వెళ్లండి\n%s" />
+    <text id="chapter.forward" value="ముందుకు అధ్యాయం %d / %u కి వెళ్లండి\n%s" />
+    <text id="chapter.untitled" value="పేరు లేని అధ్యాయం" />
+    <text id="seek.forward" value="ముందుకు వెళ్లండి" />
+    <text id="seek.back" value="వెనుకకు వెళ్లండి" />
+    <text id="seek.no_cues" value="వెళ్లలేరు: MKV లో క్యూ సూచిక లేదు" />
+    <text id="playback.no_subtitle" value="ఉపశీర్షిక లేదు" />
+  </language>
+</ui_translations>

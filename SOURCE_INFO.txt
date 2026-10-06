@@ -1,0 +1,28 @@
+PPU R1 — source and distribution record
+
+Application distribution license: GNU General Public License version 3.
+COPYING contains the complete GPLv3 text. Original third-party and per-file
+license notices remain applicable.
+
+PPU-R1-project-source.zip accompanies the PSP install folder. It contains
+the latest maintained project source: the user-supplied PPU-1.0RC.zip with
+the license-only merge and GPLv3 distribution documentation applied.
+
+Included project source covers the player, local MP4/MKV/buffer libraries,
+source-built bridge, MiniConv, i18n, selected libsamplerate 0.2.2 sources,
+dr_flac 0.13.4, and project build/font/staging scripts. The restored legacy
+PRXs are also retained; their implementation source was not supplied.
+
+The EBOOT and PRXs in the install folder are the user's supplied PPU-R1.zip
+build products. They have not been rebuilt, executed or modified in this
+packaging session. A binary-to-source build match was not independently
+established.
+
+Sources, exact versions, patches and build configurations for the external
+PSP-target library archives used by that build were not included in the
+inputs. The accompanying project-source archive is not represented as a
+complete corresponding-source bundle for all linked external components.
+
+The project GPLv3 selection governs the player distribution; it does not
+create rights for separate firmware, fonts, artwork or CFW components.
+The package's notices identify their recorded ownership and license scope.

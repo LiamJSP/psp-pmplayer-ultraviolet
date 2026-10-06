@@ -35,7 +35,7 @@ Developers: Building this project from source has been tested on OpenSUSE Tumble
 
 ## Install and play
 
-TL;DR Download the latest release zip [here](https://github.com/LiamJSP/psp-pmplayer-ultraviolet/releases/tag/Stable), extract it, copy the folder extracted to your /PSP/GAME/ folder on the PSP. Safely remove / eject before cable disconnect is always important with the PSP, never just pull the cable.
+TL;DR Download the latest release zip, extract it, copy the folder extracted to your /PSP/GAME/ folder on the PSP. Safely remove / eject before cable disconnect is always important with the PSP, never just pull the cable.
 
 **Instructions for building from source instead:**
 The source ZIP opens directly to `Makefile`, `README.md`, `ppu/`, the local
@@ -427,6 +427,9 @@ large-file handling has completed; later phases are still in progress.
 - **Raphael (2006)** — PMP Mod bitmap-font and subtitle parsing, MicroDVD /
   SubRip portions.
 - **Lee Thomason** — TinyXML (zlib-style licence).
+- **Free Software Foundation / GNU libiconv contributors** — MiniConv conversion
+  routines and character tables (GNU Library GPL v2 or later); original notices
+  and derivation details are in `licenses/code/MiniConv-NOTICES.txt`.
 - **Boost contributors** — selected Core, SmartPtr, Array, StaticAssert and
   TypeTraits headers (Boost Software License 1.0; original notices retained).
 - **Erik de Castro Lopo and libsamplerate contributors** — sample-rate conversion
@@ -467,3 +470,10 @@ Component licences attach to each individual component; this README does not
 relicense them. Original source notices remain intact in the code. For
 GPL/LGPL binaries, also satisfy the applicable corresponding-source and
 relinking requirements for the exact linked libraries and modifications.
+
+PPU is distributed under **GNU GPL version 3**. The complete license is in
+[COPYING](COPYING), with scope described in [LICENSE](LICENSE).
+Original component and per-file licenses remain applicable; consolidated
+attribution is in `THIRD_PARTY_NOTICES.txt` and `licenses/`.
+[SOURCE_INFO.txt](SOURCE_INFO.txt) records the project source distribution.
+Legacy PRXs and original runtime assets are retained.

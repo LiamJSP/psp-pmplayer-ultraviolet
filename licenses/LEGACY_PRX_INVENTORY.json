@@ -1,0 +1,30 @@
+[
+  {
+    "path": "ppu/extra/dvemgr.prx",
+    "sha256": "888a620dad2e79fd6edbb7f10b3c62fd3ef64c127168a415657dcc8fdb9faf06",
+    "bytes": 2842,
+    "included": true,
+    "license_evidence": "No separate redistribution grant in the supplied records; retained binary ownership is separate from the player GPL."
+  },
+  {
+    "path": "ppu/extra/mpeg_vsh330.prx",
+    "sha256": "0e0d9d5d69e2fd7760cf161dd05728da01b94084d590f1aa4307a1bbbd17b109",
+    "bytes": 51172,
+    "included": true,
+    "license_evidence": "No separate redistribution grant in the supplied records; retained binary ownership is separate from the player GPL."
+  },
+  {
+    "path": "ppu/extra/mpeg_vsh350.prx",
+    "sha256": "9b4acd79c27d4994b8929b238d4dd2817af3e83d18caca610a37f73e85e88b1b",
+    "bytes": 49816,
+    "included": true,
+    "license_evidence": "No separate redistribution grant in the supplied records; retained binary ownership is separate from the player GPL."
+  },
+  {
+    "path": "ppu/extra/mpeg_vsh370.prx",
+    "sha256": "73af923eeb26581b4e2ebc6edbc583a0b1a252fcb28f5ac55788ca2be72e60d9",
+    "bytes": 45386,
+    "included": true,
+    "license_evidence": "No separate redistribution grant in the supplied records; retained binary ownership is separate from the player GPL."
+  }
+]

@@ -1,0 +1,126 @@
+param (
+    [string]$SrcDir,
+    [string]$OutDir
+)
+
+$ErrorActionPreference = 'Stop'
+Set-StrictMode -Version Latest
+
+$currentDir = if ($PSScriptRoot) { $PSScriptRoot } else {$PWD.Path }
+
+# Apply defaults matching the bash fallback logic
+if ([string]::IsNullOrEmpty($SrcDir)) {
+    $SrcDir = [System.IO.Path]::GetFullPath((Join-Path$currentDir "..\extra\fonts"))
+}
+if ([string]::IsNullOrEmpty($OutDir)) {
+    $OutDir = [System.IO.Path]::GetFullPath((Join-Path$currentDir "..\extra\fonts"))
+}
+
+if (-not (Test-Path -Path $OutDir)) {
+    New-Item -ItemType Directory -Path $OutDir -Force | Out-Null
+}
+
+function Assert-FontExists {
+    param([string]$FontName)$fontPath = Join-Path $SrcDir$FontName
+    if (-not (Test-Path -Path $fontPath -PathType Leaf)) {
+        [Console]::Error.WriteLine("missing font: $fontPath")
+        exit 1
+    }
+}
+
+$requiredFonts = @(
+    "DejaVuSans.ttf",
+    "NotoSansArabic-Regular.ttf",
+    "NotoSansHebrew-Regular.ttf",
+    "NotoSansDevanagari-Regular.ttf",
+    "NotoSansBengali-Regular.ttf",
+    "NotoSansThai-Regular.ttf",
+    "NotoNastaliqUrdu-Regular.ttf",
+    "NotoSansSC-Regular.otf",
+    "NotoSansJP-Regular.otf",
+    "NotoSansKR-Regular.otf"
+)
+
+foreach ($font in$requiredFonts) {
+    Assert-FontExists -FontName $font
+}
+
+# Ensure pyftsubset (from fonttools) is available
+if (-not (Get-Command "pyftsubset" -ErrorAction SilentlyContinue)) {
+    [Console]::Error.WriteLine("Required utility 'pyftsubset' not found in PATH.")
+    exit 1
+}
+
+# Helper function to avoid repeating the huge pyftsubset argument list
+function Invoke-PyFtSubset {
+    param(
+        [string]$FontName,
+        [string]$OutName,
+        [string]$Unicodes
+    )
+    $inFile = Join-Path$SrcDir $FontName$outFile = Join-Path $OutDir$OutName
+
+    # Building an array ensures PowerShell correctly passes arguments with equals signs to external executables
+    $argsToPass = @($inFile,
+        "--output-file=$outFile",
+        "--unicodes=$Unicodes",
+        "--layout-features=*",
+        "--glyph-names",
+        "--symbol-cmap",
+        "--legacy-cmap",
+        "--notdef-glyph",
+        "--notdef-outline",
+        "--recommended-glyphs",
+        "--name-IDs=*",
+        "--name-legacy",
+        "--name-languages=*"
+    )
+
+    & pyftsubset $argsToPass
+    if ($LASTEXITCODE -ne 0) {
+        [Console]::Error.WriteLine("pyftsubset failed for $FontName")
+        exit 1
+    }
+}
+
+# Small, broad fallback: Greek/Cyrillic/Hebrew/basic Arabic/presentation forms.
+# This is intentionally not full Latin; the player's normal UI font handles Latin.
+Invoke-PyFtSubset "DejaVuSans.ttf" "ppa-fallback-core.ttf" "U+0370-03FF,U+0400-052F,U+0590-05FF,U+0600-06FF,U+0750-077F,U+08A0-08FF,U+200C-200F,U+202A-202E,U+2066-2069,U+FB1D-FB4F,U+FB50-FDFF,U+FE70-FEFF"
+
+# Arabic OpenType shaping fallback.
+Invoke-PyFtSubset "NotoSansArabic-Regular.ttf" "ppa-fallback-arabic.ttf" "U+0600-06FF,U+0750-077F,U+08A0-08FF,U+200C-200F,U+202A-202E,U+2066-2069,U+FB50-FDFF,U+FE70-FEFF"
+
+# Hebrew.
+Invoke-PyFtSubset "NotoSansHebrew-Regular.ttf" "ppa-fallback-hebrew.ttf" "U+0590-05FF,U+FB1D-FB4F,U+200E-200F,U+202A-202E,U+2066-2069"
+
+# Devanagari / Hindi.
+Invoke-PyFtSubset "NotoSansDevanagari-Regular.ttf" "ppa-fallback-devanagari.ttf" "U+0900-097F,U+1CD0-1CFF,U+A8E0-A8FF,U+200C-200D"
+
+# Bengali.
+Invoke-PyFtSubset "NotoSansBengali-Regular.ttf" "ppa-fallback-bengali.ttf" "U+0980-09FF,U+200C-200D"
+
+# Thai.
+Invoke-PyFtSubset "NotoSansThai-Regular.ttf" "ppa-fallback-thai.ttf" "U+0E00-0E7F"
+
+# Urdu/Nastaliq. Keep Arabic ranges and OpenType features.
+Invoke-PyFtSubset "NotoNastaliqUrdu-Regular.ttf" "ppa-fallback-urdu.ttf" "U+0600-06FF,U+0750-077F,U+08A0-08FF,U+200C-200F,U+202A-202E,U+2066-2069,U+FB50-FDFF,U+FE70-FEFF"
+
+# CJK: keep these as full-ish streamed fallback files first.
+# Do not memory-load these on PSP.
+Copy-Item -Path (Join-Path $SrcDir "NotoSansSC-Regular.otf") -Destination (Join-Path $OutDir "ppa-fallback-sc.otf") -Force
+Copy-Item -Path (Join-Path $SrcDir "NotoSansJP-Regular.otf") -Destination (Join-Path $OutDir "ppa-fallback-jp.otf") -Force
+Copy-Item -Path (Join-Path $SrcDir "NotoSansKR-Regular.otf") -Destination (Join-Path $OutDir "ppa-fallback-kr.otf") -Force
+
+# Retain original legal metadata and give modified subsets independent names.
+& python3 (Join-Path $currentDir "name_font_subsets.py") $SrcDir $OutDir
+if ($LASTEXITCODE -ne 0) {
+    [Console]::Error.WriteLine("Font subset notice/naming update failed")
+    exit 1
+}
+
+# PowerShell equivalent of `ls -lh`
+Get-ChildItem -Path $OutDir | Select-Object Mode, LastWriteTime, @{Name="Size";Expression={
+    if ($_.Length -ge 1MB) { "{0:N2} MB" -f ($_.Length / 1MB) }
+    elseif ($_.Length -ge 1KB) { "{0:N2} KB" -f ($_.Length / 1KB) }
+    else { "$($_.Length) B" }
+}}, Name | Format-Table -AutoSize

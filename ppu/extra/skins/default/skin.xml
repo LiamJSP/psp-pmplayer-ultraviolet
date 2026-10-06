@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin>
+	<background image="skin.png" />
+	<font_color color="#FFFFFF" />
+	<ui enabled="true" translations="ui/ui_strings.xml" main_menu_clips="main_menu_clips.json" help_screen_clips="help_screen_clips.json" main_menu_rect="target_rect_480x272" help_screen_rect="target_rect_480x272" color="#D7E3E5" main_font_size="10" main_min_font_size="5" help_font_size="14" help_min_font_size="5" text_offset_x="6" text_offset_y="6" main_text_offset_y="5" help_text_offset_y="6" button_text_offset_y="2" />
+	<files_list left="8" top="46" width="306" height="197" highlight_color="#FFFFFF" highlight_background_color="#000000" highlight_alpha_enable="true" highlight_alpha_value="#40" />
+	<datetime_pannel>
+		<date_label visible="true" left="403" top="5" width="36" height="16" />
+		<time_label visible="true" left="442" top="5" width="36" height="16" />
+	</datetime_pannel>
+	<battery_pannel>
+		<battery_status_label visible="true" left="323" top="5" width="30" height="13" />
+		<battery_status_image percent10="10.png" percent33="33.png" percent66="66.png" percent100="100.png" charging="charging.png" />
+		<battery_life_label visible="true" left="354" top="5" width="24" height="16" />
+	</battery_pannel>
+	<film_preview_pannel>
+		<preview_image visible="true" left="326" top="71" width="144" height="80" default_image="preview.png" />
+	</film_preview_pannel>
+	<film_information_pannel>
+		<aspect_ratio_label visible="true" left="385" top="190" width="60" height="16" />
+		<fps_label visible="true" left="385" top="209" width="60" height="16" />
+		<total_time_label visible="true" left="385" top="171" width="60" height="16" />
+		<audio_streams_label visible="true" left="385" top="228" width="60" height="16" />
+		<subtitles_label visible="true" left="385" top="247" width="60" height="16" />
+	</film_information_pannel>
+	<config_dialog>
+		<dialog alpha="#D0" highlight_alpha="#D0" background_color="#000000" background_highlight_color="#000000" label_color="#FFFFFF" label_highlight_color="#00FFFF" value_color="#00FF00" value_edit_color="#0000FF" />
+	</config_dialog>
+	<extra pad_help_image="pad.png"   loading_image="loading.png" />
+</skin>

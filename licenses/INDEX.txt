@@ -1,0 +1,39 @@
+PPU R1 — license index
+
+The combined player is distributed under GNU GPL version 3.
+The full project license is ../COPYING; scope is described in ../LICENSE.
+Consolidated component attribution is ../THIRD_PARTY_NOTICES.txt.
+
+Full license texts and original notices:
+  texts/GPL-3.txt              GNU GPL version 3, selected player license.
+  texts/GPL-2.txt              Original GPL-2.0-or-later source's version-2 text.
+  texts/LGPL-2.0.txt           GNU libiconv-derived MiniConv portions.
+  texts/LGPL-2.1.txt           FriBidi upstream library terms.
+  texts/LGPL-3.txt             libyal upstream library terms.
+  texts/Apache-2.0.txt         Historical Apache-licensed font terms.
+  fonts/OFL-1.1.txt            OFL font license.
+  fonts/DejaVu-LICENSE.txt     Bitstream/Arev/DejaVu font notices and terms.
+  fonts/FONT-NOTICES.txt       Original bundled font metadata and identities.
+  code/TinyXML-LICENSE.txt     Original TinyXML notice.
+  code/TinyXML-TinyStr-LICENSE.txt  Original TinyStr notice.
+  code/MiniConv-NOTICES.txt    Original GNU notices and source correspondence.
+  code/PSPSDK-LICENSE.txt      PSPSDK core reference.
+  code/Boost-LICENSE_1_0.txt   Boost Software License 1.0.
+  libsamplerate-COPYING.txt    Exact libsamplerate 0.2.2 BSD-2-Clause text.
+  dr_libs-LICENSE.txt          Original MIT-0 / Unlicense alternatives.
+
+Upstream reference and selected FreeType texts:
+  reference/FreeType-FTL.txt   FTL, selected FreeType distribution option.
+  reference/FreeType-LICENSE.txt  Dual-license/subcomponent declaration.
+  reference/HarfBuzz-COPYING.txt
+  reference/Opus-1.6.1-COPYING.txt
+  reference/zlib-1.3.1-LICENSE.txt
+  reference/libpng-LICENSE.txt
+  reference/bzip2-1.0.8-LICENSE.txt
+  reference/GCC-COPYING.RUNTIME.txt
+  reference/PROVENANCE.txt     Retrieved URLs, hashes and scope.
+
+The versioned external-library reference texts are identified as references:
+exact installed PSP archive identities were not provided. Separate components
+retain their own licenses. SOURCE_INFO.txt records the project source supplied
+with this distribution and its coverage.

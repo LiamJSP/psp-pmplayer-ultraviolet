@@ -1,0 +1,296 @@
+Font notices extracted unchanged from the bundled files, 2026-09-29.
+Names/copyright/license text are evidence about these exact files.
+Missing notices are not permission grants. See docs/LICENSE_AUDIT.md.
+Full Apache/OFL/DejaVu texts accompany these notices.
+
+DejaVuSans.ttf
+SHA-256: 08ca98e69d9d8fa1065584b4f9ab7d49b6205abea6572b90e171b254845bb990
+Face 0
+Copyright: Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved.
+Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved.
+DejaVu changes are in public domain
+
+Family: DejaVu Sans
+Version: Version 2.34
+Manufacturer: DejaVu fonts team
+Designer: (not provided)
+Vendor URL: http://dejavu.sourceforge.net
+Designer URL: (not provided)
+License: Fonts are (c) Bitstream (see below). DejaVu changes are in public domain. Glyphs imported from Arev fonts are (c) Tavmjung Bah (see below)
+
+Bitstream Vera Fonts Copyright
+------------------------------
+
+Copyright (c) 2003 by Bitstream, Inc. All Rights Reserved. Bitstream Vera is
+a trademark of Bitstream, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the fonts accompanying this license ("Fonts") and associated
+documentation files (the "Font Software"), to reproduce and distribute the
+Font Software, including without limitation the rights to use, copy, merge,
+publish, distribute, and/or sell copies of the Font Software, and to permit
+persons to whom the Font Software is furnished to do so, subject to the
+following conditions:
+
+The above copyright and trademark notices and this permission notice shall
+be included in all copies of one or more of the Font Software typefaces.
+
+The Font Software may be modified, altered, or added to, and in particular
+the designs of glyphs or characters in the Fonts may be modified and
+additional glyphs or characters may be added to the Fonts, only if the fonts
+are renamed to names not containing either the words "Bitstream" or the word
+"Vera".
+
+This License becomes null and void to the extent applicable to Fonts or Font
+Software that has been modified and is distributed under the "Bitstream
+Vera" names.
+
+The Font Software may be sold as part of a larger software package but no
+copy of one or more of the Font Software typefaces may be sold by itself.
+
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT,
+TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL BITSTREAM OR THE GNOME
+FOUNDATION BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, INCLUDING
+ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER DEALINGS IN THE
+FONT SOFTWARE.
+
+Except as contained in this notice, the names of Gnome, the Gnome
+Foundation, and Bitstream Inc., shall not be used in advertising or
+otherwise to promote the sale, use or other dealings in this Font Software
+without prior written authorization from the Gnome Foundation or Bitstream
+Inc., respectively. For further information, contact: fonts at gnome dot
+org. 
+
+Arev Fonts Copyright
+------------------------------
+
+Copyright (c) 2006 by Tavmjong Bah. All Rights Reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the fonts accompanying this license ("Fonts") and
+associated documentation files (the "Font Software"), to reproduce
+and distribute the modifications to the Bitstream Vera Font Software,
+including without limitation the rights to use, copy, merge, publish,
+distribute, and/or sell copies of the Font Software, and to permit
+persons to whom the Font Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright and trademark notices and this permission notice
+shall be included in all copies of one or more of the Font Software
+typefaces.
+
+The Font Software may be modified, altered, or added to, and in
+particular the designs of glyphs or characters in the Fonts may be
+modified and additional glyphs or characters may be added to the
+Fonts, only if the fonts are renamed to names not containing either
+the words "Tavmjong Bah" or the word "Arev".
+
+This License becomes null and void to the extent applicable to Fonts
+or Font Software that has been modified and is distributed under the 
+"Tavmjong Bah Arev" names.
+
+The Font Software may be sold as part of a larger software package but
+no copy of one or more of the Font Software typefaces may be sold by
+itself.
+
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL
+TAVMJONG BAH BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+
+Except as contained in this notice, the name of Tavmjong Bah shall not
+be used in advertising or otherwise to promote the sale, use or other
+dealings in this Font Software without prior written authorization
+from Tavmjong Bah. For further information, contact: tavmjong @ free
+. fr.
+License URL: http://dejavu.sourceforge.net/wiki/index.php/License
+
+NotoNastaliqUrdu-Regular.ttf
+SHA-256: f248eaac5fa05ba846e49a17d662b9560efefe5ea32969bf2944623427481188
+Face 0
+Copyright: Copyright 2017-2022 Google Inc. All Rights Reserved.
+Family: Noto Nastaliq Urdu
+Version: Version 2.001; ttfautohint (v1.8) -l 8 -r 50 -G 200 -x 14 -D arab -f none -a qsq -X ""
+Manufacturer: Monotype Imaging Inc., Simon Cozens
+Designer: Monotype Design Team
+Vendor URL: http://www.google.com/get/noto/
+Designer URL: http://www.monotype.com/studio
+License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.
+License URL: http://scripts.sil.org/OFL
+
+NotoSansArabic-Regular.ttf
+SHA-256: 15c6851bcd3aac9adf5256c407dd874fbd344cd529ef9ecf610f855fac9f484b
+Face 0
+Copyright: Copyright 2015 Google Inc. All Rights Reserved.
+Family: Noto Sans Arabic
+Version: Version 2.000;GOOG;noto-source:20170915:90ef993387c0; ttfautohint (v1.7)
+Manufacturer: Monotype Imaging Inc.
+Designer: Nadine Chahine - Monotype Design Team
+Vendor URL: http://www.google.com/get/noto/
+Designer URL: http://www.monotype.com/studio
+License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.
+License URL: http://scripts.sil.org/OFL
+
+NotoSansBengali-Regular.ttf
+SHA-256: 6300c5370cd688b0641343de4c786de6d412bb6c578d129dae75e93a0322dcab
+Face 0
+Copyright: Copyright 2017-2022 Google Inc. All Rights Reserved.
+Family: Noto Sans Bengali
+Version: Version 2.002; ttfautohint (v1.8) -l 8 -r 50 -G 200 -x 14 -D beng -f none -a qsq -X ""
+Manufacturer: Monotype Imaging Inc.
+Designer: Jelle Bosma - Monotype Design Team
+Vendor URL: http://www.google.com/get/noto/
+Designer URL: http://www.monotype.com/studio
+License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.
+License URL: http://scripts.sil.org/OFL
+
+NotoSansDevanagari-Regular.ttf
+SHA-256: b1dffa1fccb30dc45287111834a9db15c652b05d4d67201abe73e67717017590
+Face 0
+Copyright: Copyright 2012 Google Inc. All Rights Reserved.
+Family: Noto Sans Devanagari
+Version: Version 1.06 uh
+Manufacturer: Monotype Imaging Inc.
+Designer: Monotype Design Team
+Vendor URL: http://www.google.com/get/noto/
+Designer URL: http://www.monotype.com/studio
+License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.
+License URL: http://scripts.sil.org/OFL
+
+NotoSansHebrew-Regular.ttf
+SHA-256: f9ced0325880ab81fdaca60595c96dbd99cf9ef6fad67540ce14d68993c7493c
+Face 0
+Copyright: Copyright 2012 Google Inc. All Rights Reserved.
+Family: Noto Sans Hebrew
+Version: Version 1.04 uh
+Manufacturer: Monotype Imaging Inc.
+Designer: Monotype Design Team
+Vendor URL: http://www.google.com/get/noto/
+Designer URL: http://www.monotype.com/studio
+License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.
+License URL: http://scripts.sil.org/OFL
+
+NotoSansJP-Regular.otf
+SHA-256: dcc75e20d91d09c793fa5a97c9c7678e8b580d0fc255314cbc45c08b075f46f1
+Face 0
+Copyright: Copyright © 2014 Adobe Systems Incorporated. All Rights Reserved.
+Family: Noto Sans Japanese Regular
+Version: Version 1.000;PS 1;hotconv 1.0.78;makeotf.lib2.5.61930
+Manufacturer: Adobe Systems Incorporated
+Designer: Ryoko NISHIZUKA (kana & ideographs); Paul D. Hunt (Latin, Greek & Cyrillic); Wenlong ZHANG (bopomofo); Sandoll Communication, Soo-young JANG & Joo-yeon KANG (hangul elements, letters & syllables)
+Ryoko NISHIZUKA 西塚涼子 (kana & ideographs); Paul D. Hunt (Latin, Greek & Cyrillic); Wenlong ZHANG 张文龙 (bopomofo); Sandoll Communication 산돌커뮤니케이션, Soo-young JANG 장수영 & Joo-yeon KANG 강주연 (hangul elements, letters & syllables)
+Vendor URL: http://www.adobe.com/type/
+Designer URL: (not provided)
+License: Copyright © 2014 Adobe Systems Incorporated
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.html
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+License URL: http://www.apache.org/licenses/LICENSE-2.0.html
+
+NotoSansKR-Regular.otf
+SHA-256: b4f0a9efd7075e28bd3f5bbe00422e32a301edab29d77afddb6155c8f520e8b1
+Face 0
+Copyright: Copyright © 2014, 2015 Adobe Systems Incorporated (http://www.adobe.com/).
+Family: Noto Sans KR
+Version: Version 1.004;PS 1.004;hotconv 1.0.82;makeotf.lib2.5.63406
+Manufacturer: Adobe Systems Incorporated
+Designer: Ryoko NISHIZUKA  (kana & ideographs); Paul D. Hunt (Latin, Greek & Cyrillic); Wenlong ZHANG  (bopomofo); Sandoll Communication , Soo-young JANG  & Joo-yeon KANG  (hangul elements, letters & syllables)
+Ryoko NISHIZUKA 西塚涼子 (kana & ideographs); Paul D. Hunt (Latin, Greek & Cyrillic); Wenlong ZHANG 张文龙 (bopomofo); Sandoll Communication 산돌커뮤니케이션, Soo-young JANG 장수영 & Joo-yeon KANG 강주연 (hangul elements, letters & syllables)
+Vendor URL: http://www.google.com/get/noto/
+Designer URL: http://www.adobe.com/type/
+License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.
+License URL: http://scripts.sil.org/OFL
+
+NotoSansSC-Regular.otf
+SHA-256: 8c37936063c7c8ab747a939e13833894f9edc80dd41b98874ca8f3938a33c32f
+Face 0
+Copyright: Copyright © 2014, 2015 Adobe Systems Incorporated (http://www.adobe.com/).
+Family: Noto Sans SC Regular
+Version: Version 1.004;PS 1.004;hotconv 1.0.82;makeotf.lib2.5.63406
+Manufacturer: Adobe Systems Incorporated
+Designer: Ryoko NISHIZUKA (kana & ideographs); Paul D. Hunt (Latin, Greek & Cyrillic); Wenlong ZHANG (bopomofo); Sandoll Communication, Soo-young JANG & Joo-yeon KANG (hangul elements, letters & syllables)
+Ryoko NISHIZUKA 西塚涼子 (kana & ideographs); Paul D. Hunt (Latin, Greek & Cyrillic); Wenlong ZHANG 张文龙 (bopomofo); Sandoll Communication 산돌커뮤니케이션, Soo-young JANG 장수영 & Joo-yeon KANG 강주연 (hangul elements, letters & syllables)
+Vendor URL: http://www.google.com/get/noto/
+Designer URL: http://www.adobe.com/type/
+License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.
+License URL: http://scripts.sil.org/OFL
+
+NotoSansTelugu-Regular.ttf
+SHA-256: ce0d5b0e76f59ce25cd39624d39563ef9353eebfd156f36eeb6de7fd15a5b89d
+Face 0
+Copyright: Copyright 2013 Google Inc. All Rights Reserved.
+Family: Noto Sans Telugu
+Version: Version 1.04
+Manufacturer: Monotype Imaging Inc.
+Designer: Monotype Design team
+Vendor URL: http://code.google.com/p/noto/
+Designer URL: http://www.monotype.com/studio
+License: Licensed under the Apache License, Version 2.0
+License URL: http://www.apache.org/licenses/LICENSE-2.0
+
+NotoSansThai-Regular.ttf
+SHA-256: 62bf2314dbbfc0fb82f1bda7ebde475ce953927511f152c89e86ba505e123588
+Face 0
+Copyright: Copyright 2011 Google Inc. All Rights Reserved.
+Family: Noto Sans Thai
+Version: Version 1.04 uh
+Manufacturer: Monotype Imaging Inc.
+Designer: Monotype Design Team
+Vendor URL: http://www.google.com/get/noto/
+Designer URL: http://www.monotype.com/studio
+License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This Font Software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.
+License URL: http://scripts.sil.org/OFL
+
+mainfont.ttf
+SHA-256: 84c75b69a976f5eb255c4ccefda519fa31f030312e02c830e2b985ac56953d6e
+Face 0
+Copyright: 1999‐2003 / yuji oshimo￿o / 04@dsg4.com / www.04.jp.org
+1999-2003 / yuji oshimoto / 04@dsg4.com / www.04.jp.org
+Family: 04b25
+Version: Macromedia Fon￿ographer 4.1J 03.3.25
+Macromedia Fontographer 4.1J 03.3.25
+Manufacturer: (not provided)
+Designer: (not provided)
+Vendor URL: (not provided)
+Designer URL: (not provided)
+License: (not provided)
+License URL: (not provided)
+
+wqy-microhei.ttc
+SHA-256: e4bca8df123ce01b104780f576ea1a58b9a5ff1662a91124b6d3180cb6c88212
+Face 0
+Copyright: Digitized data copyright © 2007, Google Corporation.
+Copyright © 2008-2009 WenQuanYi Board of Trustees (http://wenq.org/) and Qianqian Fang
+Family: WenQuanYi Micro Hei
+文泉驛微米黑
+文泉驿微米黑
+Version: Version 0.2.0-beta
+Manufacturer: Ascender Corporation
+Designer: (not provided)
+Vendor URL: http://www.ascendercorp.com/
+Designer URL: http://www.ascendercorp.com/typedesigners.html
+License: Licensed under the Apache License, Version 2.0
+License URL: http://www.apache.org/licenses/LICENSE-2.0
+Face 1
+Copyright: Digitized data copyright © 2007, Google Corporation.
+Copyright © 2008-2009 WenQuanYi Board of Trustees (http://wenq.org/) and Qianqian Fang
+Family: WenQuanYi Micro Hei Mono
+文泉驛等寬微米黑
+文泉驿等宽微米黑
+Version: Version 0.2.0-beta
+Manufacturer: Ascender Corporation
+Designer: (not provided)
+Vendor URL: http://www.ascendercorp.com/
+Designer URL: http://www.ascendercorp.com/typedesigners.html
+License: Licensed under the Apache License, Version 2.0
+License URL: http://www.apache.org/licenses/LICENSE-2.0
+

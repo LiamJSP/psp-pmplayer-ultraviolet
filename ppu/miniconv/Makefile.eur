@@ -1,0 +1,19 @@
+TARGET = miniconv.eur
+OBJS = main.o miniconv.o
+
+BUILD_PRX=1
+PRX_EXPORTS=exports.exp
+
+USE_PSPSDK_LIBC=1
+
+INCDIR = 
+CFLAGS = -O2 -G0 -Wall -DMS_EE_CONV -DMS_CYRL_CONV -DMS_ARAB_CONV -DISO8859_1_CONV -DISO8859_2_CONV -DISO8859_6_CONV -DISO8859_7_CONV -DISO8859_9_CONV
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
+ASFLAGS = $(CFLAGS)
+
+LIBDIR = 
+LIBS = 
+LDFLAGS = -nostartfiles
+
+PSPSDK=$(shell psp-config --pspsdk-path)
+include $(PSPSDK)/lib/build.mak

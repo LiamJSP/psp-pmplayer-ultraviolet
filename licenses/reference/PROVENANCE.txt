@@ -1,0 +1,35 @@
+Upstream reference texts retrieved 2026-10-06. These are NOT installed-version evidence.
+Only exact build records can establish which licenses/notices cover a linked binary.
+
+licenses/reference/FreeType-FTL.txt
+https://raw.githubusercontent.com/freetype/freetype/master/docs/FTL.TXT
+SHA256 5a5ee54c5001bbad1cdc1a57cc3dd4c42199b2da09d39c7ee41fab002d02967f
+
+licenses/reference/FreeType-LICENSE.txt
+https://raw.githubusercontent.com/freetype/freetype/master/LICENSE.TXT
+SHA256 bd36c8b474855fa294c2ec5c184544478ef3720aad37d65a6296a4f264fd2d3b
+
+licenses/reference/Opus-1.6.1-COPYING.txt
+https://raw.githubusercontent.com/xiph/opus/v1.6.1/COPYING
+SHA256 01e1167d54a096d123cf6dfbbeb19587278845c6481d2d66d545669846079551
+
+licenses/reference/zlib-1.3.1-LICENSE.txt
+https://raw.githubusercontent.com/madler/zlib/v1.3.1/LICENSE
+SHA256 845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243
+
+licenses/reference/libpng-LICENSE.txt
+https://raw.githubusercontent.com/pnggroup/libpng/libpng16/LICENSE
+SHA256 bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526
+
+licenses/reference/bzip2-1.0.8-LICENSE.txt
+https://sourceware.org/git/?p=bzip2.git;a=blob_plain;f=LICENSE;hb=refs/tags/bzip2-1.0.8
+SHA256 c6dbbf828498be844a89eaa3b84adbab3199e342eb5cb2ed2f0d4ba7ec0f38a3
+
+licenses/reference/GCC-COPYING.RUNTIME.txt
+https://raw.githubusercontent.com/gcc-mirror/gcc/master/COPYING.RUNTIME
+SHA256 9d6b43ce4d8de0c878bf16b54d8e7a10d9bd42b75178153e3af6a815bdc90f74
+
+Verified existing bundled notices against upstream bytes:
+libsamplerate 0.2.2 COPYING: exact SHA256 match to licenses/libsamplerate-COPYING.txt
+dr_libs dfe8377631000664666519fdb83da193fd8037f4 LICENSE: exact SHA256 match to licenses/dr_libs-LICENSE.txt
+See licenses/SOURCE_PROVENANCE.tsv for retained source snapshot hashes.

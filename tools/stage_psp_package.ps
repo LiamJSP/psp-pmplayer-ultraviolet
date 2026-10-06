@@ -1,0 +1,118 @@
+param (
+    [Parameter(Mandatory=$true, HelpMessage="ppu root")]
+    [string]$Ppu,
+
+    [Parameter(Mandatory=$true, HelpMessage="dist root")]
+    [string]$Dist,
+
+    [string]$Config = "config-en.xml",
+    [string]$Miniconv = "miniconv.eur.prx",
+    [string]$I18n = "i18n.eng.prx",
+
+    [Parameter(Mandatory=$true, HelpMessage="generated subtitle fonts")]
+    [string]$FontSubsets
+)
+
+$ErrorActionPreference = 'Stop'
+Set-StrictMode -Version Latest
+
+# Resolve project root by navigating up one level from Ppu
+$project_root = (Get-Item -Path "$Ppu\..").FullName
+
+# Exact build products only: recursive searches can silently select an old
+# probe-only PRX from a different build directory or a previous package.
+$eboot = Join-Path $Ppu "EBOOT.PBP"
+$cooleyes = Join-Path $project_root "cooleyesBridge\cooleyesBridge.prx"
+
+$requiredInputs = @(
+    $eboot,
+    $cooleyes,
+    (Join-Path $Ppu "extra\$Config"),
+    (Join-Path $Ppu "extra\credit.png"),
+    (Join-Path $Ppu "miniconv\$Miniconv"),
+    (Join-Path $Ppu "i18n\$I18n"),
+    (Join-Path $project_root "THIRD_PARTY_NOTICES.txt"),
+    (Join-Path $project_root "COPYING"),
+    (Join-Path $project_root "LICENSE"),
+    (Join-Path $project_root "SOURCE_INFO.txt")
+)
+
+foreach ($file in $requiredInputs) {
+    if (-not (Test-Path -Path $file -PathType Leaf)) {
+        [Console]::Error.WriteLine("Missing required package input: $file")
+        exit 3
+    }
+}
+
+# These filenames are shared with the generator and runtime font lookup.
+# Keep the compatibility prefix even though the application is now PPU.
+if (-not (Test-Path -Path (Join-Path $FontSubsets "ppa-fallback-core.ttf") -PathType Leaf)) {
+    [Console]::Error.WriteLine("Missing subtitle font subsets")
+    exit 3
+}
+
+if (-not (Test-Path -Path (Join-Path $project_root "licenses\INDEX.txt") -PathType Leaf)) {
+    [Console]::Error.WriteLine("Missing project license inventory")
+    exit 3
+}
+
+# Ensure destination directories exist (equivalent to mkdir -p)
+foreach ($dir in @("fonts", "skins", "ui", "licenses")) {
+    $targetDir = Join-Path $Dist $dir
+    if (-not (Test-Path -Path $targetDir)) {
+        New-Item -ItemType Directory -Path $targetDir -Force | Out-Null
+    }
+}
+
+# Only local playback/display helpers are eligible for packaging.
+$drivers = @("dvemgr.prx", "mpeg_vsh330.prx", "mpeg_vsh350.prx", "mpeg_vsh370.prx")
+foreach ($driver in $drivers) {
+    $file = Join-Path $Ppu "extra\$driver"
+    if (Test-Path -Path $file -PathType Leaf) {
+        Copy-Item -Path $file -Destination $Dist -Force
+    }
+}
+
+Copy-Item -Path $eboot -Destination (Join-Path $Dist "EBOOT.PBP") -Force
+Copy-Item -Path $cooleyes -Destination (Join-Path $Dist "cooleyesBridge.prx") -Force
+Copy-Item -Path (Join-Path $Ppu "extra\$Config") -Destination (Join-Path $Dist "config.xml") -Force
+Copy-Item -Path (Join-Path $Ppu "extra\credit.png") -Destination (Join-Path $Dist "credit.png") -Force
+Copy-Item -Path (Join-Path $Ppu "miniconv\$Miniconv") -Destination (Join-Path $Dist "miniconv.prx") -Force
+Copy-Item -Path (Join-Path $Ppu "i18n\$I18n") -Destination (Join-Path $Dist "i18n.prx") -Force
+
+foreach ($directory in @("fonts", "skins", "ui")) {
+    $srcDir = Join-Path $Ppu "extra\$directory\*"
+    $dstDir = Join-Path $Dist $directory
+    if (Test-Path (Join-Path $Ppu "extra\$directory")) {
+        Copy-Item -Path $srcDir -Destination $dstDir -Recurse -Force
+    }
+}
+
+Copy-Item -Path (Join-Path $FontSubsets "ppa-fallback-*") -Destination (Join-Path $Dist "fonts") -Force
+
+# Runtime distributions need the same copyright/license notices as source.
+# This copies supplied texts; it does not certify unresolved binary provenance.
+Copy-Item -Path (Join-Path $project_root "licenses\*") -Destination (Join-Path $Dist "licenses") -Recurse -Force
+Copy-Item -Path (Join-Path $project_root "THIRD_PARTY_NOTICES.txt") -Destination (Join-Path $Dist "THIRD_PARTY_NOTICES.txt") -Force
+Copy-Item -Path (Join-Path $project_root "COPYING") -Destination (Join-Path $Dist "COPYING") -Force
+Copy-Item -Path (Join-Path $project_root "LICENSE") -Destination (Join-Path $Dist "LICENSE") -Force
+Copy-Item -Path (Join-Path $project_root "SOURCE_INFO.txt") -Destination (Join-Path $Dist "SOURCE_INFO.txt") -Force
+
+$manifestContents = @(
+    "EBOOT.PBP"
+    "cooleyesBridge.prx"
+    "config.xml"
+    "credit.png"
+    "miniconv.prx"
+    "i18n.prx"
+    "fonts/"
+    "skins/"
+    "ui/"
+    "licenses/"
+    "THIRD_PARTY_NOTICES.txt"
+    "COPYING"
+    "LICENSE"
+    "SOURCE_INFO.txt"
+)
+
+Set-Content -Path (Join-Path $Dist "PACKAGE_CONTENTS.txt") -Value $manifestContents -Encoding ASCII

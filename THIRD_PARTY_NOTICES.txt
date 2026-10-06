@@ -1,0 +1,133 @@
+PMPlayer Ultraviolet (PPU) — third-party notices
+Distribution license: GNU GPL version 3 for the combined player.
+
+These notices preserve component attribution and license scope. Third-party
+components retain their own terms. Versioned reference texts identify the
+stated upstream release; they are not an assertion about an unidentified
+installed PSP archive.
+
+PLAYER AND PROJECT SOURCE
+
+PMPlayer Advance: cooleyes (eyes.cooleyes@gmail.com).
+PMP Mod: jonny; contributions include Raphael / Alexander Berl.
+Original identified player files are GPL-2.0-or-later; this combined release
+uses GPL version 3. PPU contains modifications to upstream source.
+
+TinyXML 2.5.2 / TinyStr: Lee Thomason, Yves Berquin and Tyge Lovset.
+Zlib-style license: licenses/code/TinyXML-LICENSE.txt and
+licenses/code/TinyXML-TinyStr-LICENSE.txt. Original source notices are retained
+and modified parser/core source is identified as modified.
+
+MiniConv conversion routines and character tables: Free Software Foundation,
+GNU libiconv. The modified PSP amalgamation contains portions matching GNU
+libiconv 1.11.1; it is not an unmodified upstream libiconv release.
+GNU Library GPL version 2 or later: licenses/texts/LGPL-2.0.txt.
+Original copyright notices and correspondence:
+licenses/code/MiniConv-NOTICES.txt.
+The PPA PRX wrapper retains its separate GPL-2.0-or-later notice.
+
+libsamplerate 0.2.2: Erik de Castro Lopo and contributors, BSD-2-Clause.
+Original terms: licenses/libsamplerate-COPYING.txt.
+The selected vendored upstream sources retain their original notices;
+PSP adapters are project source.
+
+dr_flac 0.13.4 / dr_libs: David Reid.
+The MIT No Attribution option is selected. Both original alternatives
+(MIT-0 and Unlicense) are retained in licenses/dr_libs-LICENSE.txt.
+Pinned source: dfe8377631000664666519fdb83da193fd8037f4.
+
+Boost 1.85.0: Boost authors, Boost Software License 1.0.
+Original terms: licenses/code/Boost-LICENSE_1_0.txt.
+PPU uses selected header facilities; the source setup installs upstream
+headers and their original license.
+
+LINKED LIBRARIES AND PLATFORM INTERFACES
+
+FreeType: David Turner, Robert Wilhelm, Werner Lemberg and contributors.
+This product uses the FreeType font engine (https://freetype.org/).
+The FreeType License (FTL) is selected for this GPLv3 distribution.
+licenses/reference/FreeType-FTL.txt contains the full FTL; the accompanying
+FreeType-LICENSE.txt records the upstream dual-license and subcomponent scope.
+
+HarfBuzz: its named copyright holders and contributors.
+Old MIT and applicable per-file terms:
+licenses/reference/HarfBuzz-COPYING.txt.
+
+FriBidi: Dov Grobgeld, Behdad Esfahbod and contributors.
+Upstream LGPL-2.1-or-later; licenses/texts/LGPL-2.1.txt.
+
+libpng: PNG Reference Library authors including Cosmin Truta,
+Glenn Randers-Pehrson, Andreas Dilger and Guy Eric Schalnat / Group 42.
+Upstream reference terms: licenses/reference/libpng-LICENSE.txt.
+
+zlib: Jean-loup Gailly and Mark Adler, zlib license.
+Reference text: licenses/reference/zlib-1.3.1-LICENSE.txt.
+
+bzip2: Julian Seward and contributors.
+Reference text: licenses/reference/bzip2-1.0.8-LICENSE.txt.
+
+libopus: Xiph.Org, Skype, Octasic, Jean-Marc Valin, Timothy B. Terriberry,
+CSIRO, Gregory Maxwell, Mark Borgerding, Erik de Castro Lopo, Mozilla,
+Amazon and the applicable upstream contributors.
+BSD-3-Clause and applicable patent grants.
+Versioned reference: licenses/reference/Opus-1.6.1-COPYING.txt.
+
+libyal: Joachim Metz and contributors to libfsntfs, libbfio, libfdata,
+libfcache, libcdata, libcfile, libcpath, libcsplit, libclocale, libcnotify,
+libcthreads, libfdatetime, libfguid, libfusn, libfwnt, libhmac, libuna
+and libcerror. Upstream libraries generally identify LGPL-3.0-or-later;
+licenses/texts/LGPL-3.txt and GPL-3.txt contain those full terms.
+
+PSPDEV / PSPSDK contributors, including adresd, Marcus R. Brown,
+James Forshaw, John Kelley and Jesper Svennevid.
+Sorin P. C.: SDK-derived MPEG interfaces.
+SDK core reference: licenses/code/PSPSDK-LICENSE.txt.
+Original per-file interface notices remain in the source.
+
+Dark_AleX / custom-firmware SDK authors: M33 / KUBridge interfaces.
+Sony Computer Entertainment: native AVC/AAC/MP3 firmware services.
+These credits do not place separate CFW or Sony implementations under
+the PSPSDK license or the player's GPL.
+
+GCC / Free Software Foundation: compiler runtime and libstdc++.
+Runtime Library Exception reference: licenses/reference/GCC-COPYING.RUNTIME.txt.
+newlib/libm and startup components retain their applicable per-file terms.
+
+FONTS AND ASSETS
+
+Original bundled font copyright, version and license metadata is recorded in
+licenses/fonts/FONT-NOTICES.txt. The named copyright holders include Google,
+Monotype, Adobe, Sandoll, Bitstream, Tavmjong Bah, the DejaVu contributors,
+the WenQuanYi Board of Trustees and Qianqian Fang.
+
+DejaVu Sans: licenses/fonts/DejaVu-LICENSE.txt (Bitstream/Arev/DejaVu terms).
+OFL Noto fonts: licenses/fonts/OFL-1.1.txt.
+Historical Apache-licensed Noto/WenQuanYi fonts:
+licenses/texts/Apache-2.0.txt. The font terms remain separate from the player GPL.
+
+The supplied ppa-fallback fonts are derived subtitle-font subsets or CJK copies.
+They retain the original font licenses. Source font-generation scripts record
+future generated subset modifications; the supplied release font bytes are
+preserved.
+
+04b25 font: Yuji Oshimoto.
+Historical artwork, tribute, icons and translations retain their respective
+creator ownership. No separate redistribution grant for unidentified historical
+material was present in the supplied licensing records.
+
+The supplied dvemgr.prx and mpeg_vsh330/350/370.prx retain their separate
+ownership and terms. No redistribution grant for these binary-only helpers
+was identified in the supplied licensing records. The player GPL does not
+license Sony firmware or a separate TV driver.
+
+SOURCE AND VERSION RECORDS
+
+SOURCE_INFO.txt describes the accompanying maintained project source.
+licenses/reference/PROVENANCE.txt records reference-license retrieval identities.
+The exact PSP-target external archive versions and their build/source packages
+were not part of the supplied release inputs. No claim of version-specific
+completeness for those external packages is made.
+
+Host tools such as FontTools, Python, Perl and FFmpeg are not bundled.
+Standalone libFLAC, minimp4, libsndfile, libogg and opusfile are not integrated
+by the maintained project recipes.

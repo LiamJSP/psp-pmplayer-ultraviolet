@@ -1,0 +1,9 @@
+path	sha256	source_identity	license
+third_party/dr_libs/dr_flac.h	111144e778f55738db6851cb226015c419e00d04b916a09506d4856d9cff945c	dr_libs dfe8377631000664666519fdb83da193fd8037f4; dr_flac 0.13.4	MIT-0 option; upstream Unlicense alternative retained
+third_party/libsamplerate-0.2.2/include/samplerate.h	dfe5f4107782bcf6e9b8421a9e7c4772e19446a4c18727c73b22286d3fbb6626	libsamplerate 0.2.2	BSD-2-Clause
+third_party/libsamplerate-0.2.2/src/common.h	0826d52807152f5577ecb519c3df46f4453a9b7e55ad9b2880ff82a95977c3ca	libsamplerate 0.2.2	BSD-2-Clause
+third_party/libsamplerate-0.2.2/src/fastest_coeffs.h	60b342165e7be7c58efd9002163c07b65ece52994ee839dbe06908991ef1fb1b	libsamplerate 0.2.2	BSD-2-Clause
+third_party/libsamplerate-0.2.2/src/samplerate.c	ecc11b6bec5bd8131a3dd510a7017a5b7b503573d9b49b7e02ee5c3c86568717	libsamplerate 0.2.2	BSD-2-Clause
+third_party/libsamplerate-0.2.2/src/src_linear.c	f04a3e79b7150f2f6e6ad2b05979d874e03bf567a682bbb6507c797d4ea8a972	libsamplerate 0.2.2	BSD-2-Clause
+third_party/libsamplerate-0.2.2/src/src_sinc.c	8e59137d758dae5027410af7f81010e7a9c33892070091866510f0f8b638237e	libsamplerate 0.2.2	BSD-2-Clause
+third_party/libsamplerate-0.2.2/src/src_zoh.c	c089678c9e6463896507a8d476fc4a33641c46fbe94aa8243acf725d4c203adb	libsamplerate 0.2.2	BSD-2-Clause

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<!-- Idle CPU MHz; playback auto governor explores 333 down to 66. -->
+	<cpu speed="66" auto_clock="true" />
+	<!-- Optional LCD-specific panel compensation. -->
+	<video_pipeline optimize_psp_screen="false" />
+	<windows>
+		<font face="mainfont.ttf" fast_startup="true" anti_alias="false" embolden="false" size="12" />
+		<ui language="auto" />
+		<skin current="default" />
+	</windows>
+	<subtitles>
+		<!-- charset value : "UTF-8", "GBK", "BIG5", "SHIFT-JIS", "EUC-KR" -->
+		<charset value="GBK" />
+		<font face="wqy-microhei.ttc" anti_alias="true" embolden="false" size="16" asc_scale="2.0" multcode_scale="1.0" border="1.6" color="#FFFFFF" border_color="#000000" />
+		<!-- position align : "top", "bottom" -->
+		<position align="bottom" distance="16" />
+	</subtitles>
+	<filesystem>
+		<file_filter show_hidden="false" show_unknown="false" />
+		<!-- charset value : "UTF-8", "GBK", "BIG5", "SHIFT-JIS", "EUC-KR" -->
+		<charset value="GBK" />
+		<browser last_path="bXMwOi9QU1AvVklERU8v" />
+	</filesystem>
+	<!-- play_mode : "single", "group", "all" -->
+	<!-- Controls Type is detected once from PSP region; saved as controls_type="International" or "Asia". -->
+	<player audio_only="false" playback_health="false" sleep_timer_minutes="0" extreme_battery_saver="false" play_mode="group" idle_time="300" />
+	<tvout aspect_ratio="16:9" over_scan="8.0.8.0" />
+</config>
