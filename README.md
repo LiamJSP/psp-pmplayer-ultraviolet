@@ -35,7 +35,7 @@ Developers: Building this project from source has been tested on OpenSUSE Tumble
 
 ## Install and play
 
-TL;DR Download the latest release zip, extract it, copy the folder extracted to your /PSP/GAME/ folder on the PSP. Safely remove / eject before cable disconnect is always important with the PSP, never just pull the cable.
+TL;DR Download the latest release zip [here](https://github.com/LiamJSP/psp-pmplayer-ultraviolet/releases/tag/Stable), extract it, copy the folder extracted to your /PSP/GAME/ folder on the PSP. Safely remove / eject before cable disconnect is always important with the PSP, never just pull the cable.
 
 **Instructions for building from source instead:**
 The source ZIP opens directly to `Makefile`, `README.md`, `ppu/`, the local
