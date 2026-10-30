@@ -1,5 +1,7 @@
 # PMPlayer Ultraviolet
 
+<img width="480" height="272" alt="PMPlayerUltravioletPSP" src="https://github.com/user-attachments/assets/f15f163c-5ac8-4c3a-a83f-093a0ccf2d73" />
+
 Sony PSP homebrew MP4/MKV player using Sony AVC/AAC/MP3 services, software
 FLAC/Opus audio, an H264X compatibility layer, subtitles, and an automatic CPU/bus clock governor. PPU
 aims for smooth, power-efficient playback by adapting clocks to the workload
