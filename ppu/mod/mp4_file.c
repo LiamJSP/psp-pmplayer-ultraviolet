@@ -24,6 +24,7 @@
 #include "mp4_file.h"
 #include "../common/ppa_utf8.h"
 #include "../common/ppa_video_limits.h"
+#include "../common/ppa_playback_error.h"
 
 /* Counts remain bounded: wide offsets do not permit an unbounded index.
  * The allocator can fail sooner on base-RAM models; never truncate to fit. */
@@ -901,6 +902,7 @@ char *mp4_file_open(struct mp4_file_struct *p, char *s) {
 	int saw_oversize_avc = 0;
 	int saw_unsupported_video_codec = 0;
 	int saw_missing_avcc = 0;
+	mp4info_track_t *oversize_track = 0, *codec_track = 0, *first_audio = 0;
 
 	mp4_file_safe_constructor(p);
 
@@ -936,6 +938,7 @@ char *mp4_file_open(struct mp4_file_struct *p, char *s) {
 
 		if (track->video_type != 0x61766331U /* avc1 */) {
 			saw_unsupported_video_codec = 1;
+			if (!codec_track) codec_track = track;
 			continue;
 		}
 
@@ -944,6 +947,7 @@ char *mp4_file_open(struct mp4_file_struct *p, char *s) {
 		 * no larger software-decoded intermediate is admitted. */
 		if (!PPA_VIDEO_DIMENSIONS_VALID(track->width, track->height)) {
 			saw_oversize_avc = 1;
+			if (!oversize_track) oversize_track = track;
 			continue;
 		}
 
@@ -957,6 +961,7 @@ char *mp4_file_open(struct mp4_file_struct *p, char *s) {
 		}
 
 		p->video_track_id = i;
+		ppa_error_video_track("H.264/AVC", track->width, track->height);
 		p->video_type = track->video_type;
 		p->avc_profile = track->avc_profile;
 		p->avc_sps_size = track->avc_sps_size;
@@ -981,6 +986,16 @@ char *mp4_file_open(struct mp4_file_struct *p, char *s) {
 	}
 
 	if (p->video_track_id < 0) {
+		char codec_name[5];
+		if (oversize_track) {
+			ppa_error_video_track("H.264/AVC", oversize_track->width, oversize_track->height);
+			ppa_error_reject(PPA_REJECT_VIDEO_SIZE);
+		} else if (saw_missing_avcc) ppa_error_reject(PPA_REJECT_VIDEO_HEADERS);
+		else if (codec_track) {
+			ppa_error_video_track(ppa_error_codec(codec_track->video_type ? codec_track->video_type :
+				codec_track->sample_entry_type, codec_name), codec_track->width, codec_track->height);
+			ppa_error_reject(PPA_REJECT_VIDEO_CODEC);
+		} else ppa_error_reject(saw_video_track ? PPA_REJECT_VIDEO_DIMENSIONS : PPA_REJECT_NO_VIDEO);
 		char *video_error =
 			saw_oversize_avc ?
 			"mp4_file_open: AVC coded resolution exceeds the PSP 720x480 playback limit" :
@@ -998,10 +1013,13 @@ char *mp4_file_open(struct mp4_file_struct *p, char *s) {
 	for (i = 0; i < p->info->total_tracks; i++) {
 		mp4info_track_t *track = p->info->tracks[i];
 
+		if (!first_audio && track->type == MP4_TRACK_AUDIO) first_audio = track;
 		if (!mp4_audio_track_supported(p->info, track))
 			continue;
 
 		if (p->audio_tracks == 0) {
+			char codec_name[5];
+			ppa_error_audio_track(ppa_error_codec(track->audio_type, codec_name), track->samplerate, track->channels);
 			p->audio_tracks++;
 			p->audio_track_ids[p->audio_tracks - 1] = i;
 			p->audio_type = track->audio_type;
@@ -1033,6 +1051,12 @@ char *mp4_file_open(struct mp4_file_struct *p, char *s) {
 	}
 
 	if (p->audio_tracks == 0) {
+		if (first_audio) {
+			char codec_name[5];
+			ppa_error_unplayable_audio(first_audio->audio_type,
+				ppa_error_codec(first_audio->audio_type ? first_audio->audio_type : first_audio->sample_entry_type, codec_name),
+				first_audio->samplerate, first_audio->channels);
+		} else ppa_error_reject(PPA_REJECT_NO_AUDIO);
 		mp4_file_close(p);
 		return("mp4_file_open: can't found audio track in mp4 file");
 	}
@@ -1061,7 +1085,9 @@ char *mp4_file_open(struct mp4_file_struct *p, char *s) {
 		mp4_file_close(p);
 		return "mp4_file_open: invalid video timescale";
 	}
+	ppa_error_frame_rate(p->video_rate, p->video_scale);
 	if ((uint64_t)p->video_rate > (uint64_t)p->video_scale * 61ULL) {
+		ppa_error_reject(PPA_REJECT_FRAME_RATE);
 		mp4_file_close(p);
 		return "mp4_file_open: frame rate above experimental 60 FPS limit";
 	}

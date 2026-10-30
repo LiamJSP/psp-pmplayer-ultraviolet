@@ -1,3 +1,5 @@
+#include "../common/ppa_debug.h"
+#include "../common/ppa_playback_error.h"
 /* 
  *	Copyright (C) 2009 cooleyes
  *	eyes.cooleyes@gmail.com 
@@ -398,6 +400,7 @@ void mp4_decode_safe_constructor(struct mp4_decode_struct *p) {
 }
 
 void mp4_decode_close(struct mp4_decode_struct *p, int pspType) {
+	ppa_error_h264(&p->h264x);
 	h264x_two_picture_release(&p->h264x_output_remap);
     ppu_audio_stream_close(p->audio_stream);
     p->audio_stream = 0;
@@ -444,6 +447,10 @@ char *mp4_decode_open(struct mp4_decode_struct *p,
 		return(result);
 	}
 
+    ppa_debug_media_info(p->reader.file.video_width, p->reader.file.video_height,
+        p->reader.file.video_rate, p->reader.file.video_scale, p->reader.file.duration_ms,
+        p->reader.file.audio_type, p->reader.file.audio_actual_rate,
+        p->reader.file.audio_channels, ppa_video_pipeline_extreme_battery_saver_enabled());
 	p->audio_frame_size = (p->reader.file.audio_resample_scale << 1) << p->reader.file.audio_stereo;
 	if (!ppa_session_audio_only()) {
 	ppa_video_pipeline_set_avc_sps(p->reader.file.avc_sps,

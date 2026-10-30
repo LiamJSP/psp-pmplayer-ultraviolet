@@ -13,11 +13,14 @@
 extern "C" {
 #endif
 
-#define COOLEYES_BRIDGE_API_VERSION 0x00030001U
+#define COOLEYES_BRIDGE_API_VERSION 0x00030002U
 #define COOLEYES_BRIDGE_CAP_AUDIO_FREQUENCY 0x00000001U
 #define COOLEYES_BRIDGE_CAP_ME_BOOT         0x00000002U
 #define COOLEYES_BRIDGE_CAP_DISPLAY_POWER   0x00000004U
 #define COOLEYES_BRIDGE_CAP_REGION_CODE     0x00000008U
+#define COOLEYES_BRIDGE_CAP_DEBUG_EXCEPTION 0x00000010U
+/* Register/release the EBOOT's PSPSDK exception trampoline; no ME access. */
+int cooleyesDebugExceptionHandler(void *handler, int install);
 
 /* Read-only PSCode query. Returns a validated code or -1 on unavailable,
  * failed, malformed or unknown output; no IdStorage/registry writes. */

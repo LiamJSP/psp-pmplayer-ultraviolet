@@ -1,3 +1,4 @@
+#include "common/ppa_debug.h"
 #include <new>
 //cfgdialog.cpp
 #include <strings.h>
@@ -1405,6 +1406,7 @@ public:
         int x1 = x + 1 + textWidth(label) + fontSize / 2;
         mainFont->printStringToImage(drawImage, x1, y + fontSize - 1,
                                      w - 2 - x1 + x, h - 2, activeValue,
+                                     !strcmp(path, "config/player/debug_mode") ? (value ? "True" : "False") :
                                      value ? tr("config.on", "On")
                                            : tr("config.off", "Off"));
     }
@@ -1422,7 +1424,11 @@ public:
             }
             if (key & ppu_controls_confirm()) {
                 Config *config = Config::getInstance();
-                if (config && config->setBooleanValue(path, newValue)) {
+                if (!strcmp(path, "config/player/debug_mode")) {
+                    ppa_debug_config_set(newValue);
+                    currentValue = ppa_debug_enabled() != 0;
+                }
+                else if (config && config->setBooleanValue(path, newValue)) {
                     currentValue = newValue;
                     if (reloadPipeline) ppa_video_pipeline_reload_config();
                 }
@@ -1709,6 +1715,8 @@ bool ConfigDialog::init() {
 	    text("config.playback_health", "Playback Health"), "config/player/playback_health", false);
 	items[19] = new (std::nothrow) VideoPipelineConfigItem(this, this->drawImage,
 	    text("config.audio_only", "Audio Only Mode"), "config/player/audio_only", false);
+    items[20] = new (std::nothrow) VideoPipelineConfigItem(this, this->drawImage,
+        text("config.debug_mode", "Debug Mode"), "config/player/debug_mode", false);
 	for (int i = 0; i < itemCount; ++i)
 		if (!items[i]) return false;
 	

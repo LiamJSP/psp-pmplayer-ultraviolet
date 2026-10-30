@@ -1,3 +1,4 @@
+#include "../common/ppa_playback_error.h"
 /* mp4avcdecoder.c
  *	Copyright (C) 2008 cooleyes
  *	eyes.cooleyes@gmail.com 
@@ -20,6 +21,7 @@
  */
 
 #include "mp4avcdecoder.h"
+#include "../common/ppa_debug.h"
 #include "../common/ppa_cache.h"
 #include "../common/ppa_wait.h"
 #include "../common/ppa_video_limits.h"
@@ -193,6 +195,8 @@ char *mp4_avc_open(struct mp4_avc_struct *p, int avc_profile, int mpeg_mode, voi
 	}
 	p->mpeg_init = sceMpegInit();
 	if (p->mpeg_init != 0) {
+        ppa_debug_error("AVC mpeg_init", p->mpeg_init);
+        ppa_error_native("mp4_avc_open: sceMpegInit failed", p->mpeg_init);
 		mp4_avc_close(p);
 		return("mp4_avc_open: sceMpegInit failed");
 	}
@@ -200,6 +204,8 @@ char *mp4_avc_open(struct mp4_avc_struct *p, int avc_profile, int mpeg_mode, voi
 	
 	p->mpeg_buffer_size = sceMpegQueryMemSize(p->mpeg_mode);
 	if (p->mpeg_buffer_size < 0) {
+        ppa_debug_error("sceMpegQueryMemSize", p->mpeg_buffer_size);
+        ppa_error_native("mp4_avc_open: sceMpegQueryMemSize failed", p->mpeg_buffer_size);
 		mp4_avc_close(p);
 		return("mp4_avc_open: sceMpegQueryMemSize failed");
 	}
@@ -222,6 +228,8 @@ char *mp4_avc_open(struct mp4_avc_struct *p, int avc_profile, int mpeg_mode, voi
 
 	p->mpeg_create = sceMpegCreate(&p->mpeg, p->mpeg_buffer, p->mpeg_buffer_size, &p->mpeg_ringbuffer, 512, p->mpeg_mode, (SceInt32)p->mpeg_ddrtop);
 	if (p->mpeg_create != 0) {
+        ppa_debug_error("AVC mpeg_create", p->mpeg_create);
+        ppa_error_native("mp4_avc_open: sceMpegCreate failed", p->mpeg_create);
 		mp4_avc_close(p);
 		return("mp4_avc_open: sceMpegCreate failed");
 	}
@@ -236,6 +244,8 @@ char *mp4_avc_open(struct mp4_avc_struct *p, int avc_profile, int mpeg_mode, voi
 	int au_result;
 	au_result = sceMpegInitAu(&p->mpeg, p->mpeg_au_buffer, p->mpeg_au);
 	if (au_result != 0) {
+        ppa_debug_error("sceMpegInitAu", au_result);
+        ppa_error_native("mp4_avc_open: sceMpegInitAu failed", au_result);
 		mp4_avc_close(p);
 		return("mp4_avc_open: sceMpegInitAu failed");
 	}
@@ -285,6 +295,8 @@ char *mp4_avc_get(struct mp4_avc_struct *p, int mode, void *source_buffer, int s
 	mp4_avc_cache_barrier("get", "before_get_au", p, destination_buffer);
 	call_result = sceMpegGetAvcNalAu(&p->mpeg, &nal, p->mpeg_au);
 	if (call_result != 0) {
+		ppa_debug_error("avc_get: sceMpegGetAvcNalAu failed", call_result);
+        ppa_error_native("avc_get: sceMpegGetAvcNalAu failed", call_result);
 		return("avc_get: sceMpegGetAvcNalAu failed");
 	}
 
@@ -292,6 +304,8 @@ char *mp4_avc_get(struct mp4_avc_struct *p, int mode, void *source_buffer, int s
 	call_result = sceMpegAvcDecode(&p->mpeg, p->mpeg_au, 512, 0,
 	                               &p->mpeg_pic_num);
 	if (call_result != 0) {
+		ppa_debug_error("avc_get: sceMpegAvcDecode failed", call_result);
+        ppa_error_native("avc_get: sceMpegAvcDecode failed", call_result);
 		return("avc_get: sceMpegAvcDecode failed");
 	}
 
@@ -300,6 +314,8 @@ char *mp4_avc_get(struct mp4_avc_struct *p, int mode, void *source_buffer, int s
 	if (call_result != 0 || (p->mpeg_pic_num > 0 &&
 	    (p->mpeg_detail2 == 0 || p->mpeg_detail2->info_buffer == 0 ||
 	     p->mpeg_detail2->yuv_buffer == 0))) {
+        ppa_debug_error("avc_get: decode detail/geometry", call_result);
+        if (call_result != 0) ppa_error_native("avc_get: sceMpegAvcDecodeDetail2 failed", call_result);
 		return call_result != 0 ?
 			("avc_get: sceMpegAvcDecodeDetail2 failed") :
 			("avc_get: invalid AVC detail metadata");
@@ -319,6 +335,8 @@ char *mp4_avc_get(struct mp4_avc_struct *p, int mode, void *source_buffer, int s
 		mp4_avc_cache_barrier("get", "before_csc", p, destination_buffer);
 		call_result = sceMpegBaseCscAvc(destination_buffer, 0, csc_width, &csc);
 		if (call_result != 0) {
+			ppa_debug_error("avc_get: sceMpegBaseCscAvc failed", call_result);
+        ppa_error_native("avc_get: sceMpegBaseCscAvc failed", call_result);
 			return("avc_get: sceMpegBaseCscAvc failed");
 		}
 		mp4_avc_cache_barrier("get", "after_csc", p, destination_buffer);
@@ -355,8 +373,11 @@ char *mp4_avc_get_cache(struct mp4_avc_struct *p, void *destination_buffer, int 
 	csc_width = info_buffer->width > 480 ? 768 : 512;
 	mp4_avc_cache_barrier("cache", "before_csc", p, destination_buffer);
 	call_result = sceMpegBaseCscAvc(destination_buffer, 0, csc_width, &csc);
-	if (call_result != 0)
+	if (call_result != 0) {
+        ppa_debug_error("avc_get_cache: sceMpegBaseCscAvc", call_result);
+        ppa_error_native("avc_get_cache: sceMpegBaseCscAvc failed", call_result);
 		return("avc_get_cache: sceMpegBaseCscAvc failed");
+    }
 	mp4_avc_cache_barrier("cache", "after_csc", p, destination_buffer);
 	return(0);
 }

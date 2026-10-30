@@ -28,7 +28,20 @@ Developers: Building this project from source has been tested on OpenSUSE Tumble
 - **Automatic CPU/bus clock governor** with bounded post-seek boosts and epoch-filtered audio recovery
 - **Controls Type:** International (X confirms, O cancels) or Asia (O confirms, X cancels), initially detected from the PSP region
 - **Sleep Timer:** 15–720 min, pauses playback and requests native suspend
+- **Power-switch standby:** pauses the open movie before native suspend; wake
+  restores the paused frame and requires a fresh **Square** press to resume.
+  See [standby handling and hardware checks](docs/PLAYBACK_STANDBY.md).
 - **Debug Playback Health overlay:** clocks, decode budget, A/V delta, skipped frames
+- **Debug Mode:** off by default; bounded error/crash logs and playback CSVs in
+  `ms0:/PSP/PPU_DEBUG/`, automatically disabled after three plays across launches.
+  See [diagnostics, pause fixes and PSP-1000 audit](docs/DEBUG_MODE_AND_PSP1000_AUDIT.md)
+  for capture limits, remaining memory risks, and validation status.
+- **Readable playback errors:** larger, wrapped pages explain detected format
+  limits and possible remedies, with original errors, decoder codes and H.264
+  settings on the details pages. Left/Right changes pages; X returns to the
+  browser. See [on-device error screens](docs/PLAYBACK_ERRORS.md).
+- **Detailed-script subtitles:** a 20 px minimum and 24 px default line advance
+  for CJK, Arabic and other covered detailed scripts; Latin defaults unchanged.
 - **Translation:** 18 interface languages, with bounded bundled-font fallback for mixed-script filenames independent of the interface language; complex-script rendering remains in beta
 - **Input-first file browser:** cached folders appear immediately; all folder scans and metadata probes wait for two seconds of input idle. A bounded text cache reuses rendered filenames during cursor movement.
 - **Now featuring multi-partition and NTFS support!** NTFS appears in this player only, as ms1:// in the file browser. You can shrink your main PSP fat32 partition and add a second large NTFS partition for large files / movies etc. NTFS is much more safe against random corruption than FAT, with decent cross platform support.
@@ -389,7 +402,7 @@ sample/seek indexes).
 | Missing/unsupported audio | Check codec/rate/channel/packet and edit-list limits in the audio guide, plus the libopus build option. Match properties across switchable tracks. AAC-LC at 44100 Hz remains a firmware-decoded fallback. |
 | Subtitles absent or garbled | Same-stem name, text format, Subtitle Encoding, installed fonts, Cross + L. Use embedded text for NTFS. |
 | Seek/chapter unavailable | Include MKV Cues and chapter metadata, or a conventional indexed MP4. |
-| Display dark / playback paused after wake | Check Audio Only Mode and Sleep Timer. Wake input is consumed; sleep-timer wake leaves playback paused. |
+| Display dark / playback paused after wake | Check Audio Only Mode and Sleep Timer. Both power-switch and timer wake leave playback paused. Release held buttons, then press Square to resume. |
 | Bridge/API mismatch or incomplete install | Rebuild EBOOT, bridge API 3 and metadata libraries together; install the complete staged package. |
 
 ## Developer notes

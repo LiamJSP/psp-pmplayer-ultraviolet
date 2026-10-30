@@ -11,6 +11,7 @@
 #include "../common/ppa_utf8.h"
 #include "../common/ppa_video_limits.h"
 #include "../common/ppa_time.h"
+#include "../common/ppa_playback_error.h"
 
 #define MKV_FOURCC_AVC1 0x61766331U /* avc1 */
 #define MKV_FOURCC_MP4A 0x6D703461U /* mp4a */
@@ -388,9 +389,25 @@ char *mkv_file_open(struct mkv_file_struct *p, char *s)
 	}
 
 	if (p->video_track_id < 0) {
+		ppa_error_reject(PPA_REJECT_NO_VIDEO);
+		/* All candidates were rejected. Explain the first actual video track;
+		 * do not let a skipped bad track taint a later successful selection. */
+		for (i = 0; i < p->info->total_tracks; ++i) {
+			mkvinfo_track_t *track = p->info->tracks[i];
+			if (!track || track->type != MATROSKA_TRACK_VIDEO) continue;
+			ppa_error_video_track(ppa_error_mkv_codec(track->codec_id), track->width, track->height);
+			if (track->video_type != MKV_FOURCC_AVC1) ppa_error_reject(PPA_REJECT_VIDEO_CODEC);
+			else if (!track->width || !track->height) ppa_error_reject(PPA_REJECT_VIDEO_DIMENSIONS);
+			else if (!PPA_VIDEO_DIMENSIONS_VALID(track->width, track->height)) ppa_error_reject(PPA_REJECT_VIDEO_SIZE);
+			else if (!mkv_file_validate_avcc(track)) ppa_error_reject(PPA_REJECT_VIDEO_HEADERS);
+			else ppa_error_reject(PPA_REJECT_MKV_BASELINE_SIZE);
+			break;
+		}
 		mkv_file_close(p);
 		return "mkv_file_open: can't find supported video track in mkv file";
 	}
+	ppa_error_video_track("H.264/AVC", p->info->tracks[p->video_track_id]->width,
+		p->info->tracks[p->video_track_id]->height);
 
 	for (i = 0; i < p->info->total_tracks; i++) {
 		mkvinfo_track_t *track = p->info->tracks[i];
@@ -429,8 +446,20 @@ char *mkv_file_open(struct mkv_file_struct *p, char *s)
 	}
 
 	if (p->audio_tracks == 0) {
+		ppa_error_reject(PPA_REJECT_NO_AUDIO);
+		for (i = 0; i < p->info->total_tracks; ++i) {
+			mkvinfo_track_t *track = p->info->tracks[i];
+			if (!track || track->type != MATROSKA_TRACK_AUDIO) continue;
+			ppa_error_unplayable_audio(track->audio_type, ppa_error_mkv_codec(track->codec_id),
+				track->samplerate, track->channels);
+			break;
+		}
 		mkv_file_close(p);
 		return "mkv_file_open: can't find supported audio track in mkv file";
+	}
+	{
+		mkvinfo_track_t *track = p->info->tracks[p->audio_track_ids[0]];
+		ppa_error_audio_track(ppa_error_mkv_codec(track->codec_id), track->samplerate, track->channels);
 	}
 
 	for (i = 0; i < p->info->total_tracks && p->subtitle_tracks < MAX_SUBTITLES; i++)
@@ -486,7 +515,9 @@ char *mkv_file_open(struct mkv_file_struct *p, char *s)
 	if (p->video_scale == 0)
 		p->video_scale = 1000;
 
+	ppa_error_frame_rate(p->video_rate, p->video_scale);
 	if ((uint64_t)p->video_rate > (uint64_t)p->video_scale * 61ULL) {
+		ppa_error_reject(PPA_REJECT_FRAME_RATE);
 		mkv_file_close(p);
 		return "mkv_file_open: frame rate above experimental 60 FPS limit";
 	}

@@ -1,4 +1,5 @@
 #include "ppa_wait.h"
+#include "ppa_debug.h"
 
 #include <pspthreadman.h>
 #include <pspdebug.h>
@@ -32,6 +33,7 @@ int ppa_wait_sema_poll(volatile int *return_request,
 		return 0;
 	}
 
+    ppa_debug_error(error_message, result);
 	if (return_result != 0)
 		*return_result = (char *)error_message;
 
@@ -73,6 +75,7 @@ int ppa_wait_thread_end_safe(SceUID thread_id,
          * one late return led to permanent quarantine even if the call ended
          * a moment later. No reset, second codec call or forced exit occurs
          * while waiting; normal cleanup resumes as soon as the owner stops. */
+        if (phase == 0U) ppa_debug_error("worker join still waiting (buffers retained)", result);
         if (phase < 2U) ++phase;
     }
 }
@@ -83,10 +86,14 @@ void ppa_wait_quarantine(const char *reason, int error)
     /* A decoder worker and the controller may both discover the same stall.
      * Only the first writes the report; neither may unwind its retained stack. */
     if (__sync_bool_compare_and_swap(&entered, 0U, 1U)) {
+        ppa_debug_error(reason, error);
         pspDebugScreenInit();
-        pspDebugScreenPrintf("Playback could not stop safely.\n%s\nError: 0x%08x\n"
+        pspDebugScreenPrintf("The playback service is not responding.\n\n"
+                            "PPU cannot safely return to the browser.\n"
                             "Power off the PSP before trying again.\n"
-                            "HOME cannot safely release this session.\n",
+                            "HOME cannot release this session safely.\n\n"
+                            "Technical reason:\n%s\nCode: 0x%08x\n\n"
+                            "If this repeats, enable Debug Mode before playback.\n",
                             reason ? reason : "Firmware did not return",
                             (unsigned)error);
     }

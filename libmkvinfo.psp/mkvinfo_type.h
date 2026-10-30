@@ -42,6 +42,8 @@ typedef struct {
 	uint32_t type;
 	uint32_t video_type;
 	uint32_t audio_type;
+	/* Preserve unrecognized CodecID for a useful playback rejection message. */
+	char codec_id[64];
 
 	uint64_t time_scale;
 	uint64_t duration;

@@ -24,6 +24,6 @@
 	</filesystem>
 	<!-- play_mode : "single", "group", "all" -->
 	<!-- Controls Type is detected once from PSP region; saved as controls_type="International" or "Asia". -->
-	<player audio_only="false" playback_health="false" sleep_timer_minutes="0" extreme_battery_saver="false" play_mode="group" idle_time="300" />
+	<player debug_mode="FALSE" audio_only="false" playback_health="false" sleep_timer_minutes="0" extreme_battery_saver="false" play_mode="group" idle_time="300" />
 	<tvout aspect_ratio="16:9" over_scan="8.0.8.0" />
 </config>

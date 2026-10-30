@@ -1,3 +1,4 @@
+#include "../common/ppa_playback_error.h"
 #include "codec_prx.h"
 #include "../common/ppa_process.h"
 /* 
@@ -81,12 +82,17 @@ static int mp4_battery_video_quick_probe(struct mp4_decode_struct *decoder)
 		                          picture_count == 0U ? 3 : 0);
 		if (decoder->h264x.current_au.parse_error ||
 		    decoder->h264x.current_au.is_reference_b) {
+			ppa_error_battery_detail(decoder->h264x.current_au.parse_error ?
+			    "Battery Saver could not parse an H.264 picture in its startup sample." :
+			    "Reference B pictures were detected. Battery Saver does not allow B-pyramid-style references.");
 			compatible = 0;
 		}
 		if (decoder->h264x.current_au.is_b) {
 			b_run++;
-			if (b_run > 1U)
+			if (b_run > 1U) {
+				ppa_error_battery_detail("More than one consecutive B picture was detected. Battery Saver allows at most one.");
 				compatible = 0;
+			}
 		}
 		else if (decoder->h264x.current_au.is_i ||
 		         decoder->h264x.current_au.is_p) {
@@ -100,8 +106,14 @@ static int mp4_battery_video_quick_probe(struct mp4_decode_struct *decoder)
 		if (!compatible)
 			break;
 	}
-	if (mp4_read_seek(&decoder->reader, 0, 0) != 0)
+	if (mp4_read_seek(&decoder->reader, 0, 0) != 0) {
+		ppa_error_battery_detail("Battery Saver could not seek back to the start after checking this file.");
 		compatible = 0;
+	}
+	if (!compatible || picture_count == 0U) {
+		ppa_error_h264(&decoder->h264x);
+		ppa_error_battery_detail("Battery Saver could not verify a compatible video/audio sample at the start of this file.");
+	}
 	h264x_probe_reset_stream(&decoder->h264x);
 	return compatible && picture_count != 0U;
 }
@@ -122,12 +134,16 @@ static int mp4_extreme_battery_saver_compatible(
 	    file->video_width > PPA_VIDEO_MAX_CODED_WIDTH ||
 	    file->video_height > PPA_VIDEO_MAX_CODED_HEIGHT)
 		return 0;
-	if (!probe->sps.valid || !probe->pps.valid || !probe->avcc_valid)
+	if (!probe->sps.valid || !probe->pps.valid || !probe->avcc_valid) {
+		ppa_error_battery_headers(probe, 0U);
 		return 0;
+	}
 	profile = probe->sps.profile_idc != 0U ?
 		probe->sps.profile_idc : file->avc_profile;
-	if (profile != 66U && profile != 77U)
+	if (profile != 66U && profile != 77U) {
+		ppa_error_battery_headers(probe, profile);
 		return 0;
+	}
 	if (probe->sps.level_idc > 30U ||
 	    probe->sps.chroma_format_idc > 1U ||
 	    probe->sps.bit_depth_luma_minus8 != 0U ||
@@ -140,15 +156,21 @@ static int mp4_extreme_battery_saver_compatible(
 	    probe->pps.weighted_pred_flag != 0U ||
 	    probe->pps.weighted_bipred_idc != 0U ||
 	    probe->pps.transform_8x8_mode_flag != 0U ||
-	    probe->pps.num_ref_idx_l1_default_active_minus1 != 0U)
+	    probe->pps.num_ref_idx_l1_default_active_minus1 != 0U) {
+		ppa_error_battery_headers(probe, profile);
 		return 0;
+	}
 	if (file->video_stts_entry_count != 1U ||
 	    file->video_stts_sample_duration == 0 ||
-	    file->video_stts_sample_duration[0] == 0U)
+	    file->video_stts_sample_duration[0] == 0U) {
+		ppa_error_battery_detail("The MP4 timing table is not a single constant frame duration, as Battery Saver requires.");
 		return 0;
+	}
 	for (audio_index = 0; audio_index < file->audio_tracks; ++audio_index) {
-		if (!file->audio_battery_cbr[audio_index])
+		if (!file->audio_battery_cbr[audio_index]) {
+			ppa_error_battery_detail("An audio track did not pass the Battery Saver check for roughly constant bitrate audio.");
 			return 0;
+		}
 	}
 	return mp4_battery_video_quick_probe(decoder);
 }
@@ -272,7 +294,7 @@ static void mp4_play_seek_epoch_arrived(volatile struct mp4_play_struct *p,
     }
     else {
         ppa_video_pipeline_set_trickplay_frame_drop(0);
-        ppa_session_set_paused(0);
+        ppa_session_set_paused(p->paused);
         cpu_clock_auto_boost_for_reason(CPU_CLOCK_BOOST_TRICKPLAY_LEAVE);
     }
     /* Release retained target audio only after the controller/mute state
@@ -547,8 +569,7 @@ static int mp4_chapter_skip(volatile struct mp4_play_struct *p, int direction)
         ppa_seek_controller_clamp_target_ms(file->chapters[index].time_ms,
             file->duration_ms), (uint32_t)(now / 1000ULL),
         PSP_CTRL_LTRIGGER | PSP_CTRL_RTRIGGER);
-    p->paused = 0;
-    ppa_session_set_paused(0);
+    ppa_playback_control_unpause(&p->paused);
     p->chapter_skip_cursor = index;
     p->chapter_skip_deadline_us = now + 3000000ULL;
     p->show_interface = 1;
@@ -585,14 +606,13 @@ static void mp4_input(volatile struct mp4_play_struct *p)
         ctrl_flush();
         return;
     }
+    if (!ppa_session_accept_input(key)) return;
     if (ppa_session_audio_only()) {
         switch (key) {
         case PSP_CTRL_TRIANGLE:
             p->return_result = "exit: manual"; p->return_request = 1; break;
         case PSP_CTRL_SQUARE:
-            p->paused = !p->paused;
-            if (p->paused) ppa_playback_control_pause();
-            else ppa_playback_control_resume();
+            ppa_playback_control_toggle_pause(&p->paused);
             break;
         case PSP_CTRL_SELECT:
             p->audio_stream = (p->audio_stream + 1) % p->decoder.reader.file.audio_tracks;
@@ -659,9 +679,7 @@ static void mp4_input(volatile struct mp4_play_struct *p)
     case PSP_CTRL_TRIANGLE:
         p->return_result = "exit: manual"; p->return_request = 1; break;
     case PSP_CTRL_SQUARE:
-        p->paused = !p->paused;
-        if (p->paused) ppa_playback_control_pause();
-        else ppa_playback_control_resume();
+        ppa_playback_control_toggle_pause(&p->paused);
         break;
     case PSP_CTRL_LEFT:
     case PSP_CTRL_RIGHT: {
@@ -676,8 +694,7 @@ static void mp4_input(volatile struct mp4_play_struct *p)
                 target, now_ms, 0U);
         p->chapter_skip_cursor = -1;
         p->chapter_skip_deadline_us = 0;
-        p->paused = 0;
-        ppa_session_set_paused(0);
+        ppa_playback_control_unpause(&p->paused);
         mp4_post_seek_label(p, direction, target);
         break;
     }
@@ -1169,6 +1186,7 @@ char *mp4_play_start(volatile struct mp4_play_struct *p) {
         ppa_session_audio_only() ? CTRL_CONTEXT_AUDIO_ONLY : CTRL_CONTEXT_PLAYBACK);
 
 	ppa_frame_sink_reset_timing();
+	ppa_session_bind_io(p->decoder.reader.io_pump);
 	ppa_session_start();
 	ppa_playback_ui_tick_audio_only();
 
@@ -1189,7 +1207,10 @@ char *mp4_play_start(volatile struct mp4_play_struct *p) {
             (!ppa_session_audio_only() && !p->audio_tail_done))) {
 		if (ppa_process_exit_requested()) { p->return_request = 1; break; }
 		uint32_t now_ms;
+		int was_paused = p->paused;
 		mp4_input(p);
+        /* Paused wall time is not a hardware stall (including suspend). */
+        if (was_paused || p->paused) mp4_play_note_progress(p);
 		now_ms = (uint32_t)(cpu_clock_auto_now_us() / 1000ULL);
 		if (p->return_request == 0 && p->paused == 0 &&
 		    !ppa_seek_controller_active(
@@ -1207,6 +1228,9 @@ char *mp4_play_start(volatile struct mp4_play_struct *p) {
 		 * control yield with the LCD off, in addition to the input event wait. */
 		sceKernelDelayThread(ppa_session_audio_only() ? 10000U : 1000U);
 	}
+
+    /* Stop while paused still needs normal clocks for codec drain/close. */
+    if (p->paused) ppa_playback_control_resume();
 
 	if (mp4_decode_is_eof((struct mp4_decode_struct *) &p->decoder)) {
 		p->last_keyframe_pos = 0;

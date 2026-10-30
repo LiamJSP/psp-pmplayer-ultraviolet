@@ -1043,6 +1043,8 @@ static int32_t parse_ebml_trackentry(mkvinfo_t *info)
 				char *codec_id = ebml_read_ascii(info->handle, &l);
 				if (codec_id == NULL)
 					goto err_out;
+				strncpy(track->codec_id, codec_id, sizeof(track->codec_id) - 1U);
+				track->codec_id[sizeof(track->codec_id) - 1U] = 0;
 
 				if (!strcmp(codec_id, MKV_A_AAC) ||
 				    !strncmp(codec_id, MKV_A_AAC_MPEG4_PREFIX,

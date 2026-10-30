@@ -1,15 +1,24 @@
 #include "../mod/audio_stream.h"
 #include "ppa_playback_session.h"
+#include "ppa_debug.h"
 #include "ppa_privileged_bridge.h"
 #include "ppa_wait.h"
 #include "ppa_playback_control.h"
 #include "ppa_bus_manager.h"
+#include "ppa_io_pump.h"
+#include "ppa_cache.h"
 #include "../mod/cpu_clock.h"
 #include <pspaudio.h>
 #include <pspdisplay.h>
 #include <psppower.h>
 #include <string.h>
 #include <limits.h>
+
+/* Exported by PSPSDK's scePower import library (NID 0x7FA406DD), although
+ * older psppower.h versions omit its declaration. This observes a queued
+ * physical request while scePowerLock still defers its execution. The battery
+ * predicate scePowerIsSuspendRequired is not a power-switch query. */
+extern int scePowerIsRequest(void);
 
 static struct ppa_session_options g_options;
 static struct {
@@ -27,7 +36,12 @@ static volatile unsigned int g_power_events, g_idle_workers, g_audio_pending;
 static uint64_t g_started_us, g_last_input_us, g_suspend_wait_us;
 static int g_active, g_timer_fired, g_suspend_pending, g_suspend_requested;
 static int g_saw_suspend, g_lock_borrowed, g_consume_wake, g_display_off;
-static int g_blank_pending;
+static int g_blank_pending, g_pause_clock_lowered;
+static int g_request_seen, g_suspend_external, g_wait_for_play;
+static uint64_t g_suspend_begin_us, g_wake_ready_us;
+static struct PpaIoPump *g_playback_io;
+static void *g_suspend_frame;
+static int g_suspend_pitch, g_suspend_format;
 static void *g_saved_frame;
 static int g_saved_pitch, g_saved_format;
 
@@ -82,7 +96,11 @@ int ppa_session_open(void)
     g_started_us = g_last_input_us = g_suspend_wait_us = 0;
     g_timer_fired = g_suspend_pending = g_suspend_requested = 0;
     g_saw_suspend = g_lock_borrowed = g_consume_wake = g_display_off = 0;
-    g_blank_pending = 0;
+    g_blank_pending = g_pause_clock_lowered = 0;
+    g_request_seen = g_suspend_external = g_wait_for_play = 0;
+    g_suspend_begin_us = g_wake_ready_us = 0;
+    g_suspend_frame = 0;
+    g_playback_io = 0;
     g_saved_frame = 0;
     g_active = 1;
     return 0;
@@ -93,10 +111,12 @@ void ppa_session_start(void)
     g_started_us = g_last_input_us = session_now();
     g_idle_workers = 0U;
 }
+void ppa_session_bind_io(struct PpaIoPump *pump) { g_playback_io = pump; }
 int ppa_session_start_workers(SceUID audio, SceUID video, SceUID decode,
                                SceSize arg_size, void *args, volatile int *stop)
 {
     SceUID workers[3] = { audio, video, decode };
+    ppa_debug_movie_started();
     int i, started[3] = {0, 0, 0};
     for (i = 0; i < 3; ++i) {
         if (workers[i] < 0) continue; /* audio-only has no video worker */
@@ -108,6 +128,7 @@ int ppa_session_start_workers(SceUID audio, SceUID video, SceUID decode,
                         "session", "partial_start", 2000000U, 250000U) < 0)
                     ppa_wait_quarantine("Playback partial start did not stop", -1);
             }
+            ppa_debug_movie_start_failed();
             return -1;
         }
         started[i] = 1;
@@ -118,12 +139,18 @@ int ppa_session_start_workers(SceUID audio, SceUID video, SceUID decode,
 int ppa_session_audio_only(void) { return g_options.audio_only != 0; }
 int ppa_session_health_enabled(void) { return g_options.health_panel != 0; }
 
-static void session_restore_power_lock(void)
+static int session_restore_power_lock(void)
 {
     if (g_lock_borrowed) {
-        scePowerLock(0);
+        int result = scePowerLock(0);
+        if (result < 0) {
+            ppa_debug_error("standby: could not restore playback power lock", result);
+            return 0;
+        }
+        if (g_options.browser_power_lock_owned) *g_options.browser_power_lock_owned = 1;
         g_lock_borrowed = 0;
     }
+    return 1;
 }
 
 static void session_fallback_blank(void)
@@ -175,8 +202,13 @@ static void session_display(int enabled)
 void ppa_session_close(void)
 {
     if (!g_active) return;
+    /* Workers have joined, but the reader and its pump are still alive. */
+    (void)session_restore_power_lock();
+    (void)ppa_io_pump_unpark(g_playback_io);
+    ppa_debug_unpark();
+    ppa_debug_tick(1);
     session_display(1);
-    session_restore_power_lock();
+    g_playback_io = 0;
     g_active = 0;
     sceKernelDeleteSema(g_timeline.lock);
     g_timeline.lock = -1;
@@ -190,7 +222,7 @@ void ppa_session_power_callback(unsigned int flags)
 
 void ppa_session_keep_awake(void)
 {
-    if (!g_suspend_requested)
+    if (!g_suspend_pending && !g_suspend_requested)
         scePowerTick((g_options.audio_only || g_display_off) ?
                      PSP_POWER_TICK_SUSPEND : PSP_POWER_TICK_ALL);
 }
@@ -199,30 +231,69 @@ int ppa_session_service(const SceCtrlData *input, int paused)
 {
     uint64_t now = session_now();
     unsigned int events = __sync_lock_test_and_set(&g_power_events, 0U);
+    int native_request = scePowerIsRequest() > 0;
+    int new_request = native_request && !g_request_seen;
     int actions = 0;
+    g_request_seen = native_request;
     ppa_session_set_paused(paused);
+    if (paused && !g_pause_clock_lowered) {
+        unsigned int wanted = PPA_SESSION_WORKER_AUDIO | PPA_SESSION_WORKER_DECODE;
+        if (!g_options.audio_only) wanted |= PPA_SESSION_WORKER_VIDEO;
+        if ((atomic_read(&g_idle_workers) & wanted) == wanted &&
+            sceAudioGetChannelRestLength(0) <= 0) {
+            ppa_debug_event("pause acknowledged by all workers; clocks may idle");
+            cpu_clock_auto_pause();
+            g_pause_clock_lowered = 1;
+        }
+    }
     int activity = input && ((input->Buttons & ~PSP_CTRL_HOLD) != 0U ||
                   input->Lx < 104 || input->Lx > 152 ||
                   input->Ly < 104 || input->Ly > 152);
 
-    if (events & (PSP_POWER_CB_SUSPENDING | PSP_POWER_CB_STANDBY)) {
-        g_saw_suspend = 1;
-        actions |= PPA_SESSION_PAUSE;
-    }
     if (events & PSP_POWER_CB_RESUME_COMPLETE) {
-        g_suspend_pending = g_suspend_requested = 0;
-        session_restore_power_lock();
+        /* Wake wins if the callback mailbox accumulated both transitions.
+         * Never enqueue a second suspend after scePowerUnlock returns from a
+         * complete sleep/wake cycle. Native Sony drivers retain codec state. */
+        g_suspend_pending = g_suspend_requested = g_saw_suspend = 0;
+        g_wait_for_play = 1;
+        if (g_started_us && g_suspend_begin_us >= g_started_us && now >= g_suspend_begin_us)
+            g_started_us += now - g_suspend_begin_us;
+        g_suspend_begin_us = 0;
+        (void)session_restore_power_lock();
         session_display(1);
+        (void)ppa_privileged_display_set_enabled(1);
+        if (g_suspend_frame)
+            (void)sceDisplaySetFrameBuf(g_suspend_frame, g_suspend_pitch,
+                g_suspend_format, PSP_DISPLAY_SETBUF_IMMEDIATE);
+        g_suspend_frame = 0;
         g_last_input_us = now;
+        g_wake_ready_us = now + 350000ULL;
         g_consume_wake = 1;
         ppa_session_discontinuity();
+        ppa_debug_event("standby: resumed; waiting for a fresh Play press");
         actions |= PPA_SESSION_PAUSE; /* resume hardware, keep movie paused */
+    } else {
+        if ((events & PSP_POWER_CB_POWER_SWITCH) || new_request) {
+            if (!g_suspend_pending && !g_suspend_requested) {
+                g_suspend_begin_us = g_suspend_wait_us = now;
+                g_suspend_pending = g_wait_for_play = 1;
+                ppa_debug_event("standby: native power request; parking playback");
+            }
+            g_suspend_external = 1;
+        }
+        if (events & (PSP_POWER_CB_SUSPENDING | PSP_POWER_CB_STANDBY)) {
+            g_saw_suspend = 1;
+            g_wait_for_play = 1;
+            actions |= PPA_SESSION_PAUSE | PPA_SESSION_CONSUME_INPUT;
+        }
     }
-    if (g_started_us && !g_timer_fired && g_options.sleep_minutes > 0 &&
+    if (!(events & PSP_POWER_CB_RESUME_COMPLETE) && !g_suspend_pending &&
+        !g_suspend_requested && g_started_us && !g_timer_fired && g_options.sleep_minutes > 0 &&
         now - g_started_us >= (uint64_t)g_options.sleep_minutes * 60000000ULL) {
         g_timer_fired = 1;
-        g_suspend_pending = 1;
-        g_suspend_wait_us = now;
+        g_suspend_pending = g_wait_for_play = 1;
+        g_suspend_external = 0;
+        g_suspend_begin_us = g_suspend_wait_us = now;
         actions |= PPA_SESSION_PAUSE | PPA_SESSION_CONSUME_INPUT;
     }
     if (g_suspend_pending) {
@@ -231,19 +302,46 @@ int ppa_session_service(const SceCtrlData *input, int paused)
         actions |= PPA_SESSION_PAUSE | PPA_SESSION_CONSUME_INPUT;
         if (!g_suspend_requested && paused &&
             (atomic_read(&g_idle_workers) & wanted) == wanted &&
-            sceAudioGetChannelRestLength(0) <= 0) {
-            /* Browser normally locks suspend around synchronous playback.
-             * Borrow exactly its existing lock for this deliberate transition,
-             * restoring it on resume/failure before browser cleanup unlocks. */
-            if (g_options.browser_power_lock_owned && scePowerUnlock(0) >= 0)
-                g_lock_borrowed = 1;
+            sceAudioGetChannelRestLength(0) == 0 &&
+            ppa_io_pump_park(g_playback_io) && ppa_debug_park()) {
+            /* No producer can submit more reads after acknowledging pause.
+             * Park read-ahead and diagnostics at completed I/O boundaries, keep
+             * their descriptors/queues, and preserve the currently visible
+             * framebuffer. No allocation, GU work, codec reset or ME takeover. */
+            if (sceDisplayGetFrameBuf(&g_suspend_frame, &g_suspend_pitch,
+                &g_suspend_format, PSP_DISPLAY_SETBUF_IMMEDIATE) < 0)
+                g_suspend_frame = 0;
+            ppa_cache_wbinv_all();
             g_saw_suspend = 0;
             g_suspend_requested = 1;
             g_suspend_wait_us = now;
-            (void)scePowerRequestSuspend(); /* PSPSDK: return value is always 0 */
+            /* Queue the timer's request under the lock. A physical request is
+             * already queued. Unlock can suspend immediately: publish ALL
+             * ownership before it and do not request suspend after it. */
+            if (!g_suspend_external && !native_request)
+                (void)scePowerRequestSuspend();
+            g_suspend_external = 1;
+            if (g_options.browser_power_lock_owned && *g_options.browser_power_lock_owned) {
+                int result;
+                g_lock_borrowed = 1;
+                *g_options.browser_power_lock_owned = 0;
+                result = scePowerUnlock(0);
+                if (result < 0) {
+                    *g_options.browser_power_lock_owned = 1;
+                    g_lock_borrowed = 0;
+                    g_suspend_requested = 0; /* retry release, never duplicate request */
+                    ppa_debug_error("standby: power unlock failed", result);
+                }
+            }
+            return actions;
         }
-        if (!g_saw_suspend && now - g_suspend_wait_us >= 2000000ULL) {
-            session_restore_power_lock();
+        if (!g_saw_suspend && now - g_suspend_wait_us >= 2000000ULL &&
+            ((!g_suspend_external && !g_suspend_requested) ||
+             (g_suspend_requested && !native_request))) {
+            /* A cancelled/denied native request or a timer that could not park
+             * can fall back to paused display-off. Never abandon a still-
+             * queued physical request and let it fire unexpectedly on Stop. */
+            (void)session_restore_power_lock();
             g_suspend_pending = g_suspend_requested = 0;
             session_display(0);
             if (timeline_lock()) {
@@ -269,28 +367,53 @@ int ppa_session_service(const SceCtrlData *input, int paused)
     }
     if (g_consume_wake) {
         actions |= PPA_SESSION_CONSUME_INPUT;
-        if (!activity) g_consume_wake = 0;
+        if (!activity && now >= g_wake_ready_us) g_consume_wake = 0;
     }
     if (timeline_lock()) {
         g_timeline.stats.display_off = g_display_off;
         timeline_unlock();
     }
+    ppa_debug_tick(0);
     return actions;
+}
+
+int ppa_session_accept_input(unsigned int buttons)
+{
+    if (!g_wait_for_play) return 1;
+    if (g_suspend_pending || g_suspend_requested || g_saw_suspend || g_consume_wake ||
+        session_now() < g_wake_ready_us) return 0;
+    if (buttons == PSP_CTRL_TRIANGLE) return 1;
+    if (buttons != PSP_CTRL_SQUARE) return 0;
+    if (!session_restore_power_lock() || !ppa_io_pump_unpark(g_playback_io)) return 0;
+    ppa_debug_unpark();
+    g_wait_for_play = 0;
+    return 1;
 }
 
 int ppa_session_pause_point(volatile int *stop, volatile int *paused,
                             unsigned int worker_bit)
 {
+    int waited = 0;
     if (*paused && !*stop) {
-        __sync_fetch_and_or(&g_idle_workers, worker_bit);
-        while (*paused && !*stop) sceKernelDelayThread(5000U);
+        waited = 1;
+        while (*paused && !*stop) {
+            /* A rapid pause/resume/pause can clear the mask while this worker
+             * never leaves its parked loop. Re-acknowledge that safe state. */
+            __sync_fetch_and_or(&g_idle_workers, worker_bit);
+            sceKernelDelayThread(5000U);
+        }
         __sync_fetch_and_and(&g_idle_workers, ~worker_bit);
     }
-    return !*stop;
+    return *stop ? 0 : (waited ? 2 : 1);
 }
 
 void ppa_session_set_paused(int paused)
 {
+    if (!paused) {
+        g_pause_clock_lowered = 0;
+        /* Old pause acknowledgements cannot authorize the next downclock. */
+        __sync_lock_test_and_set(&g_idle_workers, 0U);
+    }
     if (!timeline_lock()) return;
     if ((paused != 0) == g_timeline.stats.paused) { timeline_unlock(); return; }
     if (paused && !g_timeline.stats.paused && g_timeline.stats.audio_valid)
@@ -456,21 +579,26 @@ void ppa_session_note_present(int64_t pts_ms)
 }
 void ppa_session_note_decode(unsigned int elapsed_us, int duration_ms)
 {
-    if (!g_options.health_panel || !timeline_try_lock()) return;
+    if ((!g_options.health_panel && !ppa_debug_enabled()) || !timeline_try_lock()) return;
     g_timeline.stats.decode_us = elapsed_us;
+    if (ppa_debug_enabled()) {
+        ++g_timeline.stats.decode_samples;
+        g_timeline.stats.decode_total_us += elapsed_us;
+        if (elapsed_us > g_timeline.stats.decode_peak_us) g_timeline.stats.decode_peak_us = elapsed_us;
+    }
     if (duration_ms > 0) g_timeline.stats.budget_us = (unsigned int)duration_ms * 1000U;
     timeline_unlock();
 }
 void ppa_session_note_skip(void)
 {
-    if (!g_options.health_panel || !timeline_try_lock()) return;
+    if ((!g_options.health_panel && !ppa_debug_enabled()) || !timeline_try_lock()) return;
     g_timeline.stats.skipped++;
     timeline_unlock();
 }
 void ppa_session_note_compat(unsigned int original_refs, unsigned int effective_refs,
                             int active, unsigned int weights_disabled)
 {
-    if (!g_options.health_panel || !timeline_try_lock()) return;
+    if ((!g_options.health_panel && !ppa_debug_enabled()) || !timeline_try_lock()) return;
     g_timeline.stats.original_refs = original_refs;
     g_timeline.stats.effective_refs = effective_refs;
     g_timeline.stats.compatibility = active;
@@ -482,6 +610,17 @@ int ppa_session_snapshot(struct ppa_session_snapshot *out)
     if (!out || !timeline_try_lock()) return 0;
     *out = g_timeline.stats;
     if (out->audio_valid) out->audio_ms = audio_time_locked(session_now());
+    timeline_unlock();
+    return 1;
+}
+
+int ppa_session_debug_snapshot(struct ppa_session_snapshot *out)
+{
+    if (!out || !g_active || !timeline_try_lock()) return 0;
+    *out = g_timeline.stats;
+    if (out->audio_valid) out->audio_ms = audio_time_locked(session_now());
+    g_timeline.stats.decode_samples = g_timeline.stats.decode_peak_us = 0U;
+    g_timeline.stats.decode_total_us = 0;
     timeline_unlock();
     return 1;
 }

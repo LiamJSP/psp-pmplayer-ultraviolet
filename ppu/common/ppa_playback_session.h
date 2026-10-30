@@ -15,13 +15,15 @@ struct ppa_session_options {
     int audio_only;
     int health_panel;
     int sleep_minutes;             /* 0 = off, 15-minute steps, maximum 720 */
-    int browser_power_lock_owned;  /* exactly one lock borrowed, never invented */
+    int *browser_power_lock_owned; /* shared controller-owned lock state */
 };
 
 struct ppa_session_snapshot {
     int audio_only, paused, audio_valid;
     int64_t audio_ms, video_ms;
     unsigned int decode_us, budget_us, skipped, presented;
+    unsigned int decode_samples, decode_peak_us;
+    uint64_t decode_total_us;
     unsigned int original_refs, effective_refs, weights_disabled;
     int compatibility, display_off, suspend_fallback;
 };
@@ -37,6 +39,8 @@ enum {
 void ppa_session_configure(const struct ppa_session_options *options);
 int ppa_session_open(void);
 void ppa_session_start(void);
+struct PpaIoPump;
+void ppa_session_bind_io(struct PpaIoPump *pump);
 int ppa_session_start_workers(SceUID audio, SceUID video, SceUID decode,
                                SceSize arg_size, void *args, volatile int *stop);
 void ppa_session_close(void);
@@ -45,6 +49,9 @@ int ppa_session_health_enabled(void);
 void ppa_session_power_callback(unsigned int power_flags);
 void ppa_session_keep_awake(void);
 int ppa_session_service(const SceCtrlData *input, int paused);
+/* After standby, only Stop or a fresh Play/Pause command is accepted. The
+ * latter thaws storage before the container releases its paused flag. */
+int ppa_session_accept_input(unsigned int buttons);
 int ppa_session_pause_point(volatile int *stop, volatile int *paused,
                             unsigned int worker_bit);
 
@@ -71,6 +78,8 @@ void ppa_session_note_compat(unsigned int original_refs,
                             unsigned int effective_refs, int active,
                             unsigned int weights_disabled);
 int ppa_session_snapshot(struct ppa_session_snapshot *out);
+/* Snapshot and reset only the debug interval aggregates. */
+int ppa_session_debug_snapshot(struct ppa_session_snapshot *out);
 
 /* Container adapters provide decoding only; the bounded audio-only producer,
  * pause, cancellation and EOF drain live here. Normal A/V adapters are retained

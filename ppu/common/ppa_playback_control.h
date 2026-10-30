@@ -6,6 +6,8 @@ extern "C" {
 #endif
 
 void ppa_playback_control_pause(void);
+void ppa_playback_control_unpause(volatile int *paused);
+void ppa_playback_control_toggle_pause(volatile int *paused);
 void ppa_playback_control_resume(void);
 void ppa_playback_control_seek(int direction_or_timestamp);
 void ppa_playback_control_audio_offset(int offset_ms);

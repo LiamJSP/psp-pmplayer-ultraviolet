@@ -1,4 +1,5 @@
 #include "ppa_privileged_bridge.h"
+#include "ppa_debug.h"
 
 #include <pspkernel.h>
 #include "cooleyesBridge.h"
@@ -88,6 +89,7 @@ int ppa_privileged_me_boot_start(int mebooter_type)
         cooleyesMeBootStart(0, mebooter_type);
     if (result == 0)
         g_mebooter_type = mebooter_type;
+    else ppa_debug_error("Sony ME boot", result);
     return result;
 }
 

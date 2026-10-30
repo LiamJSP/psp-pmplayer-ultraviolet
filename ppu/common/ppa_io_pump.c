@@ -17,6 +17,7 @@ struct PpaIoPump {
 	SceUID lock;
 	SceUID wake;
 	volatile int stop;
+	int parked; /* protected by lock; requests remain queued */
 	struct PpaIoRequest *queue[PPA_IO_PUMP_QUEUE_CAPACITY];
 	uint32_t queue_count;
 	struct PpaIoRequest *active;
@@ -45,6 +46,27 @@ static void ppa_io_pump_wake(struct PpaIoPump *pump)
 {
 	if (pump != 0 && pump->wake >= 0)
 		(void)sceKernelSignalSema(pump->wake, 1);
+}
+
+int ppa_io_pump_park(struct PpaIoPump *pump)
+{
+	int idle;
+	if (!pump) return 1;
+	if (sceKernelPollSema(pump->lock, 1) < 0) return 0;
+	pump->parked = 1;
+	idle = pump->active == 0;
+	ppa_io_pump_unlock(pump);
+	return idle;
+}
+
+int ppa_io_pump_unpark(struct PpaIoPump *pump)
+{
+	if (!pump) return 1;
+	if (sceKernelPollSema(pump->lock, 1) < 0) return 0;
+	pump->parked = 0;
+	ppa_io_pump_unlock(pump);
+	ppa_io_pump_wake(pump);
+	return 1;
 }
 
 static void ppa_io_request_drain_completion(struct PpaIoRequest *request)
@@ -274,7 +296,7 @@ static int ppa_io_pump_thread(SceSize args, void *argp)
 
 		now = ppa_io_pump_now();
 		if (ppa_io_pump_lock(pump)) {
-			selected = ppa_io_pump_select(pump, now, &next_release);
+			selected = pump->parked ? -1 : ppa_io_pump_select(pump, now, &next_release);
 			if (selected >= 0) {
 				request = pump->queue[selected];
 				ppa_io_pump_remove_at(pump, (uint32_t)selected);

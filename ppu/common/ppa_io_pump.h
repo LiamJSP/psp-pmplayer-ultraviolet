@@ -50,6 +50,12 @@ struct PpaIoRequest {
 
 struct PpaIoPump *ppa_io_pump_create(void);
 void ppa_io_pump_destroy(struct PpaIoPump *pump);
+/* Controller only, after decoder/presentation/audio owners are parked.
+ * Stop selecting reads and let an in-flight native read finish. Queued ranges
+ * and open descriptors survive standby. Returns 1 once no read is active.
+ * Neither call waits for the worker; retry on the next controller tick. */
+int ppa_io_pump_park(struct PpaIoPump *pump);
+int ppa_io_pump_unpark(struct PpaIoPump *pump);
 
 int ppa_io_request_init(struct PpaIoRequest *request, const char *name);
 void ppa_io_request_destroy(struct PpaIoRequest *request);

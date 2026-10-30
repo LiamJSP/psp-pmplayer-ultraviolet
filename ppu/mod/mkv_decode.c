@@ -1,3 +1,5 @@
+#include "../common/ppa_debug.h"
+#include "../common/ppa_playback_error.h"
 /* mkv_decode.c
  *	Copyright (C) 2009 cooleyes
  *	eyes.cooleyes@gmail.com 
@@ -1690,6 +1692,7 @@ void mkv_decode_safe_constructor(struct mkv_decode_struct *p) {
 }
 
 void mkv_decode_close(struct mkv_decode_struct *p, int pspType) {
+	ppa_error_h264(&p->h264x);
 	(void)pspType;
 
 	/* Release the software remap on both failed-open and normal close paths.
@@ -1932,6 +1935,10 @@ char *mkv_decode_open(struct mkv_decode_struct *p, char *s, int pspType, int tvA
 		return(result);
 	}
 
+    ppa_debug_media_info(p->reader.file.video_width, p->reader.file.video_height,
+        p->reader.file.video_rate, p->reader.file.video_scale, p->reader.file.duration_ms,
+        p->reader.file.audio_type, p->reader.file.audio_actual_rate,
+        p->reader.file.audio_channels, ppa_video_pipeline_extreme_battery_saver_enabled());
 	p->audio_frame_size = (p->reader.file.audio_resample_scale << 1) << p->reader.file.audio_stereo;
 
 	p->video_format = p->reader.file.video_type;

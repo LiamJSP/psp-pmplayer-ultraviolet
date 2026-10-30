@@ -575,9 +575,15 @@ static unsigned int ppa_gu_panel_glyph_row(char ch, unsigned int row)
 	switch (ch) {
 	case ' ': return 0U;
 	case '.': return row == 6U ? 4U : 0U;
+	case ',': return row == 5U ? 4U : row == 6U ? 8U : 0U;
+	case '\'': return row < 2U ? 4U : 0U;
+	case '"': return row < 2U ? 10U : 0U;
+	case '_': return row == 6U ? 31U : 0U;
+	case '!': return row < 4U || row == 6U ? 4U : 0U;
 	case ':': return (row == 2U || row == 5U) ? 4U : 0U;
 	case ';': return row == 2U ? 4U : row == 5U ? 4U : row == 6U ? 8U : 0U;
-	case '/': return (unsigned int)(1U << ((6U - row > 4U) ? 4U : 6U - row));
+	case '/': return row < 2U ? 1U : row == 2U ? 2U : row == 3U ? 4U : row == 4U ? 8U : 16U;
+	case '\\': return row < 2U ? 16U : row == 2U ? 8U : row == 3U ? 4U : row == 4U ? 2U : 1U;
 	case '%': return row == 0U ? 25U : row == 1U ? 26U :
 		row == 2U ? 2U : row == 3U ? 4U : row == 4U ? 8U :
 		row == 5U ? 11U : 19U;
@@ -593,9 +599,8 @@ static unsigned int ppa_gu_panel_glyph_row(char ch, unsigned int row)
 	case ')' : return row == 1U ? 8U : (row >= 2U && row <= 4U) ? 4U : row == 5U ? 8U : 0U;
 	case '[' : return (row == 0U || row == 6U) ? 14U : 8U;
 	case ']' : return (row == 0U || row == 6U) ? 14U : 2U;
-	case '?': return row == 0U ? 14U : row == 1U ? 17U :
+	case '?': default: return row == 0U ? 14U : row == 1U ? 17U :
 		row == 2U ? 1U : row == 3U ? 2U : row == 5U ? 4U : 0U;
-	default: return 0U;
 	}
 }
 
@@ -734,6 +739,51 @@ int ppa_gu_draw_text_panel_blocking(const char *title,
 	return result;
 }
 
+/* Emergency pages use the ROM-sized bitmap table at twice its old size.
+ * Keep this independent of heap/font/GU state after a decoder failure. The
+ * caller wraps to 36 columns and 9 lines; every glyph fits the LCD and TV
+ * panel mappings, including both fields of interlaced output. */
+static void ppa_gu_error_text(unsigned int *dst, unsigned int pitch,
+                               unsigned int y, const char *text)
+{
+	unsigned int x = 24U, count = 0U;
+	while (text && *text && *text != '\n' && count < 36U) {
+		unsigned int row, col;
+		for (row = 0; row < 7U; ++row) {
+			unsigned int bits = ppa_gu_panel_glyph_row(*text, row);
+			for (col = 0; col < 5U; ++col)
+				if (bits & (1U << (4U - col)))
+					ppa_gu_panel_fill(dst, pitch, x + col * 2U,
+					                  y + row * 2U, 2U, 2U, 0xffffffffU);
+		}
+		x += 12U; ++count; ++text;
+	}
+}
+
+static int ppa_gu_draw_error_pixels(void *framebuffer, int pitch,
+                                      const char *title, const char *body,
+                                      const char *footer)
+{
+	unsigned int *dst;
+	unsigned int line;
+	const char *text = body;
+	if (!framebuffer || pitch <= 0 || (unsigned int)pitch < ppa_gu_panel_x(462U))
+		return -1;
+	dst = (unsigned int *)ppa_uncached_ptr(framebuffer);
+	ppa_gu_panel_fill(dst, pitch, 18U, 16U, 444U, 240U, 0xff181818U);
+	ppa_gu_panel_fill(dst, pitch, 18U, 16U, 444U, 32U, 0xff483028U);
+	ppa_gu_panel_fill(dst, pitch, 18U, 228U, 444U, 28U, 0xff303030U);
+	ppa_gu_error_text(dst, pitch, 25U, title);
+	for (line = 0; text && *text && line < 9U; ++line) {
+		ppa_gu_error_text(dst, pitch, 56U + 18U * line, text);
+		text = strchr(text, '\n');
+		if (text) ++text;
+	}
+	ppa_gu_error_text(dst, pitch, 235U, footer);
+	__sync_synchronize();
+	return 0;
+}
+
 int ppa_gu_draw_recovery_text_panel_blocking(const char *title,
                                              const char *body,
                                              const char *footer)
@@ -789,7 +839,7 @@ int ppa_gu_draw_recovery_text_panel_blocking(const char *title,
 	gu_font_output_set(output_left, output_top, output_width, output_height);
 	ppa_video_pipeline_set_lcd_output(!tv_output);
 
-	return ppa_gu_draw_text_panel_pixels(framebuffer, pitch,
+	return ppa_gu_draw_error_pixels(framebuffer, pitch,
 	                                     title, body, footer);
 }
 
@@ -1054,6 +1104,7 @@ void ppa_gu_overlay_cpu_frame(unsigned int show_interface,
 		if (subtitle_parse_get_frame(&subtitle_parser[show_subtitle - 1],
 		                             &frame,
 		                             frame_number) == 0 && frame != 0) {
+			gu_font_prepare_subtitle(frame->p_string, subtitle_format == 1);
 			if ((subtitle_format == 1) &&
 			    (gufont_haveflags & GU_FONT_HAS_UNICODE_CHARMAP)) {
 				flags = FLAG_UTF8;
@@ -1280,6 +1331,7 @@ void ppa_gu_draw_without_tvout_supported(unsigned int aspect_ratio,
 		                             &frame,
 		                             frame_number) == 0) {
 			if (frame != 0) {
+				gu_font_prepare_subtitle(frame->p_string, subtitle_format == 1);
 				if ((subtitle_format == 1) &&
 				    (gufont_haveflags & GU_FONT_HAS_UNICODE_CHARMAP)) {
 					flags = FLAG_UTF8;
@@ -1500,6 +1552,7 @@ void ppa_gu_draw_psplcd(unsigned int aspect_ratio,
 		                             &frame,
 		                             frame_number) == 0) {
 			if (frame != 0) {
+				gu_font_prepare_subtitle(frame->p_string, subtitle_format == 1);
 				if ((subtitle_format == 1) &&
 				    (gufont_haveflags & GU_FONT_HAS_UNICODE_CHARMAP)) {
 					flags = FLAG_UTF8;
@@ -1670,6 +1723,7 @@ void ppa_gu_draw_tvout_interlace(unsigned int aspect_ratio, unsigned int zoom, u
 			{
 				if (frame!=0)
 					{
+					gu_font_prepare_subtitle(frame->p_string, subtitle_format == 1);
 					if ((subtitle_format==1) && (gufont_haveflags&GU_FONT_HAS_UNICODE_CHARMAP))
 						{
 						flags = FLAG_UTF8;
@@ -1821,6 +1875,7 @@ void ppa_gu_draw_tvout_progressive(unsigned int aspect_ratio, unsigned int zoom,
 			{
 				if (frame!=0)
 					{
+					gu_font_prepare_subtitle(frame->p_string, subtitle_format == 1);
 					if ((subtitle_format==1) && (gufont_haveflags&GU_FONT_HAS_UNICODE_CHARMAP))
 						{
 						flags = FLAG_UTF8;

@@ -1,3 +1,5 @@
+#include "common/ppa_debug.h"
+#include "common/ppa_playback_error.h"
 #include <new>
 #include "mod/subtitle_font_config.h"
 #include "common/ppa_process.h"
@@ -110,16 +112,14 @@
 #define PPA_ENABLE_THUMBNAILS 0
 #endif
 
+static char ppa_boot_module_failure[256];
 static void ppa_bootlog_module_result(const char *phase, const char *path, int result, int status)
 {
-	char line[1280];
-	const char *safe_phase = phase ? phase : "unknown";
-	const char *safe_path = path ? path : "(null)";
-
-	snprintf(line, sizeof(line),
-	         "PPA_BOOT:module_%s,path=%s,result=%ld,hex=0x%08lx,status=%ld",
-	         safe_phase, safe_path, (long)result,
-	         (unsigned long)(unsigned int)result, (long)status);
+	if (result < 0)
+		snprintf(ppa_boot_module_failure, sizeof(ppa_boot_module_failure),
+		         "Module: %.160s\nOperation: %s\nCode: 0x%08x  Status: 0x%08x\n",
+		         path ? path : "unknown", phase ? phase : "unknown",
+		         (unsigned int)result, (unsigned int)status);
 }
 
 static int ppa_boot_required_module(const char *path, SceUID *module_id_out)
@@ -152,11 +152,16 @@ static void ppa_boot_fail_screen(const char *msg)
 {
 	pspDebugScreenInit();
 	pspDebugScreenSetXY(0, 0);
-	pspDebugScreenPrintf("PMPlayer Ultraviolet boot failed\n\n");
+	pspDebugScreenPrintf("PMPlayer Ultraviolet could not start\n\n");
 	pspDebugScreenPrintf("%s\n\n", msg ? msg : "(no message)");
+	if (ppa_boot_module_failure[0]) {
+		pspDebugScreenPrintf("%s\n", ppa_boot_module_failure);
+		pspDebugScreenPrintf("Reinstall EBOOT and the PRX files from the same build.\n"
+		                    "Keep the package folder structure intact.\n\n");
+	}
 	pspDebugScreenPrintf("Press X to exit.\n");
 
-	while (1) {
+	while (!ppa_process_exit_requested()) {
 		SceCtrlData pad;
 		sceCtrlReadBufferPositive(&pad, 1);
 
@@ -167,74 +172,44 @@ static void ppa_boot_fail_screen(const char *msg)
 	}
 }
 
-static void ppa_battery_saver_rejection_screen(Image *surface)
-{
-	static const char message[] =
-		"Turn off Battery Saver Mode in Config to Play This File";
-	FtFont *font;
-	uint64_t deadline;
-	int font_size;
-	int x;
-
-	if (surface == 0)
-		return;
-	FtFontManager *manager = FtFontManager::getInstance();
-	font = manager ? manager->getMainFont() : NULL;
-	font_size = font ? font->getPixelSize() : 12;
-	clearImage(surface, 0xff000000U);
-	if (font != 0) {
-		x = (PSP_SCREEN_WIDTH -
-		     (int)strlen(message) * font_size / 2) / 2;
-		if (x < 4) x = 4;
-		font->printStringToImage(surface, x,
-		                         PSP_SCREEN_HEIGHT / 2 + font_size / 2,
-		                         PSP_SCREEN_WIDTH - x - 4, font_size + 4,
-		                         0x00ffffffU, message);
-	}
-	guStart();
-	clearScreen();
-	blitImageToScreen(0, 0, surface->imageWidth, surface->imageHeight,
-	                  surface, 0, 0);
-	flipScreen();
-
-	ctrl_flush();
-	deadline = (uint64_t)sceKernelGetSystemTimeWide() + 10000000ULL;
-	while ((uint64_t)sceKernelGetSystemTimeWide() < deadline) {
-		if (ctrl_wait(20000) & PSP_CTRL_TRIANGLE)
-			break;
-	}
-	ctrl_flush();
-}
-
 static int ppa_playback_result_is_manual_exit(const char *result)
 {
 	return result != 0 && strcmp(result, "exit: manual") == 0;
 }
 
-static void ppa_playback_error_screen(const char *result)
+static void ppa_playback_error_screen(const char *result, const char *path)
 {
-	char body[768];
-	uint64_t deadline;
-	int draw_result;
+	struct ppa_error_report report;
+	char body[PPA_ERROR_PAGE_BYTES], title[40];
+	unsigned int page = 0U, summary_pages, detail_pages, pages;
+	int redraw = 1;
 
 	if (result == 0 || ppa_playback_result_is_manual_exit(result))
 		return;
-	snprintf(body, sizeof(body),
-	         "Playback stopped before returning to the browser.\n"
-	         "Reason: %.620s", result);
-	draw_result = ppa_gu_draw_recovery_text_panel_blocking(
-		"Playback error - recovered", body,
-		"Triangle or X: return to browser");
-	
-	if (draw_result < 0)
-		return;
-
+	ppa_error_make_report(result, path, &report);
+	summary_pages = ppa_error_page(report.summary, 0, NULL);
+	detail_pages = ppa_error_page(report.details, 0, NULL);
+	pages = summary_pages + detail_pages;
 	ctrl_flush();
-	deadline = (uint64_t)sceKernelGetSystemTimeWide() + 10000000ULL;
-	while ((uint64_t)sceKernelGetSystemTimeWide() < deadline) {
+	/* Draw only on page changes. No timeout: users can read or photograph the
+	 * error. The input wait sleeps; HOME remains available through its callback. */
+	while (!ppa_process_exit_requested()) {
+		if (redraw) {
+			ppa_error_page(page < summary_pages ? report.summary : report.details,
+			               page < summary_pages ? page : page - summary_pages, body);
+			snprintf(title, sizeof(title), "%.30s %u/%u",
+			         page < summary_pages ? report.title : "Encoding / error details",
+			         page + 1U, pages);
+			if (ppa_gu_draw_recovery_text_panel_blocking(title, body,
+			    "Left/Right: pages   X: browser") < 0)
+				break;
+			redraw = 0;
+		}
 		unsigned int buttons = ctrl_wait(20000);
 		if ((buttons & (PSP_CTRL_TRIANGLE | PSP_CTRL_CROSS)) != 0U)
 			break;
+		if ((buttons & PSP_CTRL_RIGHT) && page + 1U < pages) { ++page; redraw = 1; }
+		else if ((buttons & PSP_CTRL_LEFT) && page > 0U) { --page; redraw = 1; }
 	}
 	ctrl_flush();
 }
@@ -243,12 +218,8 @@ static void ppa_handle_playback_result(Image *surface,
                                        const char *path,
                                        const char *result)
 {
-	if (result == 0)
-		return;
-	if (strcmp(result, PPA_BATTERY_SAVER_REJECTED) == 0)
-		ppa_battery_saver_rejection_screen(surface);
-	else
-		ppa_playback_error_screen(result);
+	(void)surface;
+	ppa_playback_error_screen(result, path);
 }
 
 struct movie_file_struct currentMovie;
@@ -1334,15 +1305,16 @@ static char *ppa_play_movie_dispatch(int filetype,
 	int tvOverScanTop,
 	int tvOverScanRight,
 	int tvOverScanBottom,
-	int videoMode, UiI18n *ui)
+	int videoMode, UiI18n *ui, int *power_lock_owned)
 {
 	const ppa::media::Backend *backend =
 		ppa::media::backendForFileType((file_type_enum)filetype);
 	ppa::media::PlaybackRequest request;
 	char *result;
 	int configured_auto_clock = 1;
-	struct ppa_session_options session_options = {0, 0, 0, 1};
+	struct ppa_session_options session_options = {0, 0, 0, power_lock_owned};
 
+	ppa_error_reset();
 	if (backend == 0 || movie == 0)
 		return const_cast<char *>("unsupported movie container");
 
@@ -1392,7 +1364,10 @@ static char *ppa_play_movie_dispatch(int filetype,
 	/* Browser launch/exit transitions must not leak into playback or back into
 	 * the browser. Held state remains tracked by the sampler. */
 	ctrl_flush();
+    ppa_debug_movie_begin(movie->movie_file, backend->name(), session_options.audio_only);
 	result = backend->play(request);
+    ppa_debug_movie_end(result);
+    ppa_debug_config_sync();
 	ppa_playback_ui_release();
 	ctrl_flush();
 
@@ -1696,36 +1671,50 @@ int PpuPlayer::init(char* ppaPath) {
 		return 0;
 	}
 	if (!ppa_privileged_bridge_attach()) {
-		ppa_boot_fail_screen("cooleyesBridge PRX/API mismatch");
+		ppa_boot_fail_screen("The decoder helper version does not match this EBOOT.\n"
+		                     "Install cooleyesBridge.prx supplied with this build.");
 		return 0;
 	}
 
     memset(tempPath, 0, 1024);
 	snprintf(tempPath, sizeof(tempPath), "%s%s", applicationPath, "miniconv.prx");
-	if (!ppa_boot_required_module(tempPath, &modid))
+	if (!ppa_boot_required_module(tempPath, &modid)) {
+		ppa_boot_fail_screen("The text conversion helper (miniconv.prx) could not start.");
 		return 0;
+	}
 
     memset(tempPath, 0, 1024);
 	snprintf(tempPath, sizeof(tempPath), "%s%s", applicationPath, "i18n.prx");
-	if (!ppa_boot_required_module(tempPath, &modid))
+	if (!ppa_boot_required_module(tempPath, &modid)) {
+		ppa_boot_fail_screen("The translation helper (i18n.prx) could not start.");
 		return 0;
+	}
 
 	memset(tempPath, 0, 1024);
 	snprintf(tempPath, sizeof(tempPath), "%s%s", applicationPath, "dvemgr.prx");
-	if ( ! VideoMode::init(pspType, tempPath))
+	if ( ! VideoMode::init(pspType, tempPath)) {
+		ppa_boot_fail_screen("The display service could not start.\n"
+		                     "Check that dvemgr.prx is installed beside EBOOT.PBP.");
 		return 0;
+	}
 
 	/* Initial bridge/UI/TV-out PRXs are resident. Reserve the legacy
 	 * Sony fixed-address surfaces before AVC buffer setup, but retain a
 	 * complete PSP-1000-style fallback when CFW refuses the address. */
 	fixed_surfaces_reserved = ppa_memory_prepare_fixed_surfaces();
 
-	if( mp4_avc_init_ddrtop() != 1 )
+	if( mp4_avc_init_ddrtop() != 1 ) {
+		ppa_boot_fail_screen("Could not reserve the video decoder's memory.\n"
+		                     "Restart the PSP, then try again.");
 		return 0;
+	}
 
 	if (!m33IsTVOutSupported(pspType) || !fixed_surfaces_reserved)
-		if( psp1k_init_frame_buffer() != 1 )
+		if( psp1k_init_frame_buffer() != 1 ) {
+			ppa_boot_fail_screen("Could not reserve video frame buffers.\n"
+			                     "Restart the PSP to free memory, then try again.");
 			return 0;
+		}
 
 	memset(tempPath, 0, 1024);
 	snprintf(tempPath, sizeof(tempPath), "%s%s", applicationPath, "moviestat.dat");
@@ -1750,11 +1739,13 @@ int PpuPlayer::init(char* ppaPath) {
 	snprintf(tempPath, sizeof(tempPath), "%s%s", applicationPath, "config.xml");
 
 	if (!Config::loadConfig(tempPath)) {
-		ppa_boot_fail_screen("Could not load config.xml");
+		ppa_boot_fail_screen("Could not read config.xml.\n"
+		                     "Restore config.xml from the package beside EBOOT.PBP.");
 		return 0;
 	}
 
 	config = Config::getInstance();
+    ppa_debug_config_init(tempPath);
     /* Persist first-launch detection once; existing explicit values win. */
     if (ppu_controls_init()) config->save(tempPath);
 
@@ -1768,7 +1759,8 @@ int PpuPlayer::init(char* ppaPath) {
 		int skin_length = snprintf(skinPath, sizeof(skinPath), "%sskins/%s/",
 		                           applicationPath, skin_name ? skin_name : "default");
 		if (skin_length < 0 || skin_length >= (int)sizeof(skinPath)) {
-			ppa_boot_fail_screen("Configured skin path is too long");
+			ppa_boot_fail_screen("The skin folder path in config.xml is too long.\n"
+			                     "Use a shorter path, or restore the default config.xml.");
 			return 0;
 		}
 		if (!Skin::loadSkin(skinPath)) {
@@ -1777,13 +1769,15 @@ int PpuPlayer::init(char* ppaPath) {
 				                       "%sskins/default/", applicationPath);
 				if (skin_length < 0 || skin_length >= (int)sizeof(skinPath) ||
 				    !Skin::loadSkin(skinPath)) {
-					ppa_boot_fail_screen("Could not load configured or default skin");
+					ppa_boot_fail_screen("Could not load the selected skin or the default skin.\n"
+					                     "Restore the skins/default folder from the package.");
 					return 0;
 				}
 				/* All subsequent assets and UI clip maps use skinPath. */
 			}
 			else {
-				ppa_boot_fail_screen("Could not load skins/default/skin.xml");
+				ppa_boot_fail_screen("Could not read skins/default/skin.xml.\n"
+				                     "Restore the skins/default folder from the package.");
 				return 0;
 			}
 		}
@@ -1839,7 +1833,8 @@ int PpuPlayer::init(char* ppaPath) {
 			snprintf(tempPath, sizeof(tempPath), "%s%s",
 			         applicationPath, "interface/04B_25__.TTF");
 			if (!fontManager->loadMainFont(tempPath)) {
-				ppa_boot_fail_screen("Could not load any UI font");
+				ppa_boot_fail_screen("Could not load a font for the menus.\n"
+				                     "Restore the fonts folder from the package.");
 				return 0;
 			}
 		}
@@ -3294,7 +3289,12 @@ void PpuPlayer::playMovie(bool resume) {
 	/* Protect the entire menu-to-playback storage handoff. In particular, do
 	 * not let standby interrupt a changed CRC cache write or a worker
 	 * join and leave FAT/NTFS ownership half-transitioned. */
-	scePowerLock(0);
+	int power_lock_owned = scePowerLock(0) >= 0;
+	if (!power_lock_owned) {
+		ppa_error_reset();
+		ppa_playback_error_screen("playback: could not acquire power-transition lock", NULL);
+		return;
+	}
 
 	/* Playback owns storage/NTFS state. Cancel all nonessential browser work
 	 * and reclaim cached menu surfaces before opening subtitles or media. */
@@ -3331,7 +3331,7 @@ void PpuPlayer::playMovie(bool resume) {
 
 	int usePos = resume ? 1 : 0;
 
-	result = ppa_play_movie_dispatch(fileItems[fileItemCurrent].filetype, &currentMovie, usePos, pspType, VideoMode::getTVAspectRatio(), left, top, right, bottom, VideoMode::getVideoMode(), uiI18n);
+	result = ppa_play_movie_dispatch(fileItems[fileItemCurrent].filetype, &currentMovie, usePos, pspType, VideoMode::getTVAspectRatio(), left, top, right, bottom, VideoMode::getVideoMode(), uiI18n, &power_lock_owned);
 
 	ppa_cache_wbinv_all();
 	if (result) {
@@ -3340,7 +3340,7 @@ void PpuPlayer::playMovie(bool resume) {
 		(void)ppa_browser_fs_cache_restore_after_playback();
 		g_ppa_browser_metadata_suppressed = 0;
 		ppa_browser_metadata_schedule_wake_cooldown();
-		scePowerUnlock(0);
+		if (power_lock_owned) scePowerUnlock(0);
 		return;
 	}
 
@@ -3351,7 +3351,7 @@ void PpuPlayer::playMovie(bool resume) {
 		(void)ppa_browser_fs_cache_restore_after_playback();
 		g_ppa_browser_metadata_suppressed = 0;
 		ppa_browser_metadata_schedule_wake_cooldown();
-		scePowerUnlock(0);
+		if (power_lock_owned) scePowerUnlock(0);
 		return;
 	}
 	else if ( stricmp("group", playMode) == 0  ) {
@@ -3361,7 +3361,7 @@ void PpuPlayer::playMovie(bool resume) {
 				fillSelectMovieInfo();
 				int left, top, right, bottom;
 				VideoMode::getTVOverScan(left, top, right, bottom);
-				result = ppa_play_movie_dispatch(fileItems[fileItemCurrent].filetype, &currentMovie, 0, pspType, VideoMode::getTVAspectRatio(), left, top, right, bottom, VideoMode::getVideoMode(), uiI18n);
+				result = ppa_play_movie_dispatch(fileItems[fileItemCurrent].filetype, &currentMovie, 0, pspType, VideoMode::getTVAspectRatio(), left, top, right, bottom, VideoMode::getVideoMode(), uiI18n, &power_lock_owned);
 
 				ppa_cache_wbinv_all();
 				if (result) {
@@ -3379,7 +3379,7 @@ void PpuPlayer::playMovie(bool resume) {
 			fillSelectMovieInfo();
 			int left, top, right, bottom;
 			VideoMode::getTVOverScan(left, top, right, bottom);
-			result = ppa_play_movie_dispatch(fileItems[fileItemCurrent].filetype, &currentMovie, 0, pspType, VideoMode::getTVAspectRatio(), left, top, right, bottom, VideoMode::getVideoMode(), uiI18n);
+			result = ppa_play_movie_dispatch(fileItems[fileItemCurrent].filetype, &currentMovie, 0, pspType, VideoMode::getTVAspectRatio(), left, top, right, bottom, VideoMode::getVideoMode(), uiI18n, &power_lock_owned);
 			ppa_cache_wbinv_all();
 			if (result) {
 				ppa_handle_playback_result(drawImage, currentMovie.movie_file, result);
@@ -3393,7 +3393,7 @@ void PpuPlayer::playMovie(bool resume) {
 	ppa_browser_metadata_schedule_wake_cooldown();
 	guStart();
 	flipScreen();
-	scePowerUnlock(0);
+	if (power_lock_owned) scePowerUnlock(0);
 };
 
 enum {

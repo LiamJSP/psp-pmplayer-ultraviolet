@@ -29,6 +29,7 @@
 #include "player.h"
 #include "common/ppa_playback_session.h"
 #include "common/ppa_process.h"
+#include "common/ppa_debug.h"
 #include "common/ppa_build_contract.h"
 #include "common/ppu_platform_contract.hpp"
 #include "common/ppa_hardware_profile.h"
@@ -77,7 +78,10 @@ static int power_callback(int arg1, int powerInfo, void * arg)
 	/* Power callbacks must never touch storage, GE/font state, or wait for
 	 * workers. They run on the callback thread and only queue an intent for
 	 * the browser UI thread, which performs the ordered transition safely. */
-	if ((powerInfo & (PSP_POWER_CB_POWER_SWITCH | PSP_POWER_CB_STANDBY | PSP_POWER_CB_SUSPENDING)) != 0)
+	/* POWER_SWITCH is intent, not proof that standby happened. In playback
+	 * it may be deferred by the power lock. Only actual suspend events put the
+	 * browser into its suspended state (otherwise a denied sleep strands it). */
+	if ((powerInfo & (PSP_POWER_CB_STANDBY | PSP_POWER_CB_SUSPENDING)) != 0)
 		player->requestSuspendFromCallback();
 	if ((powerInfo & PSP_POWER_CB_RESUME_COMPLETE) != 0)
 		player->requestResumeFromCallback();
@@ -138,7 +142,8 @@ int main(int argc, char **argv)
 	player = new (std::nothrow) PpuPlayer();
 
 	if (player == 0) {
-		pspDebugScreenPrintf("new PpuPlayer failed\n");
+		pspDebugScreenPrintf("Not enough memory to start PMPlayer Ultraviolet.\n"
+		                    "Restart the PSP, then try again.\n");
 		sceKernelDelayThread(3000000);
 		sceKernelExitGame();
 		return 0;
@@ -149,7 +154,7 @@ int main(int argc, char **argv)
 	}
 	else {
 
-		pspDebugScreenPrintf("init fail, press X to exit...\n");
+		pspDebugScreenPrintf("Startup did not complete. Press X to exit.\n");
 
 		SceCtrlData input;
 		sceCtrlReadBufferPositive(&input, 1);
@@ -160,6 +165,7 @@ int main(int argc, char **argv)
 		}
 	}
 
+    ppa_debug_shutdown();
 	delete player;
 	player = NULL;
 	ppa_video_pipeline_shutdown();

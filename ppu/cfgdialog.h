@@ -57,9 +57,9 @@ private:
 	Image* mainWindow;
 	Image* mainDrawImage;
 	Image* drawImage;
-	/* The menu always has 20 entries. Inline pointer storage avoids a second
+	/* The menu always has 21 entries. Inline pointer storage avoids a second
 	 * allocation; each pointed-to ConfigItem keeps its existing ownership. */
-	enum { ItemCapacity = 20 };
+	enum { ItemCapacity = 21 };
 	boost::array<PConfigItem, ItemCapacity> items;
 	int itemBottom, itemTop, itemCurrent, itemCount;
 	FtFont* mainFont;

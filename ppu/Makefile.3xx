@@ -51,6 +51,10 @@ OBJS = main.o \
 	common/ppa_bus_manager.o \
 	common/ppa_cache.o \
 	common/ppa_wait.o \
+	common/ppa_debug.o \
+	common/ppa_debug_state.o \
+	common/ppa_debug_config.o \
+	common/ppa_playback_error.o \
 	common/ppa_packet_pool.o \
 	common/ppa_media_packet.o \
 	common/ppa_playback_control.o \
@@ -105,6 +109,7 @@ OBJS = main.o \
 	mod/subtitle_subrip.o \
 	mod/subtitle_ass.o \
 	mod/subtitle_font_config.o \
+	mod/subtitle_readability.o \
 	mod/subtitle_preferences.o \
 	tinyxml/tinystr.o \
 	tinyxml/tinyxml.o \

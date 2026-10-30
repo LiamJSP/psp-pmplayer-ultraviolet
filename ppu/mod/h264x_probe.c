@@ -1,3 +1,4 @@
+#include "../common/ppa_debug.h"
 
 
 #include "h264x_probe.h"
@@ -825,6 +826,7 @@ void h264x_probe_reset_stream(struct h264x_probe *p)
 	if (p == 0)
 		return;
 
+    ppa_debug_discontinuity();
 	memset(&p->current_au, 0, sizeof(p->current_au));
 	p->au_count = 0;
 	p->reference_b_count = 0;
@@ -914,6 +916,7 @@ int h264x_probe_open_avcc(struct h264x_probe *p,
 
 	p->avcc_valid = !p->parse_error && p->sps.valid && p->pps.valid;
 	h264x_dpb_configure(&p->shadow_dpb, &p->sps);
+    ppa_debug_video(p);
 	return p->avcc_valid ? 0 : -1;
 }
 
@@ -957,6 +960,7 @@ int h264x_probe_open_parameter_sets(struct h264x_probe *p,
 	}
 	p->avcc_valid = !p->parse_error && p->sps.valid && p->pps.valid;
 	h264x_dpb_configure(&p->shadow_dpb, &p->sps);
+    ppa_debug_video(p);
 	return p->avcc_valid ? 0 : -1;
 }
 
@@ -1077,6 +1081,8 @@ void h264x_probe_before_decode(struct h264x_probe *p,
 	if (au->uses_8x8_transform)
 		p->transform8x8_au_count++;
 
+    ppa_debug_note_au(au);
+    ppa_debug_encoder_options(au_data, au_size, p->nal_length_size);
 	h264x_dpb_observe_au(&p->shadow_dpb, &p->sps, au);
 
 }

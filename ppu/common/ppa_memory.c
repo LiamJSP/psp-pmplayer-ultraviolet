@@ -266,7 +266,7 @@ void *ppa_memory_large_alloc(unsigned int size)
     struct ppa_memory_block *best = 0;
     unsigned int rounded;
 
-    if (size == 0 || g_memory.base == 0)
+    if (size == 0 || size > 0xffffffc0U || g_memory.base == 0)
         return 0;
 
     rounded = align_up_64(size);

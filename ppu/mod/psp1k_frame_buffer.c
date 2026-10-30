@@ -21,46 +21,28 @@
 
 #include "psp1k_frame_buffer.h"
 
-static void* frame_buffer0 = 0;
-static void* frame_buffer1 = 0;
-static void* frame_buffer2 = 0;
-static void* frame_buffer3 = 0;
+/* 4 x 512 x 272 x RGBA8888; allocated in main RAM, not GE eDRAM. */
+static void *frame_buffers[4];
 
-int psp1k_init_frame_buffer() {
-	if ( frame_buffer0 == 0 ) {
-		frame_buffer0 = malloc_64(557056);
-	}
-	if ( !frame_buffer0 )
-		return 0;
-	if ( frame_buffer1 == 0 ) {
-		frame_buffer1 = malloc_64(557056);
-	}
-	if ( !frame_buffer1 )
-		return 0;
-	if ( frame_buffer2 == 0 ) {
-		frame_buffer2 = malloc_64(557056);
-	}
-	if ( !frame_buffer2 )
-		return 0;
-	if ( frame_buffer3 == 0 ) {
-		frame_buffer3 = malloc_64(557056);
-	}
-	if ( !frame_buffer3 )
-		return 0;
-	return 1;
+int psp1k_init_frame_buffer(void)
+{
+    int i;
+    for (i = 0; i < 4; ++i) {
+        if (!frame_buffers[i]) frame_buffers[i] = malloc_64(557056);
+        if (!frame_buffers[i]) {
+            /* Called only at startup before any surface is device-visible. */
+            int j;
+            for (j = 0; j < 4; ++j) {
+                free_64(frame_buffers[j]);
+                frame_buffers[j] = 0;
+            }
+            return 0;
+        }
+    }
+    return 1;
 }
 
-void* psp1k_get_frame_buffer(int frame) {
-	switch(frame) {
-		case 0 : return frame_buffer0;
-			break;
-		case 1 : return frame_buffer1;
-			break;
-		case 2 : return frame_buffer2;
-			break;
-		case 3 : return frame_buffer3;
-			break;
-		default: return 0;
-			break; 
-	}
+void *psp1k_get_frame_buffer(int frame)
+{
+    return frame >= 0 && frame < 4 ? frame_buffers[frame] : 0;
 }

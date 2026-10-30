@@ -7,7 +7,7 @@
 #include "../cooleyesBridge.h"
 
 #define VERS 3
-#define REVS 1
+#define REVS 2
 
 PSP_MODULE_INFO("cooleyesBridge", 0x1006, VERS, REVS);
 PSP_MAIN_THREAD_ATTR(0);
@@ -38,6 +38,31 @@ int sceDisplaySetBrightness(int level, int unknown);
 static int g_display_disabled;
 static int g_saved_brightness = 68;
 static int g_devkit_version;
+static void *g_exception_handler;
+int sceKernelRegisterDefaultExceptionHandler(void *handler);
+int sceKernelReleaseDefaultExceptionHandler(void *handler);
+
+int cooleyesDebugExceptionHandler(void *handler, int install)
+{
+    unsigned int address = (unsigned int)handler;
+    unsigned int user_address = address & 0x7fffffffU;
+    u32 old_k1;
+    int result;
+    /* Only a kernel alias of aligned user code is accepted, never kernel or
+     * MMIO addresses. Keep a single owned registration and release that one. */
+    if ((install != 0 && install != 1) || (address & 3U) ||
+        address < 0x80000000U || user_address < 0x08800000U || user_address >= 0x0c000000U)
+        return SCE_KERNEL_ERROR_ILLEGAL_ARGUMENT;
+    if (install && g_exception_handler) return -1;
+    if (!install && g_exception_handler != handler) return -1;
+    old_k1 = pspSdkSetK1(0);
+    result = install ? sceKernelRegisterDefaultExceptionHandler(handler) :
+                       sceKernelReleaseDefaultExceptionHandler(handler);
+    pspSdkSetK1(old_k1);
+    if (result >= 0) g_exception_handler = install ? handler : 0;
+    return result;
+}
+
 
 static int bridge_devkit_version(int requested)
 {
@@ -96,7 +121,8 @@ unsigned int cooleyesBridgeGetCapabilities(void)
     return COOLEYES_BRIDGE_CAP_AUDIO_FREQUENCY |
            COOLEYES_BRIDGE_CAP_ME_BOOT |
            COOLEYES_BRIDGE_CAP_DISPLAY_POWER |
-           COOLEYES_BRIDGE_CAP_REGION_CODE;
+           COOLEYES_BRIDGE_CAP_REGION_CODE |
+           COOLEYES_BRIDGE_CAP_DEBUG_EXCEPTION;
 }
 
 int cooleyesAudioSetFrequency(int devkitVersion, int frequency)
@@ -171,6 +197,8 @@ int module_start(SceSize args, void *argp)
 
 int module_stop(SceSize args, void *argp)
 {
+    if (g_exception_handler && cooleyesDebugExceptionHandler(g_exception_handler, 0) < 0)
+        return -1;
     (void)args;
     (void)argp;
     if (g_display_disabled) (void)cooleyesDisplaySetEnabled(1);

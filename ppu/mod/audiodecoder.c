@@ -1,3 +1,4 @@
+#include "../common/ppa_debug.h"
 #include "audiodecoder.h"
 #include "common/mem64.h"
 
@@ -36,6 +37,7 @@ static void codec_release_workspace(unsigned long *codec)
 
 int audio_decoder_open(int type, int samplerate, int samplecount, int blockalign)
 {
+    int result;
     (void)samplecount;
     (void)blockalign;
 
@@ -44,8 +46,9 @@ int audio_decoder_open(int type, int samplerate, int samplecount, int blockalign
         return -1;
     memset(g_codec, 0, sizeof(g_codec));
 
-    if (sceAudiocodecCheckNeedMem(g_codec, type) < 0 ||
-        codec_allocate_workspace(g_codec) < 0) {
+    result = sceAudiocodecCheckNeedMem(g_codec, type);
+    if (result < 0) ppa_debug_error("sceAudiocodecCheckNeedMem", result);
+    if (result < 0 || codec_allocate_workspace(g_codec) < 0) {
         audio_decoder_close();
         return -1;
     }
@@ -55,7 +58,9 @@ int audio_decoder_open(int type, int samplerate, int samplecount, int blockalign
     if (type == PSP_CODEC_AUDIO_AAC)
         g_codec[10] = (unsigned long)samplerate;
 
-    if (sceAudiocodecInit(g_codec, type) < 0) {
+    result = sceAudiocodecInit(g_codec, type);
+    if (result < 0) {
+        ppa_debug_error("sceAudiocodecInit", result);
         audio_decoder_close();
         return -1;
     }
@@ -104,6 +109,7 @@ int audio_decoder_decode(void *data,
 
     decode_result = sceAudiocodecDecode(g_codec, g_type);
     if (decode_result < 0) {
+        ppa_debug_error("sceAudiocodecDecode", decode_result);
         memset(g_pcm, 0, output_bytes);
         /* Let MP4/MKV stop and close the firmware session. Reporting success
          * here used to keep submitting packets after native codec failures. */

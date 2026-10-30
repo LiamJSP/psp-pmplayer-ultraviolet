@@ -12,12 +12,36 @@ if ($args.Count -gt 1) {
 $currentDir = if ($PSScriptRoot) { $PSScriptRoot } else {$PWD.Path }
 $ppu_root = (Get-Item -Path "$currentDir\..").FullName
 $ppu_boost_name = "boost_1_85_0"
-$ppu_boost_dest = Join-Path$ppu_root "third_party\$ppu_boost_name"
+$ppu_boost_dest = Join-Path $ppu_root "third_party\$ppu_boost_name"
 $ppu_boost_sha = "7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617"
 
-# Never merge into, delete or replace somebody else's header installation.
+# Every root build runs setup. Reuse the expected headers without downloading
+# or changing them; never merge into, delete or replace an existing tree.
 if (Test-Path -Path $ppu_boost_dest) {
-    [Console]::Error.WriteLine("Destination already exists: $ppu_boost_dest`nUse it as-is, or move it aside manually before rerunning setup.")
+    $ppu_boost_ready = $true
+    foreach ($ppu_header in @("version.hpp", "array.hpp", "core/noncopyable.hpp",
+            "smart_ptr/scoped_ptr.hpp", "static_assert.hpp", "type_traits/is_pod.hpp",
+            "type_traits/is_signed.hpp", "type_traits/is_unsigned.hpp",
+            "type_traits/is_same.hpp", "type_traits/alignment_of.hpp")) {
+        $ppu_header_path = Join-Path $ppu_boost_dest "boost\$ppu_header"
+        if (-not (Test-Path -Path $ppu_header_path -PathType Leaf)) {
+            $ppu_boost_ready = $false
+        } elseif ((Get-Item -Path $ppu_header_path).Length -eq 0) {
+            $ppu_boost_ready = $false
+        }
+    }
+    $ppu_license_path = Join-Path $ppu_boost_dest "LICENSE_1_0.txt"
+    if (-not (Test-Path -Path $ppu_license_path -PathType Leaf)) {
+        $ppu_boost_ready = $false
+    } elseif ((Get-Item -Path $ppu_license_path).Length -eq 0) {
+        $ppu_boost_ready = $false
+    }
+    if ($ppu_boost_ready -and (Select-String -Path (Join-Path $ppu_boost_dest "boost\version.hpp") -Quiet `
+            -Pattern '^\s*#\s*define\s+BOOST_VERSION\s+108500(\s|$)')) {
+        Write-Host "Reusing existing Boost 1.85.0 headers at $ppu_boost_dest"
+        exit 0
+    }
+    [Console]::Error.WriteLine("Existing Boost destination is incomplete or is not version 1.85.0: $ppu_boost_dest`nLeft untouched; move it aside manually before rerunning setup.")
     exit 1
 }
 

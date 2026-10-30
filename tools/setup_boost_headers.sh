@@ -13,9 +13,25 @@ ppu_boost_name=boost_1_85_0
 ppu_boost_dest="$ppu_root/third_party/$ppu_boost_name"
 ppu_boost_sha=7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617
 
-# Never merge into, delete or replace somebody else's header installation.
+# Every root build runs setup. Reuse the expected headers without downloading
+# or changing them; never merge into, delete or replace an existing tree.
 if [ -e "$ppu_boost_dest" ] || [ -L "$ppu_boost_dest" ]; then
-    printf 'Destination already exists: %s\nUse it as-is, or move it aside manually before rerunning setup.\n' "$ppu_boost_dest" >&2
+    ppu_boost_ready=1
+    for ppu_header in version.hpp array.hpp core/noncopyable.hpp \
+                      smart_ptr/scoped_ptr.hpp static_assert.hpp \
+                      type_traits/is_pod.hpp type_traits/is_signed.hpp \
+                      type_traits/is_unsigned.hpp type_traits/is_same.hpp \
+                      type_traits/alignment_of.hpp; do
+        [ -s "$ppu_boost_dest/boost/$ppu_header" ] || ppu_boost_ready=0
+    done
+    [ -s "$ppu_boost_dest/LICENSE_1_0.txt" ] || ppu_boost_ready=0
+    if [ "$ppu_boost_ready" -eq 1 ] &&
+       grep -Eq '^[[:space:]]*#[[:space:]]*define[[:space:]]+BOOST_VERSION[[:space:]]+108500([[:space:]]|$)' \
+           "$ppu_boost_dest/boost/version.hpp"; then
+        printf 'Reusing existing Boost 1.85.0 headers at %s\n' "$ppu_boost_dest"
+        exit 0
+    fi
+    printf 'Existing Boost destination is incomplete or is not version 1.85.0: %s\nLeft untouched; move it aside manually before rerunning setup.\n' "$ppu_boost_dest" >&2
     exit 1
 fi
 

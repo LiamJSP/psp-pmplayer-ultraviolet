@@ -45,6 +45,7 @@ font rendering system
 #include "../libmkvinfo.psp/mkvinfo_type.h"
 
 #include "gu_font.h"
+#include "subtitle_readability.h"
 #include "cpu_clock.h"
 #include "common/texture_subdivision.h"
 
@@ -149,6 +150,7 @@ static unsigned int			gufont_border_color = 0x000000;
 static unsigned int			gufont_border_enable = 0;
 static float				gufont_border_size = 1.0;
 static unsigned int			gufont_pixel_size = 16;
+static unsigned int gufont_base_size = 16, gufont_line_height = 16;
 static unsigned int			gufont_char_width = 16;
 static unsigned int			gufont_char_height = 16;
 static float				gufont_asc_scale = 2.0;
@@ -2309,10 +2311,12 @@ FT_Face gu_font_getface()
 	return(face);
 	}
 
-void gu_font_pixelsize_set(int size)
+static void gu_font_apply_pixelsize(int size, int line_height)
 {
 	int i;
-
+    if (gufont_pixel_size == (unsigned)size && gufont_line_height == (unsigned)line_height)
+        return;
+    gufont_line_height = line_height;
 	gufont_pixel_size = size;
 	gufont_char_width = size;
 	gufont_char_height = size;
@@ -2328,6 +2332,21 @@ void gu_font_pixelsize_set(int size)
 	}
 
 	gu_font_notify_font_set_changed();
+}
+
+void gu_font_pixelsize_set(int size)
+{
+    gufont_base_size = ppu_subtitle_readable_size(size, 0);
+    gufont_pixel_size = 0; /* a newly loaded face also needs FT_Set_Pixel_Sizes */
+    gu_font_apply_pixelsize(gufont_base_size, gufont_base_size);
+}
+
+void gu_font_prepare_subtitle(const char *text, int utf8)
+{
+    int detailed = utf8 && ppu_subtitle_needs_detail(text);
+    int size = ppu_subtitle_readable_size(gufont_base_size, detailed);
+    /* 20px glyphs / 24px line advance; larger user fonts keep their size. */
+    gu_font_apply_pixelsize(size, size + (detailed ? 4 : 0));
 }
 
 void gu_font_scale_set(float asc_scale, float multcode_scale)
@@ -2744,13 +2763,13 @@ int gu_font_height_get( char* s )
 	{
 	if (s == 0 ) return 0;
 	char* c = s;
-	int height = gufont_char_height;//FONTHEIGHT;
+	int height = gufont_line_height;//FONTHEIGHT;
 	
 	while (*c!='\0')
 		{
 		if (*c=='\n')
 			{
-			height += gufont_char_height;//FONTHEIGHT;
+			height += gufont_line_height;//FONTHEIGHT;
 			}
 		c++;
 		}
@@ -2761,13 +2780,13 @@ int gu_font_utf16be_height_get( short* s )
 	{
 	if (s == 0 ) return 0;
 	short* c = s;
-	int height = gufont_char_height;//FONTHEIGHT;
+	int height = gufont_line_height;//FONTHEIGHT;
 	
 	while (*c!=0)
 		{
 		if (*c=='\n')
 			{
-			height += gufont_char_height;//FONTHEIGHT;
+			height += gufont_line_height;//FONTHEIGHT;
 			}
 		c++;
 		}
@@ -2778,13 +2797,13 @@ int gu_font_utf16le_height_get( short* s )
 	{
 	if (s == 0 ) return 0;
 	short* c = s;
-	int height = gufont_char_height;//FONTHEIGHT;
+	int height = gufont_line_height;//FONTHEIGHT;
 	
 	while (*c!=0)
 		{
 		if ((*c>>8)=='\n')
 			{
-			height += gufont_char_height;//FONTHEIGHT;
+			height += gufont_line_height;//FONTHEIGHT;
 			}
 		c++;
 		}
@@ -2793,7 +2812,7 @@ int gu_font_utf16le_height_get( short* s )
 
 inline int gu_font_height()
 	{
-	return gufont_char_height;//FONTHEIGHT;
+	return gufont_line_height;//FONTHEIGHT;
 	}
 
 void render_string(int x, int y, char* s, int flags)
@@ -2867,7 +2886,7 @@ void render_string(int x, int y, char* s, int flags)
 				if (*line_start == '\0')
 					break;
 
-				y_y += gufont_char_height + 2;
+				y_y += gufont_line_height + (gufont_line_height == gufont_char_height ? 2 : 0);
 				line_start++;
 				continue;
 			}
@@ -2905,7 +2924,7 @@ void render_string(int x, int y, char* s, int flags)
 				x_x = x;
 			}
 
-			y_y += gufont_char_height + 2;
+			y_y += gufont_line_height + (gufont_line_height == gufont_char_height ? 2 : 0);
 			previous = 0;
 			previous_face_index = -1;
 			continue;

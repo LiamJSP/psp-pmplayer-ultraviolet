@@ -1,3 +1,4 @@
+#include "../common/ppa_playback_error.h"
 #include "codec_prx.h"
 #include "../common/ppa_process.h"
 /* mkv_play.c
@@ -1604,7 +1605,7 @@ static void mkv_play_seek_epoch_arrived(volatile struct mkv_play_struct *p,
         /* Fixed seeks already rebuilt the H.264X shadow/dual DPB during
          * keyframe-to-target preroll. Do not clear it again at arrival. */
         ppa_video_pipeline_set_trickplay_frame_drop(0);
-        ppa_session_set_paused(0);
+        ppa_session_set_paused(p->paused);
         cpu_clock_auto_boost_for_reason(CPU_CLOCK_BOOST_TRICKPLAY_LEAVE);
     }
     /* Release retained target audio only after the controller/mute state
@@ -2200,8 +2201,7 @@ static int mkv_chapter_skip(volatile struct mkv_play_struct *p, int direction)
         ppa_seek_controller_clamp_target_ms(file->chapters[index].time_ms,
             file->duration_ms), (uint32_t)(now / 1000ULL),
         PSP_CTRL_LTRIGGER | PSP_CTRL_RTRIGGER);
-    p->paused = 0;
-    ppa_session_set_paused(0);
+    ppa_playback_control_unpause(&p->paused);
     p->chapter_skip_cursor = index;
     p->chapter_skip_deadline_us = now + 3000000ULL;
     p->show_interface = 1;
@@ -2238,14 +2238,13 @@ static void mkv_input(volatile struct mkv_play_struct *p)
         ctrl_flush();
         return;
     }
+    if (!ppa_session_accept_input(key)) return;
     if (ppa_session_audio_only()) {
         switch (key) {
         case PSP_CTRL_TRIANGLE:
             p->return_result = "exit: manual"; p->return_request = 1; break;
         case PSP_CTRL_SQUARE:
-            p->paused = !p->paused;
-            if (p->paused) ppa_playback_control_pause();
-            else ppa_playback_control_resume();
+            ppa_playback_control_toggle_pause(&p->paused);
             break;
         case PSP_CTRL_SELECT:
             p->audio_stream = (p->audio_stream + 1) % p->decoder.reader.file.audio_tracks;
@@ -2305,9 +2304,7 @@ static void mkv_input(volatile struct mkv_play_struct *p)
     case PSP_CTRL_TRIANGLE:
         p->return_result = "exit: manual"; p->return_request = 1; break;
     case PSP_CTRL_SQUARE:
-        p->paused = !p->paused;
-        if (p->paused) ppa_playback_control_pause();
-        else ppa_playback_control_resume();
+        ppa_playback_control_toggle_pause(&p->paused);
         break;
     case PSP_CTRL_LEFT:
     case PSP_CTRL_RIGHT: {
@@ -2328,8 +2325,7 @@ static void mkv_input(volatile struct mkv_play_struct *p)
                 target, now_ms, 0U);
         p->chapter_skip_cursor = -1;
         p->chapter_skip_deadline_us = 0;
-        p->paused = 0;
-        ppa_session_set_paused(0);
+        ppa_playback_control_unpause(&p->paused);
         mkv_post_seek_label(p, direction, target);
         break;
     }
@@ -2533,7 +2529,13 @@ static int mkv_demux_thread(SceSize input_length, void *input) {
 
 	while (p->return_request == 0 &&
 		!mkv_decode_is_eof((struct mkv_decode_struct *) &p->decoder)) {
-		if (!ppa_session_pause_point(&p->return_request, &p->paused, PPA_SESSION_WORKER_DECODE)) break;
+        int pause_result = ppa_session_pause_point(&p->return_request, &p->paused,
+                                                    PPA_SESSION_WORKER_DECODE);
+        if (!pause_result) break;
+        if (pause_result == 2) {
+            pipeline_last_progress_us = cpu_clock_auto_now_us();
+            pipeline_watchdog_fallback_done = 0U;
+        }
 		int wait;
 		char *result;
 
@@ -2832,6 +2834,7 @@ char *mkv_play_start(volatile struct mkv_play_struct *p) {
         ppa_session_audio_only() ? CTRL_CONTEXT_AUDIO_ONLY : CTRL_CONTEXT_PLAYBACK);
 
 	ppa_frame_sink_reset_timing();
+	ppa_session_bind_io(p->decoder.reader.io_pump);
 	ppa_session_start();
 	ppa_playback_ui_tick_audio_only();
 
@@ -2857,6 +2860,9 @@ char *mkv_play_start(volatile struct mkv_play_struct *p) {
 		 * existing low-latency controller/seek polling policy. */
 		sceKernelDelayThread(ppa_session_audio_only() ? 10000U : 1000U);
 	}
+
+    /* Stop while paused still needs normal clocks for codec drain/close. */
+    if (p->paused) ppa_playback_control_resume();
 
 	if (mkv_decode_is_eof((struct mkv_decode_struct *) &p->decoder)) {
 		p->last_keyframe_pos = 0;
@@ -3021,12 +3027,18 @@ static int mkv_battery_stream_quick_probe(struct mkv_decode_struct *decoder)
 				                          packet.size, packet.timestamp,
 				                          picture_count == 0U ? 3 : 0);
 				if (decoder->h264x.current_au.parse_error ||
-				    decoder->h264x.current_au.is_reference_b)
+				    decoder->h264x.current_au.is_reference_b) {
+					ppa_error_battery_detail(decoder->h264x.current_au.parse_error ?
+					    "Battery Saver could not parse an H.264 picture in its startup sample." :
+					    "Reference B pictures were detected. Battery Saver does not allow B-pyramid-style references.");
 					compatible = 0;
+				}
 				if (decoder->h264x.current_au.is_b) {
 					b_run++;
-					if (b_run > 1U)
+					if (b_run > 1U) {
+						ppa_error_battery_detail("More than one consecutive B picture was detected. Battery Saver allows at most one.");
 						compatible = 0;
+					}
 				}
 				else if (decoder->h264x.current_au.is_i ||
 				         decoder->h264x.current_au.is_p) {
@@ -3073,8 +3085,10 @@ static int mkv_battery_stream_quick_probe(struct mkv_decode_struct *decoder)
 		int nominal_delta;
 		mkv_battery_sort_timestamps(timestamps, video_count);
 		nominal_delta = timestamps[1] - timestamps[0];
-		if (nominal_delta <= 0)
+		if (nominal_delta <= 0) {
+			ppa_error_battery_detail("Battery Saver found duplicate or non-increasing video timestamps.");
 			compatible = 0;
+		}
 		for (i = 2U; compatible && i < video_count; ++i) {
 			int delta = timestamps[i] - timestamps[i - 1U];
 			int difference = delta - nominal_delta;
@@ -3082,8 +3096,10 @@ static int mkv_battery_stream_quick_probe(struct mkv_decode_struct *decoder)
 				difference = -difference;
 			/* Matroska timecodes are integer ticks; one millisecond of
 			 * quantization tolerance still rejects variable cadence. */
-			if (delta <= 0 || difference > 1)
+			if (delta <= 0 || difference > 1) {
+				ppa_error_battery_detail("The sampled video timestamps are not evenly spaced, as Battery Saver requires.");
 				compatible = 0;
+			}
 		}
 	}
 	else if (video_count == 0U) {
@@ -3096,8 +3112,10 @@ static int mkv_battery_stream_quick_probe(struct mkv_decode_struct *decoder)
 		unsigned int maximum = 0U;
 		unsigned int average;
 		unsigned int i;
-		if (audio_count < required_audio_samples)
+		if (audio_count < required_audio_samples) {
+			ppa_error_battery_detail("Battery Saver could not read enough audio packets to check the file.");
 			compatible = 0;
+		}
 		for (i = 0U; compatible && i < audio_count; ++i) {
 			if (audio_sizes[i] < minimum) minimum = audio_sizes[i];
 			if (audio_sizes[i] > maximum) maximum = audio_sizes[i];
@@ -3106,12 +3124,20 @@ static int mkv_battery_stream_quick_probe(struct mkv_decode_struct *decoder)
 		average = audio_count == 0U ? 0U : (unsigned int)(total / audio_count);
 		if (average == 0U ||
 		    (uint64_t)(maximum - minimum) * 100ULL >
-		        (uint64_t)average * 40ULL)
+		        (uint64_t)average * 40ULL) {
+			ppa_error_battery_detail("The audio sample did not pass Battery Saver checks for nonempty, roughly constant-size packets.");
 			compatible = 0;
+		}
 	}
 
-	if (mkv_read_seek(&decoder->reader, 0, 0) != 0)
+	if (mkv_read_seek(&decoder->reader, 0, 0) != 0) {
+		ppa_error_battery_detail("Battery Saver could not seek back to the start after checking this file.");
 		compatible = 0;
+	}
+	if (!compatible || picture_count == 0U) {
+		ppa_error_h264(&decoder->h264x);
+		ppa_error_battery_detail("Battery Saver could not verify a compatible video/audio sample at the start of this file.");
+	}
 	h264x_probe_reset_stream(&decoder->h264x);
 	return compatible && picture_count != 0U;
 }
@@ -3132,18 +3158,24 @@ static int mkv_extreme_battery_saver_compatible(
 	    file->video_track_id >= file->info->total_tracks)
 		return 0;
 	video_track = file->info->tracks[file->video_track_id];
-	if (video_track == 0 || video_track->duration == 0U)
+	if (video_track == 0 || video_track->duration == 0U) {
+		ppa_error_battery_detail("Battery Saver requires a default video frame duration in the MKV headers.");
 		return 0;
+	}
 	if (file->video_width == 0U || file->video_height == 0U ||
 	    file->video_width > PPA_VIDEO_MAX_CODED_WIDTH ||
 	    file->video_height > PPA_VIDEO_MAX_CODED_HEIGHT)
 		return 0;
-	if (!probe->sps.valid || !probe->pps.valid || !probe->avcc_valid)
+	if (!probe->sps.valid || !probe->pps.valid || !probe->avcc_valid) {
+		ppa_error_battery_headers(probe, 0U);
 		return 0;
+	}
 	profile = probe->sps.profile_idc != 0U ?
 		probe->sps.profile_idc : probe->avcc_profile_idc;
-	if (profile != 66U && profile != 77U)
+	if (profile != 66U && profile != 77U) {
+		ppa_error_battery_headers(probe, profile);
 		return 0;
+	}
 	if (probe->sps.level_idc > 30U ||
 	    probe->sps.chroma_format_idc > 1U ||
 	    probe->sps.bit_depth_luma_minus8 != 0U ||
@@ -3156,16 +3188,20 @@ static int mkv_extreme_battery_saver_compatible(
 	    probe->pps.weighted_pred_flag != 0U ||
 	    probe->pps.weighted_bipred_idc != 0U ||
 	    probe->pps.transform_8x8_mode_flag != 0U ||
-	    probe->pps.num_ref_idx_l1_default_active_minus1 != 0U)
+	    probe->pps.num_ref_idx_l1_default_active_minus1 != 0U) {
+		ppa_error_battery_headers(probe, profile);
 		return 0;
+	}
 	if (file->audio_tracks > 0) {
 		int audio_id = file->audio_track_ids[0];
 		mkvinfo_track_t *audio_track;
 		if (audio_id < 0 || audio_id >= file->info->total_tracks)
 			return 0;
 		audio_track = file->info->tracks[audio_id];
-		if (audio_track == 0 || audio_track->duration == 0U)
+		if (audio_track == 0 || audio_track->duration == 0U) {
+			ppa_error_battery_detail("Battery Saver requires a default audio packet duration in the MKV headers.");
 			return 0;
+		}
 	}
 	return mkv_battery_stream_quick_probe(decoder);
 }
@@ -3267,6 +3303,20 @@ char *mkv_play_open(struct mkv_play_struct *p,
 			p->h264x_present_anchor_history = malloc_64(stage_bytes);
 			p->h264x_restore_saved_surface = malloc_64(stage_bytes);
 			p->h264x_restore_generated_surface = malloc_64(stage_bytes);
+            /* Incomplete optional pairs are unusable; do not strand scarce
+             * PSP-1000 heap space until the end of the movie. */
+            if (!p->h264x_stage_surface[0] || !p->h264x_stage_surface[1]) {
+                free_64(p->h264x_stage_surface[0]);
+                free_64(p->h264x_stage_surface[1]);
+                free_64(g_h264x_deep_stage_surface);
+                p->h264x_stage_surface[0] = p->h264x_stage_surface[1] = 0;
+                g_h264x_deep_stage_surface = 0;
+            }
+            if (!p->h264x_restore_saved_surface || !p->h264x_restore_generated_surface) {
+                free_64(p->h264x_restore_saved_surface);
+                free_64(p->h264x_restore_generated_surface);
+                p->h264x_restore_saved_surface = p->h264x_restore_generated_surface = 0;
+            }
 			if (p->h264x_stage_surface[0] != 0 &&
 			    p->h264x_stage_surface[1] != 0)
 				p->h264x_stage_surface_bytes = stage_bytes;

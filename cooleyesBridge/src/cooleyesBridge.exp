@@ -13,6 +13,7 @@ PSP_EXPORT_FUNC(cooleyesAudioSetFrequency)
 PSP_EXPORT_FUNC(cooleyesMeBootStart)
 PSP_EXPORT_FUNC(cooleyesDisplaySetEnabled)
 PSP_EXPORT_FUNC(cooleyesGetRegionCode)
+PSP_EXPORT_FUNC(cooleyesDebugExceptionHandler)
 PSP_EXPORT_END
 
 PSP_END_EXPORTS
